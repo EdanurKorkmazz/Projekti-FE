@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>OmaUni</title>
+<link rel="stylesheet" href="merkinta.css">
+</head>
+<body>
+<header>
+    <nav>
+        <H2>OmaUni</H2>
+        <ul>
+            <li><a href="#">KotiSivu</a></li>
+            <li><a href="#">Merkinnät</a></li>
+            <li><a href="#">Seuranta</a></li>
+        </ul>
+    </nav>
+</header>
+<h1>Uusi merkintä</h1>
+
+<div class="container" id="boksi">
+    <div>
+        <label for="date">Päivämäärä</label>
+        <input type="date" id="date" name="date">
+    </div>
+    
+    <div>
+        <label for="time">Menin vuoteeseen</label>
+        <input type="time" id="time" name="time">
+    </div>
+    
+    <div>
+        <label for="delay">Nukahtamisviive</label>
+        <input id="delay" name="delay">
+    </div>
+    
+    <div>
+        <label for="wakeups">Heräilyjen lkm</label>
+        <input type="text" id="wakeups" name="wakeups">
+    </div>
+    
+    <div>
+        <label for="timeup">Valveillaoloaika unijakson aikana</label>
+        <input type="text" id="timeup" name="timeup">
+    </div>
+    
+    <div>
+        <label for="lkm">Nousin vuoteesta</label>
+        <input type="text" id="lkm" name="lkm">
+    </div>
+    
+    <div>
+        <label for="sleeptime">Nukuttu aika</label>
+        <input type="time" id="sleeptime" name="sleeptime">
+    </div>
+    
+    <div>
+        <label for="inbed">Vuoteessaoloaika</label>
+        <input type="text" id="inbed" name="inbed">
+    </div>
+    
+    <div>
+        <label for="quality">Unen laatu (1-10)</label>
+        <input type="range" id="quality" name="quality" min="1" max="10">
+    </div>
+    
+    <div>
+        <label for="alertness">Päivän aikainen vireys (1-10)</label>
+        <input type="range" id="alertness" name="alertness" min="1" max="10">
+    </div>
+    
+    <div>
+        <label for="treatment">Hoitokeinot</label>
+        <input type="text" id="treatment" name="treatment">
+    </div>
+    
+    <div>
+        <label for="haitat">Haittatekijät</label>
+        <input type="text" id="haitat" name="haitat">
+    </div>
+</div>
+
+</body>
+</html>
