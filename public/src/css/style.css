@@ -1,0 +1,509 @@
+.time-btn {
+    padding: 0.5rem 1rem;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    color: #666;
+  }
+  
+  .time-btn:hover {
+    color: #003a63;
+  }
+  
+  .time-btn.active {
+    border-bottom: 2px solid #003a63;
+    color: #003a63;
+    font-weight: 500;
+  }/* Range-arvon näyttäminen */
+  .range-value {
+    display: inline-block;
+    margin-left: 10px;
+    font-weight: bold;
+  }
+  
+  /* Ilmoitustyylit */
+  .notification {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: bottom 0.5s ease;
+    z-index: 1000;
+  }
+  
+  .notification.show {
+    bottom: 30px;
+  }/* Yleiset tyylit */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  body {
+    background-color: #f5f5f7;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Header ja navigaatio */
+  header {
+    background-color: #003a63;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  header h2 {
+    font-size: 2.5rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  header ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+  }
+  
+  header ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    position: relative;
+    padding-bottom: 5px;
+  }
+  
+  header ul li a:hover {
+    color: #e0e0e0;
+    text-decoration: none;
+  }
+  
+  header ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease;
+  }
+  
+  header ul li a:hover::after {
+    width: 100%;
+  }
+  
+  /* Sivun otsikko */
+  h1 {
+    text-align: center;
+    margin: 2rem 0;
+    color: #003a63;
+    font-size: 2rem;
+  }
+  
+  /* Container ja boksi */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+  }
+  
+  #boksi {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  /* Lomakkeen tyylit */
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #444;
+  }
+  
+  input {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #003a63;
+    box-shadow: 0 0 0 2px rgba(0, 58, 99, 0.1);
+  }
+  
+  input[type="range"] {
+    padding: 0.5rem 0;
+  }
+  
+  /* Painikkeiden tyylit */
+  .button-container {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  button[type="submit"] {
+    background-color: #003a63;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #00558e;
+  }
+  
+  /* Seurantasivun tyylit */
+  .chart-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin-bottom: 2rem;
+    height: 300px;
+  }
+  
+  .time-selector {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .time-btn {
+    padding: 0.5rem 1rem;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+  }
+  
+  .time-btn:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .time-btn.active {
+    background-color: #003a63;
+    color: white;
+    border-color: #003a63;
+  }
+  
+  .data-selectors {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+  }
+  
+  .data-selector-title {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #003a63;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+  }
+  
+  .data-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem;
+  }
+  
+  .data-checkbox input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.5rem;
+  }
+  
+  /* HRV väri (sininen) */
+  .data-checkbox:nth-child(2) label {
+    color: #003a63;
+  }
+  
+  /* Päivänaikainen virkeys väri (punainen) */
+  .data-checkbox:nth-child(3) label {
+    color: #e74c3c;
+  }
+  
+  /* Responsiivisuus */
+  @media (max-width: 992px) {
+    .main-content {
+      padding: 15px;
+    }
+    
+    .sidebar {
+      position: static;
+      width: 100%;
+      border-left: none;
+      border-top: 1px solid #ddd;
+      margin-top: 30px;
+      padding-top: 20px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    header nav {
+      flex-direction: column;
+      padding: 1rem;
+    }
+    
+    header ul {
+      margin-top: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .center-title {
+      font-size: 1.8rem;
+    }
+    
+    .chart-container {
+      height: 300px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    header h2 {
+      font-size: 2rem;
+    }
+    
+    header ul {
+      gap: 0.8rem;
+    }
+    
+    header ul li a {
+      font-size: 0.9rem;
+    }
+    
+    .time-period-buttons {
+      flex-wrap: wrap;
+    }
+    
+    .time-button {
+      margin-bottom: 5px;
+    }
+    
+    .chart-container {
+      height: 250px;
+    }
+  }
+  
+  /* Viestit-sivu */
+  .messages-container {
+    flex: 1;
+    margin-right: 2rem;
+  }
+  
+  .messages-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .messages-header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #333;
+  }
+  
+  .message-tabs {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .tab-btn {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+    color: #666;
+  }
+  
+  .tab-btn:hover {
+    color: #003a63;
+  }
+  
+  .tab-btn.active {
+    border-bottom: 2px solid #003a63;
+    color: #003a63;
+    font-weight: 500;
+  }
+  
+  .message-list {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .message-item {
+    padding: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .message-item:last-child {
+    border-bottom: none;
+  }
+  
+  .message-item:hover {
+    background-color: #f5f5f7;
+  }
+  
+  .message-title {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .message-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .message-divider {
+    height: 1px;
+    background-color: #eee;
+    margin-top: 1rem;
+  }
+  
+  .message-item:last-child .message-divider {
+    display: none;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 300px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+  }
+  
+  .sidebar-title {
+    margin: 0 0 1rem 0;
+    padding: 0;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .sidebar-content {
+    font-size: 0.9rem;
+  }
+  
+  .sidebar-content h4 {
+    margin: 1rem 0 0.3rem 0;
+    color: #333;
+    font-size: 0.95rem;
+  }
+  
+  .sidebar-content p {
+    margin: 0 0 0.7rem 0;
+    color: #555;
+    line-height: 1.4;
+  }
+  
+  .menu-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .menu-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 1rem 0;
+    border-top: 1px solid #eee;
+  }
+  
+  .star-icon {
+    margin-right: 1rem;
+    color: #003a63;
+    font-size: 1.2rem;
+  }
+  
+  .menu-content {
+    flex: 1;
+  }
+  
+  .menu-content h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .menu-content p {
+    margin: 0.3rem 0 0 0;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .action-icon {
+    color: #003a63;
+    font-size: 1rem;
+  }
+  
+  /* Lisää responsiivisuutta viestit-sivulle */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+    
+    .messages-container {
+      margin-right: 0;
+      margin-bottom: 2rem;
+    }
+    
+    .sidebar {
+      width: 100%;
+    }
+    
+    .messages-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .message-tabs {
+      margin-top: 1rem;
+    }
+  }

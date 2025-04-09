@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmaUni - Seuranta</title>
+  <link rel="stylesheet" href="/public/src/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <h2>OmaUni</h2>
+      <ul>
+        <li><a href="#">Etusivu</a></li>
+        <li><a href="/public/src/pages/paivakirja.html">Päiväkirja</a></li>
+        <li><a href="#">Merkinnät</a></li>
+        <li><a href="/public/src/pages/seuranta.html">Seuranta</a></li>
+        <li><a href="/public/src/pages/viestit.html">Viestit</a></li>
+        <li><a href="#">Asetukset</a></li>
+        <li><a href="/index.html">Kirjaudu ulos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="main-content">
+    <h1 class="center-title">Seuranta</h1>
+    
+    <div class="time-period-buttons">
+      <button class="time-button">14vrk</button>
+      <button class="time-button active">7vrk</button>
+      <button class="time-button">3vrk</button>
+      <button class="time-button">1vrk</button>
+    </div>
+    
+    <div class="chart-area">
+      <div id="seuranta-chart" class="chart-container"></div>
+    </div>
+    
+    <div class="data-selection">
+      <div class="checkbox-item">
+        <input type="checkbox" id="hrv-data" class="data-checkbox" checked>
+        <label for="hrv-data" class="checkbox-label blue">HRV, vrk keskiarvo</label>
+      </div>
+      
+      <div class="checkbox-item">
+        <input type="checkbox" id="daily-data" class="data-checkbox" checked>
+        <label for="daily-data" class="checkbox-label red">Koottu päivänaikainen virkeys</label>
+      </div>
+      
+      <div class="checkbox-item">
+        <input type="checkbox" id="sleep-quality" class="data-checkbox">
+        <label for="sleep-quality" class="checkbox-label">Unen laatu</label>
+      </div>
+      
+      <div class="checkbox-item">
+        <input type="checkbox" id="sleep-time" class="data-checkbox">
+        <label for="sleep-time" class="checkbox-label">Nukuttu aika</label>
+      </div>
+    </div>
+  </div>
+  
+  <div class="sidebar">
+    <h2 class="sidebar-title">Sivupalkki</h2>
+    
+    <div class="sidebar-section">
+      <h3>Lisätietoa:</h3>
+      <p>Miten tulkitsen dataa?</p>
+      <p>Milloin lääkäriin?</p>
+    </div>
+  </div>
+
+  <script type="module" src="/public/src/js/seuranta.js"></script>
+</body>
+</html>
