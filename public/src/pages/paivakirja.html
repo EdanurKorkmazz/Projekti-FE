@@ -1,95 +1,200 @@
 <!DOCTYPE html>
 <html lang="fi">
-<head>
-  <title>OmaUni - Uusi merkintä</title>
-  <link rel="stylesheet" href="/public/src/css/style.css">
-</head>
-<body>
-  <header>
-    <nav>
-      <h2>OmaUni</h2>
-      <ul>
-        <li><a href="#">Etusivu</a></li>
-        <li><a href="/public/src/pages/paivakirja.html">Päiväkirja</a></li>
-        <li><a href="#">Merkinnät</a></li>
-        <li><a href="/public/src/pages/seuranta.html">Seuranta</a></li>
-        <li><a href="/public/src/pages/viestit.html">Viestit</a></li>
-        <li><a href="#">Asetukset</a></li>
-        <li><a href="/index.html">Kirjaudu ulos</a></li>
-      </ul>
-    </nav>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OmaUni - Uusi merkintä</title>
+    <link
+      rel="stylesheet"
+      href="/public/src/css/style.css"
+    />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h2>OmaUni</h2>
+        <ul>
+          <li><a href="#">Etusivu</a></li>
+          <li><a href="/public/src/pages/paivakirja.html">Päiväkirja</a></li>
+          <li><a href="#">Merkinnät</a></li>
+          <li><a href="/public/src/pages/seuranta.html">Seuranta</a></li>
+          <li><a href="/public/src/pages/viestit.html">Viestit</a></li>
+          <li><a href="#">Asetukset</a></li>
+          <li><a href="/index.html">Kirjaudu ulos</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <h1>Uusi merkintä</h1>
-  
-  <form id="merkinta-form">
-    <div class="container" id="boksi">
-      <div>
-        <label for="date">Päivämäärä</label>
-        <input type="date" id="date" name="date">
-      </div>
-      
-      <div>
-        <label for="time">Menin vuoteeseen</label>
-        <input type="time" id="time" name="time">
-      </div>
-      
-      <div>
-        <label for="delay">Nukahtamisviive</label>
-        <input id="delay" name="delay">
-      </div>
-      
-      <div>
-        <label for="wakeups">Heräilyjen lkm</label>
-        <input type="text" id="wakeups" name="wakeups">
-      </div>
-      
-      <div>
-        <label for="timeup">Valveillaoloaika unijakson aikana</label>
-        <input type="text" id="timeup" name="timeup">
-      </div>
-      
-      <div>
-        <label for="lkm">Nousin vuoteesta</label>
-        <input type="text" id="lkm" name="lkm">
-      </div>
-      
-      <div>
-        <label for="sleeptime">Nukuttu aika</label>
-        <input type="time" id="sleeptime" name="sleeptime">
-      </div>
-      
-      <div>
-        <label for="inbed">Vuoteessaoloaika</label>
-        <input type="text" id="inbed" name="inbed">
-      </div>
-      
-      <div>
-        <label for="quality">Unen laatu (1-10)</label>
-        <input type="range" id="quality" name="quality" min="1" max="10">
-      </div>
-      
-      <div>
-        <label for="alertness">Päivän aikainen vireys (1-10)</label>
-        <input type="range" id="alertness" name="alertness" min="1" max="10">
-      </div>
-      
-      <div>
-        <label for="treatment">Hoitokeinot</label>
-        <input type="text" id="treatment" name="treatment">
-      </div>
-      
-      <div>
-        <label for="haitat">Haittatekijät</label>
-        <input type="text" id="haitat" name="haitat">
-      </div>
-      
-      <div class="button-container">
-        <button type="submit" id="submit-btn">Lähetä</button>
-      </div>
-    </div>
-  </form>
+    <h1>Uusi merkintä</h1>
 
-  <script type="module" src=""></script>
-</body>
+    <form id="merkinta-form">
+      <div class="container" id="boksi">
+        <div>
+          <label for="date">Päivämäärä (*)</label>
+          <input type="date" id="date" name="date" required />
+        </div>
+
+        <div>
+          <label for="time">Menin vuoteeseen klo (*)</label>
+          <input type="datetime-local" id="time" name="time" required />
+        </div>
+
+        <div>
+          <label for="delay-hours">Nukahtamisviive (*)</label>
+
+          <div class="multiple-inputs">
+            <input
+              type="number"
+              id="delay-hours"
+              name="delay-hours"
+              min="0"
+              max="23"
+              placeholder="hh"
+              required
+            />
+            <span>:</span>
+            <input
+              type="number"
+              id="delay-minutes"
+              name="delay-minutes"
+              min="0"
+              max="59"
+              placeholder="mm"
+              required
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="wakeups">Heräilyjen lukumäärä (*)</label>
+          <input type="text" id="wakeups" name="wakeups" required />
+        </div>
+
+        <div>
+          <label for="timeup-hours">Valveillaoloaika unijakson aikana (*)</label>
+          <div class="multiple-inputs">
+            <input
+              type="number"
+              id="timeup-hours"
+              name="timeup-hours"
+              min="0"
+              max="23"
+              placeholder="hh"
+              required
+            />
+            <span>:</span>
+            <input
+              type="number"
+              id="timeup-minutes"
+              name="timeup-minutes"
+              min="0"
+              max="59"
+              placeholder="mm"
+              required
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="lkm">Nousin vuoteesta klo (*)</label>
+          <input type="datetime-local" id="lkm" name="lkm" required />
+        </div>
+
+        <div>
+          <label for="sleeptime-hours">Nukuttu aika (*)</label>
+          <div class="multiple-inputs">
+            <input
+              type="number"
+              id="sleeptime-hours"
+              name="sleeptime-hours"
+              min="0"
+              max="23"
+              placeholder="hh"
+              required
+            />
+            <span>:</span>
+            <input
+              type="number"
+              id="sleeptime-minutes"
+              name="sleeptime-minutes"
+              min="0"
+              max="59"
+              placeholder="mm"
+              required
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="inbed-hours">Vuoteessaoloaika (*)</label>
+          <div class="multiple-inputs">
+            <input
+              type="number"
+              id="inbed-hours"
+              name="inbed-hours"
+              min="0"
+              max="23"
+              placeholder="hh"
+              required
+            />
+            <span>:</span>
+            <input
+              type="number"
+              id="inbed-minutes"
+              name="inbed-minutes"
+              min="0"
+              max="59"
+              placeholder="mm"
+              required
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="quality">Unen laatu (1-10) (*)</label>
+          <input
+            type="range"
+            id="quality"
+            name="quality"
+            min="1"
+            max="10"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="alertness">Päivän aikainen vireys (1-10) (*)</label>
+          <input
+            type="range"
+            id="alertness"
+            name="alertness"
+            min="1"
+            max="10"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="treatment">Hoitokeinot</label>
+          <input type="text" id="treatment" name="treatment" />
+        </div>
+
+        <div>
+          <label for="haitat">Haittatekijät</label>
+          <input type="text" id="haitat" name="haitat" />
+        </div>
+
+        <div class="button-container">
+          <button type="submit" id="submit-btn">Lähetä</button>
+        </div>
+
+        <p>(*) = pakollinen kenttä</p>
+      </div>
+    </form>
+
+    <script
+      type="module"
+      src="/public/src/js/paivakirja.js"
+    ></script>
+  </body>
 </html>

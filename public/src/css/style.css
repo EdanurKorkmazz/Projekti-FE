@@ -163,6 +163,15 @@
   input[type="range"] {
     padding: 0.5rem 0;
   }
+
+  .multiple-inputs {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    font-weight: 600;
+  
+  }
   
   /* Painikkeiden tyylit */
   .button-container {
