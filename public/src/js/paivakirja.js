@@ -100,7 +100,7 @@ const submitData = async () => {
 
   // Check for errors in the response
   if (response.error) {
-    console.error("Error adding a new user:", response.error);
+    console.error("Error adding a new entry:", response.error);
     return;
   }
 
