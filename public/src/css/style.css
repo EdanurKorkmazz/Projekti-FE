@@ -1,518 +1,926 @@
 .time-btn {
-    padding: 0.5rem 1rem;
-    background: none;
-    border: none;
-    border-bottom: 2px solid transparent;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.2s ease;
-    color: #666;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  color: #666;
+}
+
+.time-btn:hover {
+  color: #003a63;
+}
+
+.time-btn.active {
+  border-bottom: 2px solid #003a63;
+  color: #003a63;
+  font-weight: 500;
+}/* Range-arvon näyttäminen */
+.range-value {
+  display: inline-block;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+/* Ilmoitustyylit */
+.notification {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: bottom 0.5s ease;
+  z-index: 1000;
+}
+
+.notification.show {
+  bottom: 30px;
+}/* Yleiset tyylit */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #f5f5f7;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header ja navigaatio */
+header {
+  background-color: #003a63;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+header h2 {
+  font-size: 2.5rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+header ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+header ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+header ul li a:hover {
+  color: #e0e0e0;
+  text-decoration: none;
+}
+
+header ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+header ul li a:hover::after {
+  width: 100%;
+}
+
+/* Sivun otsikko */
+h1 {
+  text-align: center;
+  margin: 2rem 0;
+  color: #003a63;
+  font-size: 2rem;
+}
+
+/* Container ja boksi */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+}
+
+#boksi {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Lomakkeen tyylit */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #444;
+}
+
+input {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: #003a63;
+  box-shadow: 0 0 0 2px rgba(0, 58, 99, 0.1);
+}
+
+input[type="range"] {
+  padding: 0.5rem 0;
+}
+
+.multiple-inputs {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  font-weight: 600;
+
+}
+
+/* Painikkeiden tyylit */
+.button-container {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+button[type="submit"] {
+  background-color: #003a63;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #00558e;
+}
+
+/* Seurantasivun tyylit */
+.chart-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+#seuranta-chart {
+  width: 100%;
+  height: 100%;
+}
+
+.time-selector {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* Data selectors -parannukset */
+.data-selectors {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.data-selector-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  color: #003a63;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.8rem;
+}
+
+.data-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.data-checkbox input[type="checkbox"] {
+  width: auto;
+  margin-right: 0.8rem;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+}
+
+.data-checkbox label {
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+/* Värit eri käyrille */
+.data-checkbox:nth-child(2) label {
+  color: #003a63;
+  font-weight: 600;
+}
+
+.data-checkbox:nth-child(3) label {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.data-checkbox:nth-child(4) label {
+  color: #2ecc71;
+  font-weight: 600;
+}
+
+.data-checkbox:nth-child(5) label {
+  color: #f39c12;
+  font-weight: 600;
+}
+
+/* Placeholder graafille */
+#seuranta-chart::before {
+  content: 'Datan lataaminen...';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #888;
+  font-style: italic;
+}
+
+/* Responsiivisuus */
+@media (max-width: 992px) {
+  .main-content {
+    padding: 15px;
   }
   
-  .time-btn:hover {
-    color: #003a63;
+  .sidebar {
+    position: static;
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #ddd;
+    margin-top: 30px;
+    padding-top: 20px;
   }
-  
-  .time-btn.active {
-    border-bottom: 2px solid #003a63;
-    color: #003a63;
-    font-weight: 500;
-  }/* Range-arvon näyttäminen */
-  .range-value {
-    display: inline-block;
-    margin-left: 10px;
-    font-weight: bold;
-  }
-  
-  /* Ilmoitustyylit */
-  .notification {
-    position: fixed;
-    bottom: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 30px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: bottom 0.5s ease;
-    z-index: 1000;
-  }
-  
-  .notification.show {
-    bottom: 30px;
-  }/* Yleiset tyylit */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  body {
-    background-color: #f5f5f7;
-    color: #333;
-    line-height: 1.6;
-  }
-  
-  /* Header ja navigaatio */
-  header {
-    background-color: #003a63;
-    color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
-  
+}
+
+@media (max-width: 768px) {
   header nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  
-  header h2 {
-    font-size: 2.5rem;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    flex-direction: column;
+    padding: 1rem;
   }
   
   header ul {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-  }
-  
-  header ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 1rem;
-    transition: all 0.2s ease;
-    position: relative;
-    padding-bottom: 5px;
-  }
-  
-  header ul li a:hover {
-    color: #e0e0e0;
-    text-decoration: none;
-  }
-  
-  header ul li a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: white;
-    transition: width 0.3s ease;
-  }
-  
-  header ul li a:hover::after {
-    width: 100%;
-  }
-  
-  /* Sivun otsikko */
-  h1 {
-    text-align: center;
-    margin: 2rem 0;
-    color: #003a63;
-    font-size: 2rem;
-  }
-  
-  /* Container ja boksi */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-    display: flex;
-  }
-  
-  #boksi {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-  
-  /* Lomakkeen tyylit */
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: #444;
-  }
-  
-  input {
-    width: 100%;
-    padding: 0.7rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-  }
-  
-  input:focus {
-    outline: none;
-    border-color: #003a63;
-    box-shadow: 0 0 0 2px rgba(0, 58, 99, 0.1);
-  }
-  
-  input[type="range"] {
-    padding: 0.5rem 0;
-  }
-
-  .multiple-inputs {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    align-items: center;
-    font-weight: 600;
-  
-  }
-  
-  /* Painikkeiden tyylit */
-  .button-container {
-    grid-column: 1 / -1;
-    text-align: center;
     margin-top: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
   
-  button[type="submit"] {
-    background-color: #003a63;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  .center-title {
+    font-size: 1.8rem;
   }
   
-  button[type="submit"]:hover {
-    background-color: #00558e;
-  }
-  
-  /* Seurantasivun tyylit */
   .chart-container {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    margin-bottom: 2rem;
     height: 300px;
+    padding: 1rem;
   }
   
   .time-selector {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  header h2 {
+    font-size: 2rem;
   }
   
-  .time-btn {
-    padding: 0.5rem 1rem;
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    cursor: pointer;
+  header ul {
+    gap: 0.8rem;
+  }
+  
+  header ul li a {
     font-size: 0.9rem;
-    transition: all 0.2s ease;
   }
   
-  .time-btn:hover {
-    background-color: #e0e0e0;
+  .time-period-buttons {
+    flex-wrap: wrap;
   }
   
-  .time-btn.active {
-    background-color: #003a63;
-    color: white;
-    border-color: #003a63;
+  .time-button {
+    margin-bottom: 5px;
   }
   
-  .data-selectors {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
+  .chart-container {
+    height: 250px;
+  }
+}
+
+/* Viestit-sivu */
+.messages-container {
+  flex: 1;
+  margin-right: 2rem;
+}
+
+.messages-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.messages-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.message-tabs {
+  display: flex;
+  gap: 1rem;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  color: #666;
+}
+
+.tab-btn:hover {
+  color: #003a63;
+}
+
+.tab-btn.active {
+  border-bottom: 2px solid #003a63;
+  color: #003a63;
+  font-weight: 500;
+}
+
+.message-list {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.message-item {
+  padding: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #eee;
+}
+
+.message-item:last-child {
+  border-bottom: none;
+}
+
+.message-item:hover {
+  background-color: #f5f5f7;
+}
+
+.message-title {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.message-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.message-divider {
+  height: 1px;
+  background-color: #eee;
+  margin-top: 1rem;
+}
+
+.message-item:last-child .message-divider {
+  display: none;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 300px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.sidebar-title {
+  margin: 0 0 1rem 0;
+  padding: 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.sidebar-content {
+  font-size: 0.9rem;
+}
+
+.sidebar-content h4 {
+  margin: 1rem 0 0.3rem 0;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.sidebar-content p {
+  margin: 0 0 0.7rem 0;
+  color: #555;
+  line-height: 1.4;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem 0;
+  border-top: 1px solid #eee;
+}
+
+.star-icon {
+  margin-right: 1rem;
+  color: #003a63;
+  font-size: 1.2rem;
+}
+
+.menu-content {
+  flex: 1;
+}
+
+.menu-content h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.menu-content p {
+  margin: 0.3rem 0 0 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.action-icon {
+  color: #003a63;
+  font-size: 1rem;
+}
+
+/* Lisää responsiivisuutta viestit-sivulle */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
   }
   
-  .data-selector-title {
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-    color: #003a63;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 0.5rem;
-  }
-  
-  .data-checkbox {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.8rem;
-  }
-  
-  .data-checkbox input[type="checkbox"] {
-    width: auto;
-    margin-right: 0.5rem;
-  }
-  
-  /* HRV väri (sininen) */
-  .data-checkbox:nth-child(2) label {
-    color: #003a63;
-  }
-  
-  /* Päivänaikainen virkeys väri (punainen) */
-  .data-checkbox:nth-child(3) label {
-    color: #e74c3c;
-  }
-  
-  /* Responsiivisuus */
-  @media (max-width: 992px) {
-    .main-content {
-      padding: 15px;
-    }
-    
-    .sidebar {
-      position: static;
-      width: 100%;
-      border-left: none;
-      border-top: 1px solid #ddd;
-      margin-top: 30px;
-      padding-top: 20px;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    header nav {
-      flex-direction: column;
-      padding: 1rem;
-    }
-    
-    header ul {
-      margin-top: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    
-    .center-title {
-      font-size: 1.8rem;
-    }
-    
-    .chart-container {
-      height: 300px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    header h2 {
-      font-size: 2rem;
-    }
-    
-    header ul {
-      gap: 0.8rem;
-    }
-    
-    header ul li a {
-      font-size: 0.9rem;
-    }
-    
-    .time-period-buttons {
-      flex-wrap: wrap;
-    }
-    
-    .time-button {
-      margin-bottom: 5px;
-    }
-    
-    .chart-container {
-      height: 250px;
-    }
-  }
-  
-  /* Viestit-sivu */
   .messages-container {
-    flex: 1;
-    margin-right: 2rem;
-  }
-  
-  .messages-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    margin-right: 0;
     margin-bottom: 2rem;
   }
   
-  .messages-header h1 {
-    margin: 0;
-    font-size: 2.5rem;
-    color: #333;
+  .sidebar {
+    width: 100%;
+  }
+  
+  .messages-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
   
   .message-tabs {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .tab-btn {
-    background: none;
-    border: none;
-    font-size: 1.1rem;
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s ease;
-    color: #666;
-  }
-  
-  .tab-btn:hover {
-    color: #003a63;
-  }
-  
-  .tab-btn.active {
-    border-bottom: 2px solid #003a63;
-    color: #003a63;
-    font-weight: 500;
-  }
-  
-  .message-list {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .message-item {
-    padding: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .message-item:last-child {
-    border-bottom: none;
-  }
-  
-  .message-item:hover {
-    background-color: #f5f5f7;
-  }
-  
-  .message-title {
-    margin: 0;
-    font-size: 1.2rem;
-    color: #333;
-  }
-  
-  .message-meta {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    color: #666;
-  }
-  
-  .message-divider {
-    height: 1px;
-    background-color: #eee;
     margin-top: 1rem;
   }
-  
-  .message-item:last-child .message-divider {
-    display: none;
+}
+
+/* Merkinnät-sivun tyylit */
+
+/* Modal/popup tyylit */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: white;
+  margin: 5% auto;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 800px;
+  position: relative;
+  animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+  from {opacity: 0; transform: translateY(-20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  color: #aaa;
+  font-size: 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #555;
+}
+
+/* Lomake-tyylit modalissa */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.modal input[readonly] {
+  background-color: #f5f5f7;
+  border: 1px solid #ddd;
+}
+
+/* Painikket modalissa */
+#edit-btn, #delete-btn {
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin: 0 0.5rem;
+}
+
+#edit-btn {
+  background-color: #003a63;
+  color: white;
+}
+
+#edit-btn:hover {
+  background-color: #00558e;
+}
+
+#delete-btn {
+  background-color: #f5f5f7;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+}
+
+#delete-btn:hover {
+  background-color: #e74c3c;
+  color: white;
+}
+
+/* Progress bar merkintöjen laatuarvioinneille */
+.progress-container {
+  width: 100%;
+  height: 20px;
+  background-color: #f5f5f7;
+  border-radius: 4px;
+  margin: 10px 0;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #003a63;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+#modal-quality-bar {
+  background-color: #4CAF50;
+}
+
+#modal-alertness-bar {
+  background-color: #e74c3c;
+}
+
+.progress-container span {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  line-height: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+/* Merkinnät-listan tyylit */
+.message-list .message-item {
+  position: relative;
+}
+
+.message-item .quality-indicator {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.quality-good {
+  background-color: #4CAF50;
+}
+
+.quality-medium {
+  background-color: #FFC107;
+}
+
+.quality-poor {
+  background-color: #e74c3c;
+}
+
+.message-date {
+  font-weight: 500;
+  color: #003a63;
+}
+
+.message-quality {
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 0.3rem;
+}
+
+/* Ei merkintöjä -ilmoitus */
+.no-merkinta {
+  text-align: center;
+  padding: 2rem;
+  color: #777;
+  font-style: italic;
+}
+
+/* Etusivun tyylit */
+
+.etusivu-kuvaus {
+  font-size: 1.1rem;
+  color: #666;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.dashboard-box {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-box h2 {
+  font-size: 1.4rem;
+  color: #003a63;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #eee;
+}
+
+.dashboard-content {
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.big-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #003a63;
+  margin: 0.5rem 0;
+}
+
+.summary-item {
+  margin-bottom: 1.2rem;
+}
+
+.summary-item h3 {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 0.4rem;
+}
+
+.trend {
+  font-size: 0.85rem;
+  display: inline-block;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  margin-top: 0.3rem;
+}
+
+.trend.up {
+  color: #4CAF50;
+  background-color: rgba(76, 175, 80, 0.1);
+}
+
+.trend.down {
+  color: #e74c3c;
+  background-color: rgba(231, 76, 60, 0.1);
+}
+
+.action-button {
+  display: inline-block;
+  padding: 0.8rem 1.2rem;
+  background-color: #003a63;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: auto;
+}
+
+.action-button:hover {
+  background-color: #00558e;
+}
+
+/* Viikko näkymän tyyli */
+.chart-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40px;
+  position: relative;
+}
+
+.chart-bar .bar {
+  width: 24px;
+  border-radius: 4px;
+  transition: height 0.3s ease;
+}
+
+.chart-bar .quality-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transform: translateX(50%);
+  right: 12px;
+}
+
+.chart-bar .day {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Ilmoitukset */
+.notifications {
+  margin-bottom: 1rem;
+}
+
+.notification-item {
+  display: flex;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.8rem;
+  background-color: #f5f5f7;
+  transition: background-color 0.2s ease;
+}
+
+.notification-item:hover {
+  background-color: #eeeef0;
+}
+
+.notification-item.unread {
+  border-left: 3px solid #003a63;
+}
+
+.notification-icon {
+  margin-right: 1rem;
+  color: #003a63;
+  padding-top: 2px;
+}
+
+.notification-content {
+  flex: 1;
+}
+
+.notification-title {
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  color: #333;
+}
+
+.notification-text {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.notification-time {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+/* Sidebar styles for tips */
+.tip-list {
+  padding-left: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.tip-list li {
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.support-info {
+  background-color: #f0f7ff;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-top: 1.5rem;
+}
+
+.support-info h4 {
+  color: #003a63;
+  margin-bottom: 0.5rem;
+}
+
+/* Responsiivisuus */
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
   }
   
-  /* Sidebar */
-  .sidebar {
-    width: 300px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
+  .big-number {
+    font-size: 2rem;
   }
-  
-  .sidebar-title {
-    margin: 0 0 1rem 0;
-    padding: 0;
-    font-size: 1.2rem;
-    color: #333;
-  }
-  
-  .sidebar-content {
-    font-size: 0.9rem;
-  }
-  
-  .sidebar-content h4 {
-    margin: 1rem 0 0.3rem 0;
-    color: #333;
-    font-size: 0.95rem;
-  }
-  
-  .sidebar-content p {
-    margin: 0 0 0.7rem 0;
-    color: #555;
-    line-height: 1.4;
-  }
-  
-  .menu-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .menu-item {
-    display: flex;
-    align-items: flex-start;
-    padding: 1rem 0;
-    border-top: 1px solid #eee;
-  }
-  
-  .star-icon {
-    margin-right: 1rem;
-    color: #003a63;
-    font-size: 1.2rem;
-  }
-  
-  .menu-content {
-    flex: 1;
-  }
-  
-  .menu-content h4 {
-    margin: 0;
-    font-size: 1rem;
-    color: #333;
-  }
-  
-  .menu-content p {
-    margin: 0.3rem 0 0 0;
-    font-size: 0.9rem;
-    color: #666;
-  }
-  
-  .action-icon {
-    color: #003a63;
-    font-size: 1rem;
-  }
-  
-  /* Lisää responsiivisuutta viestit-sivulle */
-  @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-    }
-    
-    .messages-container {
-      margin-right: 0;
-      margin-bottom: 2rem;
-    }
-    
-    .sidebar {
-      width: 100%;
-    }
-    
-    .messages-header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    
-    .message-tabs {
-      margin-top: 1rem;
-    }
-  }
+}

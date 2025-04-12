@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmaUni - Asetukset</title>
+  <link rel="stylesheet" href="/public/src/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <h2>OmaUni</h2>
+      <ul>
+        <li><a href="/public/src/pages/etusivu.html" class="active">Etusivu</a></li>
+        <li><a href="/public/src/pages/paivakirja.html">Päiväkirja</a></li>
+        <li><a href="/public/src/pages/merkinnat.html">Merkinnät</a></li>
+        <li><a href="/public/src/pages/seuranta.html">Seuranta</a></li>
+        <li><a href="/public/src/pages/viestit.html">Viestit</a></li>
+        <li><a href="/public/src/pages/asetukset.html">Asetukset</a></li>
+        <li><a href="/index.html">Kirjaudu ulos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1>Asetukset</h1>
+
+  <form id="asetukset-form">
+    <div class="container" id="boksi">
+      <div>
+        <h2>Sähköposti-ilmoitukset</h2>
+        <p>Anna sähköpostiosoitteesi, johon haluat vastaanottaa muistutukset ja ilmoitukset OmaUni-sovelluksesta.</p>
+        <p>Saat ilmoituksen esimerkiksi uusista viesteistä ja muistutuksia päiväkirjamerkintöjen tekemisestä.</p>
+        
+        <label for="email">Sähköpostiosoite:</label>
+        <input type="email" id="email" name="email" placeholder="oma.sähköposti@esimerkki.fi" required />
+      </div>
+
+      <div class="button-container">
+        <button type="submit" id="submit-btn">Tallenna</button>
+      </div>
+    </div>
+  </form>
+
+  <div id="notification" class="notification">Sähköpostiosoite tallennettu onnistuneesti!</div>
+
+  <script type="module" src=""></script>
+</body>
+</html>

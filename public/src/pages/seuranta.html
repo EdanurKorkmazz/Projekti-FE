@@ -11,61 +11,73 @@
     <nav>
       <h2>OmaUni</h2>
       <ul>
-        <li><a href="#">Etusivu</a></li>
+        <li><a href="/public/src/pages/etusivu.html" class="active">Etusivu</a></li>
         <li><a href="/public/src/pages/paivakirja.html">Päiväkirja</a></li>
-        <li><a href="#">Merkinnät</a></li>
+        <li><a href="/public/src/pages/merkinnat.html">Merkinnät</a></li>
         <li><a href="/public/src/pages/seuranta.html">Seuranta</a></li>
         <li><a href="/public/src/pages/viestit.html">Viestit</a></li>
-        <li><a href="#">Asetukset</a></li>
+        <li><a href="/public/src/pages/asetukset.html">Asetukset</a></li>
         <li><a href="/index.html">Kirjaudu ulos</a></li>
       </ul>
     </nav>
   </header>
 
-  <div class="main-content">
-    <h1 class="center-title">Seuranta</h1>
-    
-    <div class="time-period-buttons">
-      <button class="time-button">14vrk</button>
-      <button class="time-button active">7vrk</button>
-      <button class="time-button">3vrk</button>
-      <button class="time-button">1vrk</button>
-    </div>
-    
-    <div class="chart-area">
-      <div id="seuranta-chart" class="chart-container"></div>
-    </div>
-    
-    <div class="data-selection">
-      <div class="checkbox-item">
-        <input type="checkbox" id="hrv-data" class="data-checkbox" checked>
-        <label for="hrv-data" class="checkbox-label blue">HRV, vrk keskiarvo</label>
+  <div class="container">
+    <div class="messages-container">
+      <div class="messages-header">
+        <h1>Seuranta</h1>
+        
+        <div class="time-selector">
+          <button class="time-btn">14 vrk</button>
+          <button class="time-btn active">7 vrk</button>
+          <button class="time-btn">3 vrk</button>
+          <button class="time-btn">1 vrk</button>
+        </div>
       </div>
       
-      <div class="checkbox-item">
-        <input type="checkbox" id="daily-data" class="data-checkbox" checked>
-        <label for="daily-data" class="checkbox-label red">Koottu päivänaikainen virkeys</label>
+      <div class="chart-container">
+        <div id="seuranta-chart"></div>
       </div>
       
-      <div class="checkbox-item">
-        <input type="checkbox" id="sleep-quality" class="data-checkbox">
-        <label for="sleep-quality" class="checkbox-label">Unen laatu</label>
-      </div>
-      
-      <div class="checkbox-item">
-        <input type="checkbox" id="sleep-time" class="data-checkbox">
-        <label for="sleep-time" class="checkbox-label">Nukuttu aika</label>
+      <div class="data-selectors">
+        <h3 class="data-selector-title">Näytettävät tiedot</h3>
+        
+        <div class="data-checkbox">
+          <input type="checkbox" id="hrv-data" checked>
+          <label for="hrv-data">HRV, vrk keskiarvo</label>
+        </div>
+        
+        <div class="data-checkbox">
+          <input type="checkbox" id="daily-alertness" checked>
+          <label for="daily-alertness">Päivänaikainen virkeys</label>
+        </div>
+        
+        <div class="data-checkbox">
+          <input type="checkbox" id="sleep-quality">
+          <label for="sleep-quality">Unen laatu</label>
+        </div>
+        
+        <div class="data-checkbox">
+          <input type="checkbox" id="sleep-time">
+          <label for="sleep-time">Nukuttu aika</label>
+        </div>
       </div>
     </div>
-  </div>
-  
-  <div class="sidebar">
-    <h2 class="sidebar-title">Sivupalkki</h2>
-    
-    <div class="sidebar-section">
-      <h3>Lisätietoa:</h3>
-      <p>Miten tulkitsen dataa?</p>
-      <p>Milloin lääkäriin?</p>
+
+    <div class="sidebar">
+      <h3 class="sidebar-title">Ohjeet seurantaan</h3>
+      
+      <div class="sidebar-content">
+        <h4>Datan tulkitseminen:</h4>
+        <p>Käyrät näyttävät unesi laadun ja vireystilasi muutokset valitulla aikavälillä. Yksittäistä mittaria tärkeämpää on seurata pitkän aikavälin trendejä.</p>
+        
+        <h4>Mitä käyrät tarkoittavat?</h4>
+        <p>HRV: Sydämen sykevaihtelua mittaava arvo, jonka kohoaminen viittaa yleensä parempaan palautumiseen.</p>
+        <p>Päivänaikainen vireys: Subjektiivinen arvio omasta vireystilasta päivän aikana. Korkea arvo viittaa hyvään vireystilaan.</p>
+        
+        <h4>Milloin ottaa yhteyttä lääkäriin?</h4>
+        <p>Jos havaitset pitkäkestoisia muutoksia unenlaadussa tai vireystilassa, tai jos kärsit toistuvasti nukahtamisvaikeuksista, keskustele tilanteesta terveydenhuollon ammattilaisen kanssa.</p>
+      </div>
     </div>
   </div>
 

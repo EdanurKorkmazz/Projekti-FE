@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmaUni - Merkinnät</title>
+  <link rel="stylesheet" href="/public/src/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <h2>OmaUni</h2>
+      <ul>
+        <li><a href="/public/src/pages/etusivu.html" class="active">Etusivu</a></li>
+        <li><a href="/public/src/pages/paivakirja.html">Päiväkirja</a></li>
+        <li><a href="/public/src/pages/merkinnat.html">Merkinnät</a></li>
+        <li><a href="/public/src/pages/seuranta.html">Seuranta</a></li>
+        <li><a href="/public/src/pages/viestit.html">Viestit</a></li>
+        <li><a href="/public/src/pages/asetukset.html">Asetukset</a></li>
+        <li><a href="/index.html">Kirjaudu ulos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="messages-container">
+      <div class="messages-header">
+        <h1>Päiväkirjamerkinnät</h1>
+        <div class="message-tabs">
+          <button class="tab-btn active">Kaikki merkinnät</button>
+          <button class="tab-btn">Suodata</button>
+        </div>
+      </div>
+
+      <div class="message-list" id="merkinta-list">
+        <!-- Merkinnät listattuna tässä -->
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="sidebar-content">
+        <h3>Ohjeet</h3>
+        
+        <h4>Merkintöjen selaaminen:</h4>
+        <p>Klikkaa merkintää nähdäksesi sen tarkemmat tiedot. Voit myös muokata aiempia merkintöjäsi.</p>
+        
+        <h4>Uuden merkinnän lisääminen:</h4>
+        <p>Voit lisätä uuden merkinnän <a href="/public/src/pages/paivakirja.html">Päiväkirja-sivulla</a>.</p>
+        
+        <h4>Merkintöjen suodattaminen:</h4>
+        <p>Käytä "Suodata"-välilehteä rajataksesi merkintöjä tietyn ajanjakson tai muun kriteerin perusteella.</p>
+        
+        <h4>Tietojen vienti:</h4>
+        <p>Voit ladata merkintäsi PDF-muodossa analyysia tai tulostusta varten.</p>
+        
+        <div class="button-container" style="text-align: left; margin-top: 20px;">
+          <button type="button" id="export-btn" style="background-color: #003a63; color: white; border: none; border-radius: 4px; padding: 0.5rem 1rem; font-size: 0.9rem; cursor: pointer;">
+            Lataa merkinnät (PDF)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Merkinnän tarkastelu -lomake (piilotettu oletuksena) -->
+  <div id="merkinta-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>Päiväkirjamerkintä</h2>
+      
+      <form id="merkinta-view-form">
+        <div class="form-grid">
+          <div>
+            <label for="modal-date">Päivämäärä</label>
+            <input type="date" id="modal-date" name="date" readonly>
+          </div>
+
+          <div>
+            <label for="modal-time">Menin vuoteeseen klo</label>
+            <input type="datetime-local" id="modal-time" name="time" readonly>
+          </div>
+
+          <div>
+            <label for="modal-delay">Nukahtamisviive</label>
+            <input type="text" id="modal-delay" name="delay" readonly>
+          </div>
+
+          <div>
+            <label for="modal-wakeups">Heräilyjen lukumäärä</label>
+            <input type="text" id="modal-wakeups" name="wakeups" readonly>
+          </div>
+
+          <div>
+            <label for="modal-timeup">Valveillaoloaika unijakson aikana</label>
+            <input type="text" id="modal-timeup" name="timeup" readonly>
+          </div>
+
+          <div>
+            <label for="modal-lkm">Nousin vuoteesta klo</label>
+            <input type="datetime-local" id="modal-lkm" name="lkm" readonly>
+          </div>
+
+          <div>
+            <label for="modal-sleeptime">Nukuttu aika</label>
+            <input type="text" id="modal-sleeptime" name="sleeptime" readonly>
+          </div>
+
+          <div>
+            <label for="modal-inbed">Vuoteessaoloaika</label>
+            <input type="text" id="modal-inbed" name="inbed" readonly>
+          </div>
+
+          <div>
+            <label for="modal-quality">Unen laatu (1-10)</label>
+            <div class="progress-container">
+              <div id="modal-quality-bar" class="progress-bar"></div>
+              <span id="modal-quality-value"></span>
+            </div>
+          </div>
+
+          <div>
+            <label for="modal-alertness">Päivän aikainen vireys (1-10)</label>
+            <div class="progress-container">
+              <div id="modal-alertness-bar" class="progress-bar"></div>
+              <span id="modal-alertness-value"></span>
+            </div>
+          </div>
+
+          <div>
+            <label for="modal-treatment">Hoitokeinot</label>
+            <input type="text" id="modal-treatment" name="treatment" readonly>
+          </div>
+
+          <div>
+            <label for="modal-haitat">Haittatekijät</label>
+            <input type="text" id="modal-haitat" name="haitat" readonly>
+          </div>
+        </div>
+
+        <div class="button-container">
+          <button type="button" id="edit-btn">Muokkaa</button>
+          <button type="button" id="delete-btn">Poista</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="/public/src/js/merkinnat.js"></script>
+</body>
+</html>

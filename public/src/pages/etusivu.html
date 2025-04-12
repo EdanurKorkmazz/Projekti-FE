@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmaUni - Etusivu</title>
+  <link rel="stylesheet" href="/public/src/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <h2>OmaUni</h2>
+      <ul>
+        <li><a href="/public/src/pages/etusivu.html" class="active">Etusivu</a></li>
+        <li><a href="/public/src/pages/paivakirja.html">Päiväkirja</a></li>
+        <li><a href="/public/src/pages/merkinnat.html">Merkinnät</a></li>
+        <li><a href="/public/src/pages/seuranta.html">Seuranta</a></li>
+        <li><a href="/public/src/pages/viestit.html">Viestit</a></li>
+        <li><a href="/public/src/pages/asetukset.html">Asetukset</a></li>
+        <li><a href="/index.html">Kirjaudu ulos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="messages-container">
+      <div class="messages-header">
+        <h1>Tervetuloa OmaUneen</h1>
+        <p class="etusivu-kuvaus">Aloita matkasi kohti parempaa unta ja seuraa palautumistasi</p>
+      </div>
+
+      <div class="dashboard">
+        <div class="dashboard-box">
+          <h2>Tämän päivän yhteenveto</h2>
+          <div class="dashboard-content" id="today-summary">
+            <div class="summary-item">
+              <h3>Unen pituus</h3>
+              <p class="big-number" id="sleep-duration">--:--</p>
+              <p class="trend up">+15 min eilisestä</p>
+            </div>
+            <div class="summary-item">
+              <h3>Unen laatu</h3>
+              <div class="progress-container">
+                <div id="quality-bar" class="progress-bar" style="width: 65%"></div>
+                <span id="quality-value">6.5/10</span>
+              </div>
+            </div>
+            <div class="summary-item">
+              <h3>Palautuminen</h3>
+              <div class="progress-container">
+                <div id="recovery-bar" class="progress-bar" style="width: 72%; background-color: #4CAF50;"></div>
+                <span id="recovery-value">72%</span>
+              </div>
+            </div>
+          </div>
+          <a href="/public/src/pages/paivakirja.html" class="action-button">Tee uusi merkintä</a>
+        </div>
+
+        <div class="dashboard-box">
+          <h2>Viikkonäkymä</h2>
+          <div id="weekly-chart" class="chart-container">
+            <div style="text-align: center; padding-top: 100px; color: #888;">
+              Tiedot ladataan...
+            </div>
+          </div>
+          <a href="/public/src/pages/seuranta.html" class="action-button">Katso tarkempi seuranta</a>
+        </div>
+
+        <div class="dashboard-box">
+          <h2>Muistutukset</h2>
+          <div class="notifications">
+            <div class="notification-item unread">
+              <div class="notification-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
+              </div>
+              <div class="notification-content">
+                <p class="notification-title">Päiväkirjamerkintä</p>
+                <p class="notification-text">Muista täyttää tämän päivän merkintä</p>
+                <p class="notification-time">Tänään</p>
+              </div>
+            </div>
+            <div class="notification-item">
+              <div class="notification-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </div>
+              <div class="notification-content">
+                <p class="notification-title">Lääkäriajan muistutus</p>
+                <p class="notification-text">Sinulla on lääkäriaika huomenna klo 14:30</p>
+                <p class="notification-time">Eilen</p>
+              </div>
+            </div>
+          </div>
+          <a href="/public/src/pages/viestit.html" class="action-button">Katso kaikki ilmoitukset</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h3 class="sidebar-title">Tietoa unesta</h3>
+      
+      <div class="sidebar-content">
+        <h4>Uni ja palautuminen</h4>
+        <p>Riittävä uni on tärkeää niin fyysiselle kuin psyykkisellekin hyvinvoinnille. Aikuinen tarvitsee keskimäärin 7-9 tuntia unta yössä.</p>
+        
+        <h4>Sykevälivaihtelu (HRV)</h4>
+        <p>Sykevälivaihtelu kertoo autonomisen hermoston toiminnasta ja kehon palautumistilasta. Korkea HRV-arvo viittaa yleensä hyvään palautumiseen.</p>
+        
+        <h4>Vinkkejä parempaan uneen</h4>
+        <ul class="tip-list">
+          <li>Pidä säännöllinen unirytmi</li>
+          <li>Vältä kofeiinia iltapäivällä ja illalla</li>
+          <li>Rauhoitu ennen nukkumaanmenoa</li>
+          <li>Pidä makuuhuone viileänä ja pimeänä</li>
+        </ul>
+        
+        <div class="support-info">
+          <h4>Tarvitsetko apua?</h4>
+          <p>Jos sinulla on kysyttävää sovelluksen käytöstä tai unesta, ota yhteyttä terveydenhuollon ammattilaiseen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/public/src/js/etusivu.js"></script>
+</body>
+</html>
