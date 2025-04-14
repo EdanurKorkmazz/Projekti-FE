@@ -1,7 +1,6 @@
 import "../css/style.css";
 import { fetchData } from "./fetch.js";
 
-
 /**
  * Calculates the total sleep time in minutes
  *
@@ -13,15 +12,14 @@ import { fetchData } from "./fetch.js";
 
 // Function to calculate the total sleep time in minutes
 function timeToMinutes(hours, minutes) {
-
-  // Convert to integers 
-  hours = parseInt(hours); 
-  minutes = parseInt(minutes); 
+  // Convert to integers
+  hours = parseInt(hours);
+  minutes = parseInt(minutes);
 
   // Check if both variables are numbers
   if (isNaN(hours) || isNaN(minutes)) {
-      console.log("Invalid input");
-      return 0;
+    console.log("Invalid input");
+    return 0;
   }
 
   // Calculate total minutes
@@ -30,15 +28,30 @@ function timeToMinutes(hours, minutes) {
   return totalMinutes;
 }
 
+/**
+ * Toggles the read-only state of the inputs in the form
+ *
+ * @param {string} readonly
+ */
+function toggleInputsReadOnly(readOnly) {
+  const inputs = document.querySelectorAll(
+    "#merkinta-form input, #merkinta-form select, #merkinta-form textarea"
+  );
 
-
+  inputs.forEach((input) => {
+    if (input.type === "range") {
+      input.disabled = readOnly; // range can't be readonly, so disable instead
+    } else {
+      input.readOnly = readOnly;
+    }
+  });
+}
 
 /**
  * Submits data to the server
  *
  */
 const submitData = async () => {
-
   // Get the values from the form inputs
   const date = document.querySelector("#date").value;
   const time = document.querySelector("#time").value;
@@ -107,19 +120,33 @@ const submitData = async () => {
   // Check for success in the response
   if (response.message) {
     console.log(response.message, "success");
+
+    // Replace the form with a confirmation message
+    const container = document.getElementById("boksi");
+    container.innerHTML = `
+    <div class="confirmation">
+      <h2>Kiitos!</h2>
+      <p>Merkintäsi on tallennettu onnistuneesti.</p>
+      <br>
+      <button id="new-entry-btn" type="button">Tee uusi merkintä</button>
+    </div>
+  `;
+
+    // Optional: add a listener to restart the form
+    document.getElementById("new-entry-btn").addEventListener("click", () => {
+      window.location.reload(); // or re-render the form dynamically
+    });
   }
 
   // Log the response data
   console.log(response);
 };
 
-
 /**
  * Handles the submit button click event
  */
-const getItemBtn = document.getElementById("submit-btn");
-getItemBtn.addEventListener("click", (e) => {
-
+const submitBtn = document.getElementById("submit-btn");
+submitBtn.addEventListener("click", (e) => {
   // Prevent form submission
   e.preventDefault();
 
@@ -132,4 +159,35 @@ getItemBtn.addEventListener("click", (e) => {
 
   // If form is valid, proceed to submit
   submitData();
+});
+
+/**
+ * Handles the button display logic
+ */
+const previewBtn = document.getElementById("preview-btn");
+const editBtn = document.getElementById("edit-btn");
+const form = document.getElementById("merkinta-form");
+
+previewBtn.addEventListener("click", () => {
+
+  // Prevent form submission if all required fields are not filled
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  // Toggles the read-only state of the inputs in the form
+  toggleInputsReadOnly(true);
+
+  previewBtn.style.display = "none";
+  editBtn.style.display = "inline-block";
+  submitBtn.style.display = "inline-block";
+});
+
+editBtn.addEventListener("click", () => {
+  toggleInputsReadOnly(false);
+
+  previewBtn.style.display = "inline-block";
+  editBtn.style.display = "none";
+  submitBtn.style.display = "none";
 });
