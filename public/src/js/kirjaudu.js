@@ -42,6 +42,8 @@ const submitData = async () => {
   // Check for success in the response
   if (response.message) {
     console.log(response.message, "success");
+    sessionStorage.setItem("token", response.token); // Store the token in session storage
+    sessionStorage.setItem("user_id", response.user_id); // Store the user ID in session storage
     window.location.href = '/public/src/pages/paivakirja.html'; // Redirect to the diary page (change to front page when ready)
   }
 
