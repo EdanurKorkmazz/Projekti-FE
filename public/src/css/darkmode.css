@@ -1,0 +1,313 @@
+/* Dark Mode -tyylit erillisessä tiedostossa */
+
+/* Toggle-kytkimen tyylit */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+  }
+  
+  .toggle-label {
+    margin-right: 1rem;
+    margin-bottom: 0;
+    font-weight: 500;
+    color: #444;
+  }
+  
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    border-radius: 34px;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e0e0e0;
+    transition: .4s;
+    border-radius: 34px;
+    overflow: hidden;
+  }
+  
+  .toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 24px;
+    width: 24px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+  }
+  
+  /* Aurinko- ja kuu-ikonien tyylit */
+  .toggle-slider:after {
+    content: "☀️";
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    font-size: 16px;
+    transition: .4s;
+  }
+  
+  input:checked + .toggle-slider {
+    background-color: #003a63;
+  }
+  
+  input:checked + .toggle-slider:before {
+    transform: translateX(30px);
+  }
+  
+  input:checked + .toggle-slider:after {
+    content: "🌙";
+    right: auto;
+    left: 8px;
+    color: white;
+  }
+  
+  /* Hover-efekti */
+  .toggle-switch:hover .toggle-slider {
+    background-color: #d0d0d0;
+  }
+  
+  .toggle-switch:hover input:checked + .toggle-slider {
+    background-color: #00558e;
+  }
+  
+  #mode-text {
+    margin-left: 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    min-width: 80px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Mode-tekstin värit */
+  #mode-text {
+    color: #666;
+  }
+  
+  input:checked ~ #mode-text {
+    color: #003a63;
+  }
+  
+  /* Pieni animaatio kytkintä vaihdettaessa */
+  @keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  input:active + .toggle-slider:before {
+    animation: pop 0.3s ease;
+  }
+  
+  /* Dark Mode -tyylit */
+  body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+  
+  body.dark-mode header {
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  body.dark-mode h1,
+  body.dark-mode h2,
+  body.dark-mode h3,
+  body.dark-mode h4 {
+    color: #e0e0e0;
+  }
+  
+  body.dark-mode .container #boksi,
+  body.dark-mode .info-section,
+  body.dark-mode .dashboard-box,
+  body.dark-mode .sidebar,
+  body.dark-mode .chart-container,
+  body.dark-mode .data-selectors,
+  body.dark-mode .message-list,
+  body.dark-mode .form-container,
+  body.dark-mode .chat-container,
+  body.dark-mode .modal-content,
+  body.dark-mode .settings-card {
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  body.dark-mode input,
+  body.dark-mode select,
+  body.dark-mode textarea {
+    background-color: #333;
+    color: #e0e0e0;
+    border-color: #444;
+  }
+  
+  body.dark-mode input::placeholder,
+  body.dark-mode textarea::placeholder {
+    color: #999;
+  }
+  
+  body.dark-mode input:focus,
+  body.dark-mode select:focus,
+  body.dark-mode textarea:focus {
+    border-color: #0078d4;
+    box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.2);
+  }
+  
+  body.dark-mode input[readonly] {
+    background-color: #262626;
+  }
+  
+  body.dark-mode .message-item {
+    border-bottom-color: #333;
+  }
+  
+  body.dark-mode .message-item:hover {
+    background-color: #262626;
+  }
+  
+  body.dark-mode .message-title {
+    color: #e0e0e0;
+  }
+  
+  body.dark-mode .message-meta {
+    color: #999;
+  }
+  
+  body.dark-mode .sidebar-content p,
+  body.dark-mode .info-content p {
+    color: #bbb;
+  }
+  
+  body.dark-mode .action-button {
+    background-color: #0078d4;
+  }
+  
+  body.dark-mode .action-button:hover {
+    background-color: #0086f0;
+  }
+  
+  body.dark-mode .tab-btn {
+    color: #aaa;
+  }
+  
+  body.dark-mode .tab-btn:hover,
+  body.dark-mode .tab-btn.active {
+    color: #e0e0e0;
+  }
+  
+  body.dark-mode .tab-btn.active {
+    border-bottom-color: #0078d4;
+  }
+  
+  body.dark-mode .toggle-label {
+    color: #e0e0e0;
+  }
+  
+  body.dark-mode .toggle-switch:hover .toggle-slider {
+    background-color: #004a7d;
+  }
+  
+  body.dark-mode #mode-text {
+    color: #e0e0e0;
+  }
+  
+  body.dark-mode .settings-card {
+    border-left-color: #0078d4;
+  }
+  
+  /* Animaatio teeman vaihdolle */
+  body, 
+  body.dark-mode,
+  body *,
+  body.dark-mode * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Asetukset-sivun asettelu */
+  .settings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem; /* Noin 5 cm väli elementtien välillä */
+  }
+  
+  .email-settings {
+    grid-column: 1 / 2;
+  }
+  
+  .appearance-settings {
+    grid-column: 2 / 3;
+  }
+  
+  /* Tallenna-napin keskitys sähköpostiasetusten alle */
+  .email-button-container {
+    text-align: center;
+    margin-top: 2rem;
+    grid-column: 1 / 2;
+  }
+  
+  /* Asetuskortin tyylit */
+  .settings-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #003a63;
+  }
+  
+  .settings-card h2 {
+    color: #003a63;
+    margin-top: 0;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .settings-card p {
+    margin-bottom: 1.2rem;
+    color: #555;
+  }
+  
+  /* Responsiivisuus pienemmille näytöille */
+  @media (max-width: 992px) {
+    .settings-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .email-settings, 
+    .appearance-settings {
+      grid-column: 1 / 2;
+    }
+  }
+  
+  /* Ulkoasu-kortin korkeuden yhtenäistäminen */
+  .appearance-settings {
+    height: fit-content;
+    align-self: start;
+  }
+  
+  /* Jos halutaan "5 cm" oikealle mobiilissa, voidaan käyttää marginaalia */
+  @media (max-width: 768px) {
+    .appearance-settings {
+      margin-left: 0; /* Mobiilissa ei siirretä oikealle */
+    }
+  }

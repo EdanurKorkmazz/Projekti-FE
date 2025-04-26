@@ -5,18 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OmaUni - Viestit</title>
   <link rel="stylesheet" href="/public/src/css/style.css">
+  <link rel="stylesheet" href="/public/src/css/darkmode.css">
+
 </head>
 <body>
   <header>
     <nav>
       <h2>OmaUni</h2>
       <ul>
-        <li><a href="/public/src/pages/etusivu.html" class="active">Etusivu</a></li>
+        <li><a href="/public/src/pages/etusivu.html">Etusivu</a></li>
         <li><a href="/public/src/pages/paivakirja.html">Päiväkirja</a></li>
         <li><a href="/public/src/pages/merkinnat.html">Merkinnät</a></li>
         <li><a href="/public/src/pages/seuranta.html">Seuranta</a></li>
         <li><a href="/public/src/pages/viestit.html">Viestit</a></li>
         <li><a href="/public/src/pages/asetukset.html">Asetukset</a></li>
+        <li><a href="/public/src/pages/tietoa.html">Tietoa unesta</a></li>
         <li><a href="/index.html" id="signout">Kirjaudu ulos</a></li>
       </ul>
     </nav>
@@ -27,74 +30,140 @@
       <div class="messages-header">
         <h1>Viestit</h1>
         <div class="message-tabs">
-          <button class="tab-btn active">1 Lukematon viesti</button>
-          <button class="tab-btn">Uusi viesti</button>
+          <button class="tab-btn active" id="inbox-tab">1 Lukematon viesti</button>
+          <button class="tab-btn" id="new-message-tab">Uusi viesti</button>
         </div>
       </div>
 
-      <div class="message-list">
-        <div class="message-item">
+      <!-- Viestilista (näkyy oletuksena) -->
+      <div class="message-list" id="message-list">
+        <div class="message-item unread" data-id="1" data-sender="Unilääkäri Joonas Unikko">
           <div class="message-info">
-            <h3 class="message-title">Otsikko</h3>
+            <h3 class="message-title">Tervetuloa OmaUni-sovellukseen</h3>
             <div class="message-meta">
-              <span class="message-date">saapunut 13.1.2025</span>
-              <span class="message-sender">Lähettäjä</span>
+              <span class="message-date">saapunut 26.4.2025</span>
+              <span class="message-sender">Unilääkäri Joonas Unikko</span>
             </div>
           </div>
         </div>
 
-        <div class="message-item">
+        <div class="message-item" data-id="2" data-sender="Järjestelmänvalvoja">
           <div class="message-info">
-            <h3 class="message-title">Otsikko</h3>
+            <h3 class="message-title">Tietoja sovelluksen käytöstä</h3>
             <div class="message-meta">
-              <span class="message-date">saapunut 13.1.2025</span>
-              <span class="message-sender">Lähettäjä</span>
+              <span class="message-date">saapunut 25.4.2025</span>
+              <span class="message-sender">Järjestelmänvalvoja</span>
             </div>
           </div>
         </div>
 
-        <div class="message-item">
+        <div class="message-item" data-id="3" data-sender="Unilääkäri Joonas Unikko">
           <div class="message-info">
-            <h3 class="message-title">Otsikko</h3>
+            <h3 class="message-title">Tarkistus kokonaistilanteesta</h3>
             <div class="message-meta">
-              <span class="message-date">saapunut 13.1.2025</span>
-              <span class="message-sender">Lähettäjä</span>
+              <span class="message-date">saapunut 20.4.2025</span>
+              <span class="message-sender">Unilääkäri Joonas Unikko</span>
             </div>
           </div>
         </div>
 
-        <div class="message-item">
+        <div class="message-item" data-id="4" data-sender="Järjestelmänvalvoja">
           <div class="message-info">
-            <h3 class="message-title">Otsikko</h3>
+            <h3 class="message-title">Päivitys sovellukseen</h3>
             <div class="message-meta">
-              <span class="message-date">saapunut 13.1.2025</span>
-              <span class="message-sender">Lähettäjä</span>
+              <span class="message-date">saapunut 15.4.2025</span>
+              <span class="message-sender">Järjestelmänvalvoja</span>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Uusi viesti -lomake (piilotettu oletuksena) -->
+      <div class="new-message-form" id="new-message-form" style="display: none;">
+        <div class="form-container">
+          <div class="form-group">
+            <label for="recipient">Vastaanottaja:</label>
+            <select id="recipient" name="recipient" required>
+              <option value="">Valitse vastaanottaja</option>
+              <option value="unilaakari">Unilääkäri Joonas Unikko</option>
+              <option value="admin">Järjestelmänvalvoja</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">Aihe:</label>
+            <input type="text" id="subject" name="subject" placeholder="Viestin aihe" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Viesti:</label>
+            <textarea id="message" name="message" placeholder="Kirjoita viestisi tähän..." rows="6" required></textarea>
+          </div>
+          
+          <div class="button-container">
+            <button type="button" id="cancel-message">Peruuta</button>
+            <button type="button" id="send-message">Lähetä viesti</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Viestiketju (piilotettu oletuksena) -->
+      <div class="chat-container" id="chat-container" style="display: none;">
+        <div class="chat-header">
+          <button class="back-button" id="back-to-messages">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Takaisin
+          </button>
+          <div class="chat-info">
+            <h3 id="chat-title">Viestin aihe</h3>
+            <p id="chat-with">Keskustelu: <span id="chat-recipient">Vastaanottaja</span></p>
+          </div>
+        </div>
+        
+        <div class="chat-messages" id="chat-messages">
+          <!-- Viestit tulevat tähän dynaamisesti -->
+        </div>
+        
+        <div class="chat-input">
+          <textarea id="chat-message" placeholder="Kirjoita viestisi tähän..." rows="3"></textarea>
+          <button id="send-chat-message">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            Lähetä
+          </button>
         </div>
       </div>
     </div>
 
     <div class="sidebar">
       <div class="sidebar-content">
-        <h3>Sivupalkki</h3>
+        <h3>Ohjeet viesteihin</h3>
         
-        <h4>Ohjeet:</h4>
-        <p>Viestiosiossa voit lukea ja lähettää viestejä muille käyttäjille sekä järjestelmän ylläpitäjille.</p>
-        
-        <h4>Viestin lukeminen:</h4>
-        <p>Klikkaa viestiä avataksesi sen. Lukemattomat viestit näkyvät korostettuina.</p>
+        <h4>Viestin lukeminen ja vastaaminen:</h4>
+        <p>Klikkaa viestiä avataksesi viestiketjun. Voit vastata viestiin kirjoittamalla vastauksen viestiketjun alaosassa olevaan tekstikenttään.</p>
         
         <h4>Uuden viestin lähettäminen:</h4>
-        <p>Valitse "Uusi viesti" -välilehti kirjoittaaksesi uuden viestin.</p>
+        <p>Valitse "Uusi viesti" -välilehti kirjoittaaksesi uuden viestin. Valitse vastaanottaja, aihe ja kirjoita viestisi.</p>
         
-        <h4>Vastaaminen:</h4>
-        <p>Avaa viesti ja käytä vastaa-painiketta lähettääksesi vastauksen.</p>
+        <h4>Vastauksen odottaminen:</h4>
+        <p>Unilääkärit pyrkivät vastaamaan viesteihin 1-2 arkipäivän kuluessa. Kiireellisissä tapauksissa suosittelemme ottamaan yhteyttä puhelimitse tai hakeutumaan lähimpään terveydenhuollon toimipisteeseen.</p>
+        
+        <div class="support-info">
+          <h4>Kiireelliset yhteydenotot</h4>
+          <p>Jos asia on kiireellinen, soita:</p>
+          <p><strong>Päivystysapu:</strong> 116 117</p>
+          <p><strong>Hätänumero:</strong> 112</p>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- Ilmoitus viestien lähettämisestä -->
+  <div id="notification" class="notification">Viesti lähetetty onnistuneesti!</div>
+
   <script type="module" src="/public/src/js/viestit.js"></script>
   <script type="module" src="/public/src/js/uloskirjautuminen.js"></script>
+  <script type="module" src="/public/src/js/navi.js"></script>
+  <script type="module" src="/public/src/js/viestit.js"></script>
+  <script type="module" src="/public/src/js/darkmode.js"></script>
 </body>
 </html>

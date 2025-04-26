@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmaUni - Tietoa unesta</title>
+  <link rel="stylesheet" href="/public/src/css/style.css">
+  <link rel="stylesheet" href="/public/src/css/darkmode.css">
+
+</head>
+<body>
+  <header>
+    <nav>
+      <h2>OmaUni</h2>
+      <ul>
+        <li><a href="/public/src/pages/etusivu.html">Etusivu</a></li>
+        <li><a href="/public/src/pages/paivakirja.html">Päiväkirja</a></li>
+        <li><a href="/public/src/pages/merkinnat.html">Merkinnät</a></li>
+        <li><a href="/public/src/pages/seuranta.html">Seuranta</a></li>
+        <li><a href="/public/src/pages/viestit.html">Viestit</a></li>
+        <li><a href="/public/src/pages/asetukset.html">Asetukset</a></li>
+        <li><a href="/public/src/pages/tietoa.html" class="active">Tietoa unesta</a></li>
+        <li><a href="/index.html" id="signout">Kirjaudu ulos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="messages-container">
+      <div class="messages-header">
+        <h1>Tietoa unesta ja palautumisesta</h1>
+        <p class="etusivu-kuvaus">Syvempää tietoa unesta, palautumisesta ja parempien unitapojen kehittämisestä</p>
+      </div>
+
+      <div class="info-section">
+        <h2>Uni ja palautuminen</h2>
+        <div class="info-content">
+          <p>Uni on elintärkeä osa ihmisen hyvinvointia ja terveyden ylläpitoa. Riittävä ja laadukas uni vaikuttaa positiivisesti niin fyysiseen kuin psyykkiseenkin terveyteen. Aikuinen tarvitsee keskimäärin 7-9 tuntia unta yössä, mutta yksilöllinen vaihtelu on suurta.</p>
+          
+          <h3>Unen vaiheet</h3>
+          <p>Uni koostuu eri vaiheista, jotka toistuvat yön aikana useissa sykleissä:</p>
+          <ul>
+            <li><strong>N1 (kevyt uni):</strong> Siirtymävaihe valveesta uneen. Tässä vaiheessa ihminen on vielä helposti herätettävissä.</li>
+            <li><strong>N2 (kevyt uni):</strong> Elimistön toiminnot hidastuvat ja kehon lämpötila laskee. Tämä on ajallisesti pisin univaihe.</li>
+            <li><strong>N3 (syvä uni):</strong> Elimistön palautumisen kannalta tärkein vaihe. Tällöin aivot lepäävät, keho korjaa kudoksia ja immuunijärjestelmä vahvistuu.</li>
+            <li><strong>REM-uni (vilkeuni):</strong> Unennäköjen vaihe, jolloin aivot käsittelevät päivän tapahtumia, tunteita ja oppimiskokemuksia. Tärkeä muistin ja oppimisen kannalta.</li>
+          </ul>
+          
+          <h3>Palautuminen</h3>
+          <p>Palautuminen tarkoittaa kehon ja mielen elpymistä rasituksesta. Unen aikana tapahtuu merkittävä osa päivittäisestä palautumisesta:</p>
+          <ul>
+            <li>Lihakset korjaantuvat ja kasvavat</li>
+            <li>Aivot puhdistuvat kuona-aineista</li>
+            <li>Hermosto rauhoittuu</li>
+            <li>Stressihormonien (kuten kortisolin) pitoisuudet laskevat</li>
+            <li>Immuunijärjestelmä vahvistuu</li>
+          </ul>
+          
+          <div class="info-box">
+            <h4>Tiesitkö?</h4>
+            <p>Yhden yön unenpuute heikentää reaktionopeutta jopa 45%. Tämä vastaa noin 0,1 promillen humalatilaa.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h2>Sykevälivaihtelu (HRV)</h2>
+        <div class="info-content">
+          <p>Sykevälivaihtelu eli HRV (Heart Rate Variability) mittaa peräkkäisten sydämenlyöntien välisten aikojen vaihtelua. Se on erinomainen mittari autonomisen hermoston toiminnasta ja kehon palautumisen tilasta.</p>
+          
+          <h3>Mitä HRV kertoo?</h3>
+          <p>Korkea HRV-arvo viittaa yleensä hyvään palautumiseen ja kehon kykyyn mukautua erilaisiin tilanteisiin. Matala HRV voi olla merkki stressistä, heikosta palautumisesta tai jopa sairaudesta.</p>
+          
+          <h3>HRV:n tulkinta</h3>
+          <p>HRV-arvot ovat yksilöllisiä ja niihin vaikuttavat monet tekijät:</p>
+          <ul>
+            <li>Ikä (HRV tyypillisesti laskee ikääntyessä)</li>
+            <li>Fyysinen kunto (parempi kunto usein tarkoittaa korkeampaa HRV:tä)</li>
+            <li>Stressi ja palautuminen</li>
+            <li>Nautintoaineiden käyttö (alkoholi, nikotiini)</li>
+            <li>Univaje ja unen laatu</li>
+          </ul>
+          
+          <p>OmaUni-sovellus seuraa HRV-arvojasi ja auttaa ymmärtämään palautumisesi laatua pidemmällä aikavälillä. Yksittäisiä mittausarvoja tärkeämpää on seurata HRV:n trendiä.</p>
+          
+          <div class="info-box">
+            <h4>Huomio!</h4>
+            <p>HRV-arvot vaihtelevat vuorokauden aikana huomattavasti. Vertailukelpoisimmat mittaukset saadaan yöllä syvän unen aikana tai heti aamulla levossa.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h2>Vinkkejä parempaan uneen</h2>
+        <div class="info-content">
+          <div class="tips-container">
+            <div class="tip-card">
+              <h3>Säännöllinen unirytmi</h3>
+              <p>Pyri menemään nukkumaan ja heräämään suunnilleen samaan aikaan joka päivä - myös viikonloppuisin. Tämä vahvistaa kehon sisäistä kelloa ja parantaa unen laatua.</p>
+            </div>
+            
+            <div class="tip-card">
+              <h3>Optimaalinen nukkumisympäristö</h3>
+              <p>Pidä makuuhuone viileänä (18-20°C), pimeänä ja hiljainen. Käytä tarvittaessa pimennysverhoja, korvatulppia tai valkoista kohinaa.</p>
+            </div>
+            
+            <div class="tip-card">
+              <h3>Rauhoittuminen ennen nukkumaanmenoa</h3>
+              <p>Varaa 30-60 minuuttia rauhoittumiseen ennen nukkumaanmenoa. Vältä kirkkaita näyttöjä, voimakkaita ärsykkeitä ja stressaavia aktiviteetteja.</p>
+            </div>
+            
+            <div class="tip-card">
+              <h3>Ruokailu ja nautintoaineet</h3>
+              <p>Vältä kofeiinia iltapäivällä ja illalla. Älä nauti raskasta ateriaa juuri ennen nukkumaanmenoa. Alkoholi voi helpottaa nukahtamista, mutta heikentää unen laatua.</p>
+            </div>
+            
+            <div class="tip-card">
+              <h3>Liikunta ja palautuminen</h3>
+              <p>Säännöllinen liikunta parantaa unen laatua, mutta vältä raskasta kuntoilua 2-3 tuntia ennen nukkumaanmenoa.</p>
+            </div>
+            
+            <div class="tip-card">
+              <h3>Huolehdi nukkumisergonomiasta</h3>
+              <p>Varmista, että patja ja tyyny tukevat selkärankaa ja niskaa oikein. Sopiva patja ja tyyny voivat merkittävästi parantaa unen laatua ja vähentää kipuja.</p>
+            </div>
+          </div>
+          
+          <h3>Uniongelmien itsehoito</h3>
+          <p>Jos kärsi lievistä nukahtamisvaikeuksista tai unen laadun ongelmista, näistä tekniikoista voi olla apua:</p>
+          <ul>
+            <li><strong>Huolihetki:</strong> Varaa aikaa huolien käsittelyyn ennen nukkumaanmenoa. Kirjoita huolet paperille ja suunnittele, miten käsittelet ne seuraavana päivänä.</li>
+            <li><strong>Rentoutumistekniikat:</strong> Progressiivinen lihasrentoutus, mindfulness ja syvähengitys voivat auttaa mieltä rauhoittumaan.</li>
+            <li><strong>Nukkumaan vain väsyneenä:</strong> Jos et saa unta 20 minuutissa, nouse ylös sängystä ja tee jotain rentouttavaa, kunnes tunnet itsesi väsyneeksi.</li>
+            <li><strong>Rajoita sängyssä vietettyä aikaa:</strong> Käytä sänkyä vain nukkumiseen ja intiimeihin hetkiin, ei työntekoon, television katseluun tai muihin aktiviteetteihin.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-section crisis-section">
+        <h2>Kriisitilanteissa toimiminen</h2>
+        <div class="info-content">
+          <div class="alert-box">
+            <h3>Jos sinulla on akuutti uneen liittyvä hätätilanne:</h3>
+            <p>Mikäli koet vakavaa unettomuutta, joka vaikuttaa merkittävästi toimintakykyysi, tai jos epäilet, että uniongelmasi liittyvät vakavaan terveydelliseen ongelmaan, hakeudu välittömästi hoitoon.</p>
+          </div>
+          
+          <h3>Tärkeät yhteystiedot</h3>
+          <div class="contact-info">
+            <div class="contact-item">
+              <h4>Hätänumerot</h4>
+              <p><strong>Yleinen hätänumero:</strong> 112</p>
+              <p><strong>Myrkytystietokeskus:</strong> 0800 147 111 (24h)</p>
+            </div>
+            
+            <div class="contact-item">
+              <h4>Kriisiapua</h4>
+              <p><strong>Mielenterveyspalvelujen valtakunnallinen kriisipuhelin:</strong> 09 2525 0111 (24h)</p>
+              <p><strong>Mieli ry:n kriisipuhelin:</strong> 09 2525 0111</p>
+              <p><strong>Suomen Mielenterveysseuran kriisikeskukset:</strong> <a href="https://mieli.fi/fi/tukea-ja-apua/kasvokkain/kriisikeskusverkosto" target="_blank">Katso lähin kriisikeskus</a></p>
+            </div>
+            
+            <div class="contact-item">
+              <h4>Terveydenhuollon palvelut</h4>
+              <p><strong>Päivystysapu:</strong> 116 117 (kun tarvitset kiireellistä hoitoa, mutta kyse ei ole hätätilanteesta)</p>
+              <p><strong>Oman terveyskeskuksen päivystys:</strong> Tarkista oman alueesi yhteystiedot</p>
+            </div>
+            
+            <div class="contact-item">
+              <h4>Vertaistuki ja apu uniongelmiin</h4>
+              <p><strong>Uniliitto:</strong> <a href="https://www.uniliitto.fi" target="_blank">www.uniliitto.fi</a></p>
+              <p><strong>Uniterveys-yhdistys:</strong> <a href="https://www.uniterveys.fi" target="_blank">www.uniterveys.fi</a></p>
+            </div>
+          </div>
+          
+          <h3>Milloin hakeutua hoitoon?</h3>
+          <p>Ota yhteyttä terveydenhuoltoon, jos:</p>
+          <ul>
+            <li>Uniongelmasi jatkuvat säännöllisestä unihygieniasta huolimatta yli kuukauden</li>
+            <li>Heräät toistuvasti kesken unen ilman selvää syytä</li>
+            <li>Koet voimakasta päiväväsymystä, joka haittaa normaalia elämää</li>
+            <li>Kumppanisi raportoi hengityskatkoksista unesi aikana</li>
+            <li>Uniongelmiin liittyy muita oireita, kuten rytmihäiriöitä, rintakipua tai ahdistuneisuutta</li>
+          </ul>
+          
+          <div class="info-box warning">
+            <h4>Tärkeää!</h4>
+            <p>Sovelluksen tiedot ja neuvot eivät korvaa terveydenhuollon ammattilaisen arviota tai hoitoa. Jos olet huolissasi terveydestäsi, ota aina yhteyttä terveydenhuoltoon.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h3 class="sidebar-title">Sisällysluettelo</h3>
+      
+      <div class="sidebar-content">
+        <ul class="toc-list">
+          <li><a href="#uni-palautuminen" class="toc-link">Uni ja palautuminen</a></li>
+          <li><a href="#hrv" class="toc-link">Sykevälivaihtelu (HRV)</a></li>
+          <li><a href="#vinkit" class="toc-link">Vinkkejä parempaan uneen</a></li>
+          <li><a href="#kriisitilanteet" class="toc-link">Kriisitilanteissa toimiminen</a></li>
+        </ul>
+        
+        <div class="support-info">
+          <h4>Tarvitsetko lisätukea?</h4>
+          <p>Jos sinulla on kysyttävää uneen liittyvistä asioista tai kaipaat henkilökohtaista neuvontaa, ota yhteyttä terveydenhuollon ammattilaiseen.</p>
+          <p>Voit myös lähettää kysymyksiä sovelluksen kautta Viestit-osiossa.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/public/src/js/tietoa.js"></script>
+  <script type="module" src="/public/src/js/navi.js"></script>
+  <script type="module" src="/public/src/js/darkmode.js"></script>
+  <script type="module" src="/public/src/js/uloskirjautuminen.js"></script>
+</body>
+</html>
