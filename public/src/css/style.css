@@ -293,6 +293,11 @@ button[type="submit"]:hover, button[type="button"]:hover {
   font-style: italic;
 }
 
+/* Placeholder piilossa */
+#seuranta-chart.loaded::before {
+  content: none;
+}
+
 /* Responsiivisuus */
 @media (max-width: 992px) {
   .main-content {

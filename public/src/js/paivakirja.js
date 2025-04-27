@@ -81,7 +81,6 @@ const submitData = async () => {
   // Request body from the form inputs
 
   const bodyData = {
-    user_id: 1,
     date: date,
     bed_time: time,
     asleep_delay: delay,
@@ -99,12 +98,16 @@ const submitData = async () => {
   // Endpoint
   const url = "http://localhost:3000/api/entries";
 
+  // Token
+  const token = sessionStorage.getItem("token");
+
   // Request options
   const options = {
     body: JSON.stringify(bodyData),
     method: "POST",
     headers: {
       "Content-type": "application/json",
+      Authorization: `Bearer ${token}`, // Add the token to the headers
     },
   };
 
