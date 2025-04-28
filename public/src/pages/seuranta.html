@@ -31,10 +31,10 @@
         <h1>Seuranta</h1>
         
         <div class="time-selector">
-          <button class="time-btn">14 vrk</button>
-          <button class="time-btn active">7 vrk</button>
-          <button class="time-btn">3 vrk</button>
-          <button class="time-btn">1 vrk</button>
+          <button class="time-btn" data-id="14">14 vrk</button>
+          <button class="time-btn active" data-id="7">7 vrk</button>
+          <button class="time-btn" data-id="3">3 vrk</button>
+          <button class="time-btn" data-id="1">1 vrk</button>
         </div>
       </div>
       
@@ -47,22 +47,22 @@
         <h3 class="data-selector-title">Näytettävät tiedot</h3>
         
         <div class="data-checkbox">
-          <input type="checkbox" id="hrv-data" checked>
-          <label for="hrv-data">HRV, vrk keskiarvo</label>
+          <input type="checkbox" id="hrv-data" data-id='HRV' checked>
+          <label for="hrv-data">HRV, vuorokauden keskiarvo</label>
         </div>
         
         <div class="data-checkbox">
-          <input type="checkbox" id="daily-alertness" checked>
-          <label for="daily-alertness">Päivänaikainen virkeys</label>
+          <input type="checkbox" id="daily-alertness" data-id='daytime_alertness' checked>
+          <label for="daytime-alertness">Päivänaikainen vireys</label>
         </div>
         
         <div class="data-checkbox">
-          <input type="checkbox" id="sleep-quality">
+          <input type="checkbox" id="sleep-quality" data-id='sleep_quality'>
           <label for="sleep-quality">Unen laatu</label>
         </div>
         
         <div class="data-checkbox">
-          <input type="checkbox" id="sleep-time">
+          <input type="checkbox" id="sleep-time" data-id='total_sleep'>
           <label for="sleep-time">Nukuttu aika</label>
         </div>
       </div>
