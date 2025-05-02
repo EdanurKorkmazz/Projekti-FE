@@ -17,14 +17,14 @@
   border-bottom: 2px solid #003a63;
   color: #003a63;
   font-weight: 500;
-}/* Range-arvon näyttäminen */
+}
+
 .range-value {
   display: inline-block;
   margin-left: 10px;
   font-weight: bold;
 }
 
-/* Ilmoitustyylit */
 .notification {
   position: fixed;
   bottom: -100px;
@@ -41,7 +41,8 @@
 
 .notification.show {
   bottom: 30px;
-}/* Yleiset tyylit */
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -55,7 +56,6 @@ body {
   line-height: 1.6;
 }
 
-/* Header ja navigaatio */
 header {
   background-color: #003a63;
   color: white;
@@ -103,12 +103,11 @@ header ul li a.active::after {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%; /* Tekee alleviivauksen koko linkin levyiseksi */
+  width: 100%;
   height: 2px;
   background-color: white;
 }
 
-/* Sivun otsikko */
 h1 {
   text-align: center;
   margin: 2rem 0;
@@ -116,7 +115,6 @@ h1 {
   font-size: 2rem;
 }
 
-/* Container ja boksi */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -134,7 +132,6 @@ h1 {
   gap: 1.5rem;
 }
 
-/* Lomakkeen tyylit */
 label {
   display: block;
   margin-bottom: 0.5rem;
@@ -166,10 +163,8 @@ input[type="range"] {
   gap: 1rem;
   align-items: center;
   font-weight: 600;
-
 }
 
-/* Painikkeiden tyylit */
 .button-container {
   grid-column: 1 / -1;
   text-align: center;
@@ -191,13 +186,10 @@ button[type="submit"]:hover, button[type="button"]:hover {
   background-color: #00558e;
 }
 
-/* Päiväkirja-sivun tyylit */
-
 .confirmation {
   text-align: center;
 }
 
-/* Seurantasivun tyylit */
 .chart-container {
   background-color: white;
   border-radius: 8px;
@@ -223,7 +215,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   margin-top: 1rem;
 }
 
-/* Data selectors -parannukset */
 .data-selectors {
   background-color: white;
   border-radius: 8px;
@@ -261,7 +252,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   margin-bottom: 0;
 }
 
-/* Värit eri käyrille */
 .data-checkbox:nth-child(2) label {
   color: #003a63;
   font-weight: 600;
@@ -282,7 +272,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   font-weight: 600;
 }
 
-/* Placeholder graafille */
 #seuranta-chart::before {
   content: 'Datan lataaminen...';
   position: absolute;
@@ -293,12 +282,10 @@ button[type="submit"]:hover, button[type="button"]:hover {
   font-style: italic;
 }
 
-/* Placeholder piilossa */
 #seuranta-chart.loaded::before {
   content: none;
 }
 
-/* Responsiivisuus */
 @media (max-width: 992px) {
   .main-content {
     padding: 15px;
@@ -368,7 +355,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   }
 }
 
-/* Viestit-sivu */
 .messages-container {
   flex: 1;
   margin-right: 2rem;
@@ -458,9 +444,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   display: none;
 }
 
-/* Viestittely-tyylit */
-
-/* Uuden viestin lomake */
 .form-container {
   background-color: white;
   border-radius: 8px;
@@ -495,7 +478,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   min-height: 120px;
 }
 
-/* Chat-näkymä */
 .chat-container {
   background-color: white;
   border-radius: 8px;
@@ -540,6 +522,7 @@ button[type="submit"]:hover, button[type="button"]:hover {
 
 .chat-info h3 {
   margin: 0;
+  font-sizemargin: 0;
   font-size: 1.2rem;
   color: #333;
 }
@@ -641,13 +624,11 @@ button[type="submit"]:hover, button[type="button"]:hover {
   margin-right: 8px;
 }
 
-/* Korostetaan viestilistassa luettavat viestit */
 .message-item.unread {
   background-color: #f0f7ff;
   border-left: 3px solid #003a63;
 }
 
-/* Responsiivisuus */
 @media (max-width: 768px) {
   .chat-container {
     height: 500px;
@@ -666,7 +647,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   }
 }
 
-/* Sidebar */
 .sidebar {
   width: 300px;
   background-color: white;
@@ -737,7 +717,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   font-size: 1rem;
 }
 
-/* Lisää responsiivisuutta viestit-sivulle */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -762,9 +741,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   }
 }
 
-/* Merkinnät-sivun tyylit */
-
-/* Modal/popup tyylit */
 .modal {
   display: none;
   position: fixed;
@@ -809,7 +785,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   color: #555;
 }
 
-/* Lomake-tyylit modalissa */
 .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -822,7 +797,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   border: 1px solid #ddd;
 }
 
-/* Painikkeet modalissa */
 #edit-btn, #delete-btn {
   padding: 0.7rem 1.5rem;
   border: none;
@@ -853,7 +827,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   color: white;
 }
 
-/* Progress bar merkintöjen laatuarvioinneille */
 .progress-container {
   width: 100%;
   height: 20px;
@@ -888,7 +861,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   font-size: 0.8rem;
 }
 
-/* Merkinnät-listan tyylit */
 .message-list .message-item {
   position: relative;
 }
@@ -925,15 +897,12 @@ button[type="submit"]:hover, button[type="button"]:hover {
   margin-top: 0.3rem;
 }
 
-/* Ei merkintöjä -ilmoitus */
 .no-merkinta {
   text-align: center;
   padding: 2rem;
   color: #777;
   font-style: italic;
 }
-
-/* Etusivun tyylit */
 
 .etusivu-kuvaus {
   font-size: 1.1rem;
@@ -1027,7 +996,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   background-color: #00558e;
 }
 
-/* Viikko näkymän tyyli */
 .chart-bar {
   display: flex;
   flex-direction: column;
@@ -1057,7 +1025,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   color: #666;
 }
 
-/* Ilmoitukset */
 .notifications {
   margin-bottom: 1rem;
 }
@@ -1106,7 +1073,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   color: #999;
 }
 
-/* Sidebar styles for tips */
 .tip-list {
   padding-left: 1.2rem;
   margin-bottom: 1.2rem;
@@ -1129,7 +1095,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   margin-bottom: 0.5rem;
 }
 
-/* Responsiivisuus */
 @media (max-width: 768px) {
   .dashboard {
     grid-template-columns: 1fr;
@@ -1139,8 +1104,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
     font-size: 2rem;
   }
 }
-
-/* Tietoa-sivun tyylit */
 
 .info-section {
   background-color: white;
@@ -1205,7 +1168,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   color: #e74c3c;
 }
 
-/* Vinkkikortit */
 .tips-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1238,7 +1200,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   font-size: 0.95rem;
 }
 
-/* Kriisiosio */
 .crisis-section {
   border-left: 4px solid #e74c3c;
 }
@@ -1266,7 +1227,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   margin-bottom: 0;
 }
 
-/* Yhteystiedot */
 .contact-info {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1304,7 +1264,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   text-decoration: underline;
 }
 
-/* Sivupalkin sisällysluettelo */
 .toc-list {
   list-style: none;
   padding: 0;
@@ -1327,7 +1286,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   color: #003a63;
 }
 
-/* Responsiivisuus */
 @media (max-width: 768px) {
   .contact-info {
     grid-template-columns: 1fr;
@@ -1348,7 +1306,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   }
 }
 
-/* Asetukset tyylit */
 .settings-card {
   background-color: white;
   border-radius: 8px;
@@ -1370,7 +1327,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
   color: #555;
 }
 
-/* Dark mode yhteensopivuus */
 body.dark-mode .settings-card {
   background-color: #262626;
   border-left-color: #0078d4;
@@ -1626,7 +1582,6 @@ body.dark-mode .sidebar-toggle:hover {
   }
 }
 
-/* Header ja navigaatio */
 header {
   background-color: #003a63;
   color: white;
@@ -1642,7 +1597,6 @@ header nav {
   margin: 0 auto;
 }
 
-/* Logo vasemmalle */
 header h2 {
   font-size: 2.5rem;
   color: white;
@@ -1651,7 +1605,6 @@ header h2 {
   flex-shrink: 0;
 }
 
-/* Navigaatiosäiliö */
 .nav-container {
   display: flex;
   flex: 1;
@@ -1659,7 +1612,6 @@ header h2 {
   align-items: center;
 }
 
-/* Keskellä olevat linkit */
 .nav-center {
   display: flex;
   justify-content: center;
@@ -1668,13 +1620,11 @@ header h2 {
   margin: 0 auto;
 }
 
-/* Kirjaudu ulos oikealle */
 .nav-right {
   margin-left: 2rem;
   flex-shrink: 0;
 }
 
-/* Navigaatiolinkit */
 header ul {
   list-style: none;
   display: flex;
@@ -1708,7 +1658,6 @@ header ul li a.active::after {
   background-color: white;
 }
 
-/* Responsiivisuus */
 @media (max-width: 992px) {
   .nav-container {
     flex-direction: column;

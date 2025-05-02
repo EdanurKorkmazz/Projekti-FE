@@ -184,11 +184,6 @@ body.dark-mode .message-meta {
   color: #cccccc;
 }
 
-body.dark-mode .sidebar-content p,
-body.dark-mode .info-content p {
-  color: #0e0b0b;
-}
-
 body.dark-mode .action-button {
   background-color: #0078d4;
 }
@@ -363,6 +358,11 @@ body.dark-mode span:not(.toggle-slider):not(.message-time) {
 color: #ffffff !important;
 }
 
+body.dark-mode .sidebar-content p,
+body.dark-mode .info-content p {
+color: #ffffff !important;
+}
+
 body.dark-mode .support-info {
 background-color: #1a1a1a !important;
 color: #ffffff !important;
@@ -412,7 +412,6 @@ background-color: #1a1a1a !important;
 color: #ffffff !important;
 }
 
-/* Viestien taustavärit */
 body.dark-mode .message-item {
 background-color: #000000 !important;
 border-bottom-color: #333 !important;
@@ -422,18 +421,15 @@ body.dark-mode .message-item:hover {
 background-color: #1a1a1a !important;
 }
 
-/* Luettujen viestien korostus sinisellä */
 body.dark-mode .message-item.unread {
 background-color: #002342 !important;
 border-left: 3px solid #0078d4 !important;
 }
 
-/* Viestilistan taustavärin korjaus */
 body.dark-mode .message-list {
 background-color: #000000 !important;
 }
 
-/* Viestiketjun taustavärien korjaus */
 body.dark-mode .chat-container {
 background-color: #000000 !important;
 }
@@ -448,7 +444,6 @@ background-color: #000000 !important;
 border-top-color: #333 !important;
 }
 
-/* Viestitaulukko tummassa tilassa */
 body.dark-mode table.message-table {
 background-color: #000000 !important;
 color: #ffffff !important;
@@ -473,7 +468,6 @@ body.dark-mode .message-row.highlighted {
 background-color: #002342 !important;
 }
 
-/* Korostetut elementit sinisellä */
 body.dark-mode .highlight-element,
 body.dark-mode .highlighted-content,
 body.dark-mode div[style*="background-color: #f0f7ff"] {
@@ -503,4 +497,76 @@ body.dark-mode .card a,
 body.dark-mode .info-card a,
 body.dark-mode .contact-card a {
   color: #4a9eff !important;
+}
+
+body.dark-mode .crisis-section {
+  background-color: #1a1a1a;
+  border-left-color: #ff6b6b;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .crisis-section h2,
+body.dark-mode .crisis-section h3,
+body.dark-mode .crisis-section h4 {
+  color: #ff6b6b;
+}
+
+body.dark-mode .crisis-section p,
+body.dark-mode .crisis-section li,
+body.dark-mode .crisis-section span:not(.toggle-slider):not(.message-time) {
+  color: #ffffff !important;
+}
+
+body.dark-mode .alert-box {
+  background-color: #471a18;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .alert-box h3,
+body.dark-mode .alert-box h4 {
+  color: #ffffff;
+}
+
+body.dark-mode .alert-box p {
+  color: #ffffff !important;
+}
+
+body.dark-mode .contact-item {
+  background-color: #1a1a1a;
+  border: 1px solid #333333;
+}
+
+body.dark-mode .contact-item h4 {
+  color: #ffffff;
+}
+
+body.dark-mode .contact-item p {
+  color: #cccccc !important;
+}
+
+body.dark-mode .contact-item a {
+  color: #4a9eff !important;
+}
+
+body.dark-mode .info-box.warning {
+  background-color: #471a18;
+  border-left-color: #ff6b6b;
+}
+
+body.dark-mode .info-box.warning h4 {
+  color: #ff6b6b;
+}
+
+body.dark-mode .info-box.warning p {
+  color: #ffffff !important;
+}
+
+body.dark-mode .contact-info a {
+  color: #4a9eff !important;
+  text-decoration: none;
+}
+
+body.dark-mode .contact-info a:hover {
+  text-decoration: underline;
 }
