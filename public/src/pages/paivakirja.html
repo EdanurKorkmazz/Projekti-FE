@@ -6,7 +6,6 @@
     <title>OmaUni - Uusi merkintä</title>
     <link rel="stylesheet" href="/public/src/css/style.css"/>
     <link rel="stylesheet" href="/public/src/css/darkmode.css">
-
   </head>
   <body>
     <header>
@@ -24,8 +23,6 @@
         </ul>
       </nav>
     </header>
-
-
 
     <h1>Uusi merkintä</h1>
 
@@ -51,7 +48,7 @@
               name="delay-hours"
               min="0"
               max="23"
-              placeholder="hh"
+              placeholder="h"
               required
             />
             <span>:</span>
@@ -61,7 +58,7 @@
               name="delay-minutes"
               min="0"
               max="59"
-              placeholder="mm"
+              placeholder="min"
               required
             />
           </div>
@@ -81,7 +78,7 @@
               name="timeup-hours"
               min="0"
               max="23"
-              placeholder="hh"
+              placeholder="h"
               required
             />
             <span>:</span>
@@ -91,7 +88,7 @@
               name="timeup-minutes"
               min="0"
               max="59"
-              placeholder="mm"
+              placeholder="min"
               required
             />
           </div>
@@ -111,7 +108,7 @@
               name="sleeptime-hours"
               min="0"
               max="23"
-              placeholder="hh"
+              placeholder="h"
               required
             />
             <span>:</span>
@@ -121,7 +118,7 @@
               name="sleeptime-minutes"
               min="0"
               max="59"
-              placeholder="mm"
+              placeholder="min"
               required
             />
           </div>
@@ -136,7 +133,7 @@
               name="inbed-hours"
               min="0"
               max="23"
-              placeholder="hh"
+              placeholder="h"
               required
             />
             <span>:</span>
@@ -146,7 +143,7 @@
               name="inbed-minutes"
               min="0"
               max="59"
-              placeholder="mm"
+              placeholder="min"
               required
             />
           </div>
@@ -154,26 +151,34 @@
 
         <div>
           <label for="quality">Unen laatu (1-10) (*)</label>
-          <input
-            type="range"
-            id="quality"
-            name="quality"
-            min="1"
-            max="10"
-            required
-          />
+          <div class="slider-container">
+            <input
+              type="range"
+              id="quality"
+              name="quality"
+              min="1"
+              max="10"
+              value="5"
+              required
+            />
+            <span id="quality-value" class="range-value">5</span>
+          </div>
         </div>
 
         <div>
           <label for="alertness">Päivän aikainen vireys (1-10) (*)</label>
-          <input
-            type="range"
-            id="alertness"
-            name="alertness"
-            min="1"
-            max="10"
-            required
-          />
+          <div class="slider-container">
+            <input
+              type="range"
+              id="alertness"
+              name="alertness"
+              min="1"
+              max="10"
+              value="5"
+              required
+            />
+            <span id="alertness-value" class="range-value">5</span>
+          </div>
         </div>
 
         <div>
@@ -196,10 +201,8 @@
       </div>
     </form>
 
-    <script
-      type="module"
-      src="/public/src/js/paivakirja.js"
-    ></script>
+    <script type="module" src="/public/src/js/paivakirja.js"></script>
+    <script type="module" src="/public/src/js/paivakirja2.js"></script>
     <script type="module" src="/public/src/js/navi.js"></script>
     <script type="module" src="/public/src/js/uloskirjautuminen.js"></script>
     <script type="module" src="/public/src/js/darkmode.js"></script>
