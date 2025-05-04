@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.9.13 on win32)" generated="2025-05-04T20:45:07.687654" rpa="false" schemaversion="5">
+<suite id="s1" name="Merkinta" source="C:\Users\ahmed\Projekti-FE\Projekti-FE\testit\merkinta.robot">
+<test id="s1-t1" name="Fill Merkinta Form" line="11">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-05-04T20:45:08.763549" level="INFO">Opening browser 'Chrome' to base url 'http://127.0.0.1:5500/projekti-FE/public/src/pages/paivakirja.html'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-05-04T20:45:08.762039" elapsed="7.764403"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-04T20:45:16.531444" level="INFO">Typing text '2025-02-02' into text field 'id= date'.</msg>
+<arg>id= date</arg>
+<arg>2025-02-02</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-04T20:45:16.528441" elapsed="0.318083"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-04T20:45:16.848556" level="INFO">Typing text '2025-02-02 20:00' into text field 'id= time'.</msg>
+<arg>id= time</arg>
+<arg>2025-02-02 20:00</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-04T20:45:16.847541" elapsed="0.365474"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-04T20:45:17.215254" level="INFO">Typing text '20' into text field 'id= delay-hours'.</msg>
+<arg>id= delay-hours</arg>
+<arg>20</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-04T20:45:17.215254" elapsed="0.350611"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-04T20:45:17.566389" level="INFO">Typing text '30' into text field 'id= delay-minutes'.</msg>
+<arg>id= delay-minutes</arg>
+<arg>30</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-04T20:45:17.566389" elapsed="0.143228"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-04T20:45:17.710628" level="INFO">Typing text '10' into text field 'id= wakeups'.</msg>
+<arg>id= wakeups</arg>
+<arg>10</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-04T20:45:17.710628" elapsed="0.147889"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-04T20:45:17.860569" level="INFO">Typing text '10' into text field 'id= timeup-hours'.</msg>
+<arg>id= timeup-hours</arg>
+<arg>10</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-04T20:45:17.860569" elapsed="0.136685"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-04T20:45:17.998703" level="INFO">Typing text '10' into text field 'id= timeup-minutes'.</msg>
+<arg>id= timeup-minutes</arg>
+<arg>10</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-04T20:45:17.998703" elapsed="0.134489"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-04T20:45:18.134210" level="INFO">Typing text '10' into text field 'id= wakeups'.</msg>
+<arg>id= wakeups</arg>
+<arg>10</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-04T20:45:18.134210" elapsed="0.148329"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-04T20:45:18.283555" level="INFO">Typing text '2002-10-02' into text field 'id= lkm'.</msg>
+<arg>id= lkm</arg>
+<arg>2002-10-02</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-04T20:45:18.283555" elapsed="0.137187"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-04T20:45:18.422125" level="INFO">Typing text '10' into text field 'id= sleeptime-hours'.</msg>
+<arg>id= sleeptime-hours</arg>
+<arg>10</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-04T20:45:18.420742" elapsed="0.137030"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-04T20:45:18.559085" level="INFO">Typing text '10' into text field 'id= sleeptime-minutes'.</msg>
+<arg>id= sleeptime-minutes</arg>
+<arg>10</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-04T20:45:18.559085" elapsed="0.137826"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-04T20:45:18.698967" level="INFO">Typing text '10' into text field 'id= inbed-hours'.</msg>
+<arg>id= inbed-hours</arg>
+<arg>10</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-04T20:45:18.697930" elapsed="0.134623"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-04T20:45:18.833580" level="INFO">Typing text '10' into text field 'id= inbed-minutes'.</msg>
+<arg>id= inbed-minutes</arg>
+<arg>10</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-04T20:45:18.833580" elapsed="0.143706"/>
+</kw>
+<kw name="Drag And Drop By Offset" owner="SeleniumLibrary">
+<arg>id=quality</arg>
+<arg>1</arg>
+<arg>10</arg>
+<doc>Drags the element identified with ``locator`` by ``xoffset/yoffset``.</doc>
+<status status="PASS" start="2025-05-04T20:45:18.977286" elapsed="0.565668"/>
+</kw>
+<kw name="Drag And Drop By Offset" owner="SeleniumLibrary">
+<arg>id=alertness</arg>
+<arg>1</arg>
+<arg>5</arg>
+<doc>Drags the element identified with ``locator`` by ``xoffset/yoffset``.</doc>
+<status status="PASS" start="2025-05-04T20:45:19.544495" elapsed="0.571793"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-05-04T20:45:20.117691" level="INFO">Clicking button 'id= preview-btn'.</msg>
+<arg>id= preview-btn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-04T20:45:20.116288" elapsed="0.146825"/>
+</kw>
+<status status="PASS" start="2025-05-04T20:45:08.759317" elapsed="11.504916"/>
+</test>
+<status status="PASS" start="2025-05-04T20:45:07.691748" elapsed="12.574554"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Merkinta" id="s1" pass="1" fail="0" skip="0">Merkinta</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
