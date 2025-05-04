@@ -9,4 +9,5 @@ Sovelluksen testaus on toteutettu automaattisilla testiskripteillä. Testauksess
   
 C:\Users\ahmed\OneDrive\Kuvat\Näyttökuvat\Näyttökuva 2025-05-04 204432.png
 
-C:\Users\ahmed\OneDrive\Kuvat\Näyttökuvat\Näyttökuva 2025-05-04 204535.png
+![Näyttökuva 2025-05-04 204535](https://github.com/user-attachments/assets/065283bd-fcfc-48ce-9fea-3e796c3c9e55)
+
