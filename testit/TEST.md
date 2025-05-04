@@ -7,6 +7,6 @@ Sovelluksen testaus on toteutettu automaattisilla testiskripteillä. Testauksess
 - Ei olla onnistuttu yhstimään vielä backendniä.
 
   
-"C:\Users\ahmed\OneDrive\Kuvat\Näyttökuvat\Näyttökuva 2025-05-04 204432.png"
+C:\Users\ahmed\OneDrive\Kuvat\Näyttökuvat\Näyttökuva 2025-05-04 204432.png
 
-"C:\Users\ahmed\OneDrive\Kuvat\Näyttökuvat\Näyttökuva 2025-05-04 204535.png"
+C:\Users\ahmed\OneDrive\Kuvat\Näyttökuvat\Näyttökuva 2025-05-04 204535.png
