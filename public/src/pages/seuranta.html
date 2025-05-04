@@ -6,7 +6,7 @@
   <title>OmaUni - Seuranta</title>
   <link rel="stylesheet" href="/public/src/css/style.css">
   <link rel="stylesheet" href="/public/src/css/darkmode.css">
-
+  <link rel="stylesheet" href="/public/src/css/seuranta-insights.css">
 </head>
 <body>
   <header>
@@ -17,7 +17,6 @@
           <ul>
             <li><a href="/public/src/pages/etusivu.html">Etusivu</a></li>
             <li><a href="/public/src/pages/paivakirja.html">Päiväkirja</a></li>
-            <li><a href="/public/src/pages/merkinnat.html">Merkinnät</a></li>
             <li><a href="/public/src/pages/seuranta.html">Seuranta</a></li>
             <li><a href="/public/src/pages/viestit.html">Viestit</a></li>
             <li><a href="/public/src/pages/asetukset.html">Asetukset</a></li>
@@ -32,6 +31,18 @@
       </div>
     </nav>
   </header>
+
+  <!-- Päiväkirja-merkintä nappi (kelluva) -->
+  <div class="floating-entry-button" id="floating-entry-button">
+    <div class="button-pulse"></div>
+    <div class="button-content">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+      </svg>
+      <span>Uusi merkintä</span>
+    </div>
+  </div>
 
   <div class="container">
     <div class="messages-container">
@@ -74,6 +85,29 @@
           <label for="sleep-time">Nukuttu aika</label>
         </div>
       </div>
+      
+      <!-- Oivallukset ja toimenpiteet -osio -->
+      <div class="data-insights">
+        <h3>Omat huomiot ja toimenpiteet</h3>
+        
+        <div class="insight-content" id="insight-content">
+          <p>Tarkastele seurantatietojasi ja tee tarvittaessa uusi merkintä päiväkirjaan. Säännöllinen päiväkirjan täyttäminen auttaa seuraamaan unenlaatusi kehitystä tarkemmin.</p>
+          <p id="data-summary">Viimeisen 3 päivän tietojasi analysoidaan...</p>
+        </div>
+        
+        <div class="data-actions">
+          <a href="/public/src/pages/merkinnat.html" class="data-action-button entry-button" id="go-to-entries-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            Selaa merkintöjä
+          </a>
+        </div>
+      </div>
     </div>
 
     <div class="sidebar">
@@ -93,12 +127,51 @@
     </div>
   </div>
 
+  <!-- Merkintä-modal (aluksi piilotettu) -->
+  <div id="entry-modal" class="entry-modal">
+    <div class="entry-modal-backdrop"></div>
+    <div class="entry-modal-content">
+      <div class="entry-modal-header">
+        <h2>Uusi merkintä</h2>
+        <button class="entry-modal-close" id="close-entry-modal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="entry-modal-body">
+        <p>Haluatko tehdä uuden merkinnän tai selata aiempia merkintöjäsi?</p>
+        
+        <div class="entry-options">
+          <a href="/public/src/pages/paivakirja.html" class="entry-option-button primary-option">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Tee uusi merkintä</span>
+          </a>
+          
+          <a href="/public/src/pages/merkinnat.html" class="entry-option-button secondary-option">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <span>Selaa merkintöjä</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script type="module" src="/public/src/js/seuranta.js"></script>
   <script type="module" src="/public/src/js/navi.js"></script>
   <script type="module" src="/public/src/js/uloskirjautuminen.js"></script>
   <script type="module" src="/public/src/js/darkmode.js"></script>
   <script type="module" src="/public/src/js/sivupalkki.js"></script>
-
-  
+  <script type="module" src="/public/src/js/seuranta -nappi.js"></script>
 </body>
 </html>
