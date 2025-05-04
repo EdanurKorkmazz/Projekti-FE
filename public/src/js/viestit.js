@@ -1,6 +1,4 @@
-// Viestit-sivun toiminnallisuus
 document.addEventListener('DOMContentLoaded', function() {
-    // Elementtien haku
     const inboxTab = document.getElementById('inbox-tab');
     const newMessageTab = document.getElementById('new-message-tab');
     const messageList = document.getElementById('message-list');
@@ -14,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatMessageInput = document.getElementById('chat-message');
     const notification = document.getElementById('notification');
     
-    // Viestien tiedot (demo-tarkoituksiin)
+    // Viestien tiedot 
     const messageContents = {
       1: {
         title: "Tervetuloa OmaUni-sovellukseen",
@@ -82,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     };
     
-    // Välilehtien vaihtaminen
+    // Välilehti vaihtuu
     inboxTab.addEventListener('click', function() {
       messageList.style.display = 'block';
       newMessageForm.style.display = 'none';
@@ -101,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
       newMessageTab.classList.add('active');
     });
     
-    // Takaisin viesteihin -painike
+
     backToMessages.addEventListener('click', function() {
       chatContainer.style.display = 'none';
       messageList.style.display = 'block';
@@ -110,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
       newMessageTab.classList.remove('active');
     });
     
-    // Peruuta uusi viesti
     cancelMessageBtn.addEventListener('click', function() {
       document.getElementById('recipient').value = '';
       document.getElementById('subject').value = '';
@@ -123,7 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
       newMessageTab.classList.remove('active');
     });
     
-    // Viestin lähettäminen lomakkeesta
     sendMessageBtn.addEventListener('click', function() {
       const recipient = document.getElementById('recipient').value;
       const subject = document.getElementById('subject').value;
@@ -134,21 +130,17 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
       
-      // Simuloidaan viestin lähettämistä
       document.getElementById('recipient').value = '';
       document.getElementById('subject').value = '';
       document.getElementById('message').value = '';
       
-      // Näytetään ilmoitus onnistuneesta lähetyksestä
       notification.textContent = 'Viesti lähetetty onnistuneesti!';
       notification.classList.add('show');
       
-      // Piilotetaan ilmoitus 3 sekunnin kuluttua
       setTimeout(function() {
         notification.classList.remove('show');
       }, 3000);
       
-      // Palataan viestilistaukseen
       messageList.style.display = 'block';
       newMessageForm.style.display = 'none';
       
@@ -156,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
       newMessageTab.classList.remove('active');
     });
     
-    // Viestiketjun avaaminen
+    // Keskustelun avaaminen
     const messageItems = document.querySelectorAll('.message-item');
     messageItems.forEach(item => {
       item.addEventListener('click', function() {
@@ -164,14 +156,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const messageSender = this.getAttribute('data-sender');
         
         if (messageId && messageContents[messageId]) {
-          // Asetetaan viestiketjun tiedot
           document.getElementById('chat-title').textContent = messageContents[messageId].title;
           document.getElementById('chat-recipient').textContent = messageSender;
           
-          // Tyhjennetään aiemmat viestit
           chatMessages.innerHTML = '';
           
-          // Lisätään viestit
           messageContents[messageId].messages.forEach(msg => {
             const messageElement = document.createElement('div');
             messageElement.className = msg.sender === 'Käyttäjä' ? 'message-bubble sent' : 'message-bubble received';
@@ -188,31 +177,25 @@ document.addEventListener('DOMContentLoaded', function() {
             chatMessages.appendChild(messageElement);
           });
           
-          // Scrollataan viestilistan loppuun
           chatMessages.scrollTop = chatMessages.scrollHeight;
           
-          // Näytetään viestiketju ja piilotetaan muut
           messageList.style.display = 'none';
           newMessageForm.style.display = 'none';
           chatContainer.style.display = 'flex';
           
-          // Merkitään viesti luetuksi, jos se oli lukematon
           if (this.classList.contains('unread')) {
             this.classList.remove('unread');
             
-            // Päivitetään lukemattomien viestien määrä välilehdissä
             inboxTab.textContent = 'Saapuneet';
           }
         }
       });
     });
     
-    // Viestin lähettäminen viestiketjussa
     sendChatMessageBtn.addEventListener('click', function() {
       const messageText = chatMessageInput.value.trim();
       
       if (messageText) {
-        // Luodaan uusi viestielementti
         const messageElement = document.createElement('div');
         messageElement.className = 'message-bubble sent';
         
@@ -226,19 +209,16 @@ document.addEventListener('DOMContentLoaded', function() {
         
         chatMessages.appendChild(messageElement);
         
-        // Tyhjennetään tekstikenttä
         chatMessageInput.value = '';
         
-        // Scrollataan viestilistan loppuun
         chatMessages.scrollTop = chatMessages.scrollHeight;
         
-        // Demo-tarkoituksiin: lisätään automaattinen vastaus 1 sekunnin kuluttua
         setTimeout(function() {
           const replyElement = document.createElement('div');
           replyElement.className = 'message-bubble received';
           
           const recipient = document.getElementById('chat-recipient').textContent;
-          const later = new Date(now.getTime() + 60000); // 1 minuutti myöhemmin
+          const later = new Date(now.getTime() + 60000); 
           const formattedLaterDate = `${later.getDate()}.${later.getMonth() + 1}.${later.getFullYear()} ${later.getHours()}:${later.getMinutes().toString().padStart(2, '0')}`;
           
           replyElement.innerHTML = `
@@ -249,17 +229,14 @@ document.addEventListener('DOMContentLoaded', function() {
           
           chatMessages.appendChild(replyElement);
           
-          // Scrollataan viestilistan loppuun
           chatMessages.scrollTop = chatMessages.scrollHeight;
         }, 1000);
       }
     });
     
-    // Enter-näppäin lähettää viestin chat-näkymässä
     chatMessageInput.addEventListener('keydown', function(event) {
       if (event.key === 'Enter' && !event.shiftKey) {
-        event.preventDefault(); // Estetään rivinvaihto
-        sendChatMessageBtn.click(); // Kutsutaan lähetyspainikkeen klikkausta
-      }
+        event.preventDefault(); 
+        sendChatMessageBtn.click(); 
     });
   });

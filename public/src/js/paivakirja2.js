@@ -73,16 +73,13 @@ document.addEventListener('DOMContentLoaded', function() {
       'haitat': 'Kirjaa tähän mahdolliset uneen vaikuttaneet häiriötekijät (esim. stressi, alkoholi, sairaus)'
     };
   
-    // Lisää työkaluvihjeet kaikille lomakkeen kentille
     for (const [id, tooltip] of Object.entries(tooltipData)) {
       const element = document.getElementById(id);
       if (element) {
-        // Luo tooltip-elementti
         const tooltipElement = document.createElement('div');
         tooltipElement.className = 'tooltip';
         tooltipElement.textContent = tooltip;
         
-        // Etsi kentän label ja lisää tooltip siihen
         const label = document.querySelector(`label[for="${id}"]`);
         if (label) {
           label.title = tooltip;
