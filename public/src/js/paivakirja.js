@@ -24,7 +24,6 @@ function timeToMinutes(hours, minutes) {
 
   // Calculate total minutes
   const totalMinutes = hours * 60 + minutes;
-  console.log("Total minutes:", totalMinutes);
   return totalMinutes;
 }
 
@@ -414,9 +413,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const time = document.getElementById("time");
         const lkm = document.getElementById("lkm");
-      
-        time.value = dateInput.value + "T21:00";
-        lkm.value = dateInput.value + "T09:00";
+        const date = dateInput.value;
+
+        const nextDay = new Date(date);
+        nextDay.setDate(nextDay.getDate() + 1);
+        const pad = (num) => String(num).padStart(2, '0');
+        const nextDayString = `${nextDay.getFullYear()}-${pad(nextDay.getMonth() + 1)}-${pad(nextDay.getDate())}`;
+
+        time.value = date + "T21:00";
+        time.min = date + "T00:00";
+        time.max = nextDayString + "T23:59";
+
+
+        lkm.value = nextDayString + "T09:00";
+        lkm.min = date + "T00:00";
+        lkm.max = nextDayString + "T23:59";
 
       [...form.elements].forEach((el) => {
         if (el.id !== "date") {
@@ -481,6 +492,24 @@ document.querySelectorAll('input, textarea, select').forEach((element) => {
   });
 });
 
+
+function totalMinutes(hours, minutes) {
+  // Convert to integers
+  hours = parseInt(hours.value) || 0;
+  minutes = parseInt(minutes.value) || 0;
+
+  // Check if both variables are numbers
+  if (isNaN(hours) || isNaN(minutes)) {
+    console.log("Invalid input");
+    return 0;
+  }
+
+  // Calculate total minutes
+  const totalMinutes = hours * 60 + minutes;
+  console.log("Total minutes:", totalMinutes);
+  return totalMinutes;
+};
+
 document.addEventListener("DOMContentLoaded", function () {
   // Get references to the necessary DOM elements
   const timeInput = document.getElementById("time"); // "Menin vuoteeseen klo"
@@ -494,20 +523,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const inbedHoursInput = document.getElementById("inbed-hours"); // "Vuoteessaoloaika"
   const inbedMinutesInput = document.getElementById("inbed-minutes");
 
+
+
   // Function to calculate the difference between two times
   function calculateTimes() {
     const timeIn = new Date(timeInput.value); // Time when user went to bed
     const timeOut = new Date(lkmInput.value); // Time when user woke up
 
     // Get the sleep delay in minutes
-    const delayHours = parseInt(delayHoursInput.value) || 0;
-    const delayMinutes = parseInt(delayMinutesInput.value) || 0;
-    const sleepDelayInMinutes = (delayHours * 60) + delayMinutes;
+    const sleepDelayInMinutes = totalMinutes(delayHoursInput, delayMinutesInput); // Call the function to calculate total minutes
 
     // Get the total time awake during the night (in minutes)
-    const awakeTimeHours = parseInt(timeupHoursInput.value) || 0;
-    const awakeTimeMinutes = parseInt(timeupMinutesInput.value) || 0;
-    const awakeTimeInMinutes = (awakeTimeHours * 60) + awakeTimeMinutes;
+    const awakeTimeInMinutes = totalMinutes(timeupHoursInput, timeupMinutesInput); 
 
     // If both times are valid (i.e., not empty)
     if (!isNaN(timeIn.getTime()) && !isNaN(timeOut.getTime())) {
@@ -524,8 +551,14 @@ document.addEventListener("DOMContentLoaded", function () {
         const sleepMinutes = Math.floor(actualSleepTimeInMinutes % 60);
 
         // Set the calculated values for "Nukuttu aika" (sleeping time)
-        sleeptimeHoursInput.value = sleepHours;
-        sleeptimeMinutesInput.value = sleepMinutes;
+        if (sleepHours > 0 || sleepMinutes > 0) {
+          sleeptimeHoursInput.value = sleepHours;
+          sleeptimeMinutesInput.value = sleepMinutes;
+        } else {
+          createMessage("Nukuttu aika ei voi olla negatiivinen"); 
+          sleeptimeHoursInput.value = "";
+          sleeptimeMinutesInput.value = "";
+        }
 
         // Calculate the final bed time (adding awake time adjustment to the total bed time)
         const totalBedTimeAdjustedInMinutes = totalBedTimeInMinutes;
@@ -552,3 +585,97 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+// Add event listeners to the form inputs
+
+function createMessage(message) {
+  console.log("createMessage() called", message);
+  const div = document.getElementById("error-message");
+  div.innerText = message;
+  div.style.display = "block"; // Show the error message
+}
+
+function removeMessage() {
+  const div = document.getElementById("error-message");
+  div.style.display = "none"; 
+};
+
+
+const date = document.getElementById("date");
+const bedTimeInput = document.getElementById("time");
+const wakeTimeInput = document.getElementById("lkm");
+const delayHoursInput = document.getElementById("delay-hours"); // "Nukahtamisviive"
+const delayMinutesInput = document.getElementById("delay-minutes");
+
+bedTimeInput.addEventListener("change", () => {
+  const dateValue = date.value + "T00:00";
+  if (bedTimeInput.value && bedTimeInput.value < dateValue) {
+    createMessage("Nukkumaanmenoaika ei voi olla ennen asetettua päivämäärää.");
+    bedTimeInput.value = date.value + "T21:00";
+  }
+  if (bedTimeInput.value && wakeTimeInput.value < bedTimeInput.value) {
+    createMessage("Nousuaika ei voi olla ennen nukkumaanmenoaikaa."); // Create error message;
+    wakeTimeInput.value = date.value + "T09:00";
+  }
+});
+
+wakeTimeInput.addEventListener("change", () => {
+  if (bedTimeInput.value && wakeTimeInput.value < bedTimeInput.value) {
+    createMessage("Nousuaika ei voi olla ennen nukkumaanmenoaikaa."); // Create error message;
+    const nextDay = new Date(date.value);
+    nextDay.setDate(nextDay.getDate() + 1);
+    const pad = (num) => String(num).padStart(2, '0');
+    const nextDayString = `${nextDay.getFullYear()}-${pad(nextDay.getMonth() + 1)}-${pad(nextDay.getDate())}`;
+    wakeTimeInput.value = nextDayString + "T09:00";
+    console.log("wakeTimeInput.value", wakeTimeInput.value);
+  }
+});
+
+
+document.querySelectorAll("input").forEach((input) => {
+  input.addEventListener("focus", () => {
+    setTimeout(() => {
+      removeMessage();
+    }, 10000);
+  });
+});
+
+
+wakeTimeInput.addEventListener("change", () => {
+  if (bedTimeInput.value && wakeTimeInput.value < bedTimeInput.value) {
+    createMessage("Nousuaika ei voi olla ennen nukkumaanmenoaikaa."); // Create error message;
+    wakeTimeInput.value = ""; // Clear invalid input
+  }
+});
+
+function delayCalculateTimes() {
+  const inbedHoursInput = document.getElementById("inbed-hours"); // "Vuoteessaoloaika"
+  const inbedMinutesInput = document.getElementById("inbed-minutes");
+  const delayHoursInput = document.getElementById("delay-hours");
+  const delayMinutesInput = document.getElementById("delay-minutes");
+  console.log("delayCalculateTimes() called", inbedHoursInput.value, inbedMinutesInput.value);
+
+
+
+  if (inbedHoursInput.value || inbedMinutesInput.value) {
+    const delay = totalMinutes(delayHoursInput, delayMinutesInput); 
+    const timeIn = totalMinutes(inbedHoursInput, inbedMinutesInput); 
+
+    console.log("delayCalculateTimes() if-clause called", delay, timeIn);
+
+    if (delay > timeIn) {
+      createMessage("Nukahtamisviive ei voi olla enemmän kuin vuoteessa oltu aika."); // Create error message;
+      delayHoursInput.value = ""; // Clear invalid input
+      delayMinutesInput.value = ""; // Clear invalid input
+    }
+  } 
+};
+
+
+
+delayHoursInput.addEventListener("blur", () => {
+  delayCalculateTimes();
+});
+
+delayMinutesInput.addEventListener("blur", () => {
+  delayCalculateTimes();
+});

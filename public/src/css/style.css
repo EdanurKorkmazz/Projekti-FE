@@ -229,6 +229,34 @@ button[type="submit"]:hover, button[type="button"]:hover {
   background-color: #00558e;
 }
 
+/* responsiivisuus */
+
+@media (max-width: 768px) {
+  #boksi {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .double-inputs {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .multiple-inputs {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    width: 100%;
+  }
+
+  .multiple-inputs input {
+    width: 100%;
+  }
+}
+
+
+
+
+
 .confirmation {
   text-align: center;
 }
@@ -531,7 +559,18 @@ button[type="submit"]:hover, button[type="button"]:hover {
   padding: 0.5rem 1rem;
 }
 
-
+.error-message {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  grid-column: 1 / -1;
+  text-align: center;
+  border-radius: 30px;
+  color: #8e0009;
+  background-color: #fff0f1;
+  padding: 1.5rem 1rem;
+  font-size: 1.1em;
+}
 
 .input-break {
   grid-column: 1 / -1;
