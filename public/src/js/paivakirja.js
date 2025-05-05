@@ -48,6 +48,178 @@ function toggleInputsReadOnly(readOnly) {
 }
 
 /**
+ * Gathers form data from the inputs
+ */
+
+function gatherFormData() {
+  let fieldMap = {
+    "date": "date",
+    "time": "bed_time",
+    "delay-hours": "asleep_delay",
+    "delay-minutes": "asleep_delay",
+    "timeup-hours": "time_awake",
+    "timeup-minutes": "time_awake",
+    "lkm": "wakeups",
+    "sleeptime-hours": "total_sleep",
+    "sleeptime-minutes": "total_sleep",
+    "inbed-hours": "total_bed_time",
+    "inbed-minutes": "total_bed_time",
+    "quality": "sleep_quality",
+    "alertness": "daytime_alertness",
+    "treatment": "sleep_mgmt_methods",
+    "haitat": "sleep_factors",
+  };
+
+  let data = {};
+
+  Object.entries(fieldMap).forEach(([fieldId, dataKey]) => {
+    const element = document.querySelector(`#${fieldId}`);
+    if (element && element.value) {
+      if (dataKey in data) {
+        // Sum minutes and hours separately
+        if (fieldId.includes('hours')) {
+          data[dataKey] += parseInt(element.value || 0) * 60;
+        } else if (fieldId.includes('minutes')) {
+          data[dataKey] += parseInt(element.value || 0);
+        }
+      } else {
+        if (fieldId.includes('hours') || fieldId.includes('minutes')) {
+          data[dataKey] = 0;
+          if (fieldId.includes('hours')) {
+            data[dataKey] += parseInt(element.value || 0) * 60;
+          } else {
+            data[dataKey] += parseInt(element.value || 0);
+          }
+        } else {
+          data[dataKey] = element.value;
+        }
+      }
+    }
+  });
+
+  data.user_id = sessionStorage.getItem("user_id");
+  console.log("gatherFormData() Draft data:", data);
+
+  return data;
+}
+
+
+/**
+ * Fills the form with data from the draft
+ *
+ * @param {object} draft - The draft data to fill the form with
+ */
+
+const fillFormFromDraft = (draft) => {
+  if (!draft) return; 
+
+  const data = draft.data;
+
+  const fieldMap = {
+    "date": "date",
+    "time": "bed_time",
+    "delay-hours": "asleep_delay",
+    "delay-minutes": "asleep_delay",
+    "timeup-hours": "time_awake",
+    "timeup-minutes": "time_awake",
+    "lkm": "wakeups",
+    "sleeptime-hours": "total_sleep",
+    "sleeptime-minutes": "total_sleep",
+    "inbed-hours": "total_bed_time",
+    "inbed-minutes": "total_bed_time",
+    "quality": "sleep_quality",
+    "alertness": "daytime_alertness",
+    "treatment": "sleep_mgmt_methods",
+    "haitat": "sleep_factors",
+  };
+
+  Object.entries(fieldMap).forEach(([fieldId, dataKey]) => {
+    const element = document.querySelector(`#${fieldId}`);
+    if (!element || !(dataKey in data)) return; // skip if no element or data missing
+
+    const value = data[dataKey];
+
+    // Handle time fields stored as total minutes
+    if (fieldId.includes("hours")) {
+      element.value = Math.floor(value / 60); 
+    } else if (fieldId.includes("minutes")) {
+      element.value = value % 60; 
+    } else {
+      element.value = value;
+    }
+  });
+
+};
+
+/**
+  * Fetches data from the server
+  */
+async function saveDraft() {
+  let formData = gatherFormData();
+
+  try {
+
+    console.log("Saving draft...", formData);
+
+    // Endpoint
+    const url = "http://localhost:3000/api/entries/draft";
+  
+    // Request options
+    const options = {
+      body: JSON.stringify(formData),
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+  
+    // Fetch data from the server
+    const response = await fetchData(url, options);
+
+    console.log("Draft saved", response);
+
+    // If draft was found, fill the form with it
+    if (response.rows) {
+      const draft = response.rows;
+      console.log("Draft", draft);
+      fillFormFromDraft(draft);
+    }
+  } catch (error) {
+    console.error('Error saving draft', error);
+  }
+}
+
+
+/**
+ * Submits data to the server
+ *
+ */
+const updateDraft = async () => {
+  const bodyData = {
+    date: document.querySelector("#date").value,
+    user_id: sessionStorage.getItem("user_id"),
+    data: gatherFormData(),
+  };
+
+  // Endpoint
+  const url = "http://localhost:3000/api/entries/draft";
+
+  // Request options
+  const options = {
+    body: JSON.stringify(bodyData),
+    method: "PUT",
+    headers: {
+      "Content-type": "application/json",
+    },
+  };
+
+  // Fetch data from the server
+  const response = await fetchData(url, options);
+
+};
+
+
+/**
  * Submits data to the server
  *
  */
@@ -193,4 +365,74 @@ editBtn.addEventListener("click", () => {
   previewBtn.style.display = "inline-block";
   editBtn.style.display = "none";
   submitBtn.style.display = "none";
+});
+
+
+
+/**
+ * Handles the date input change event
+ * Enables or disables the form inputs based on the date selection
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  const dateInput = document.getElementById("date");
+  const form = document.getElementById("merkinta-form");
+
+  // Disable all inputs except date
+  [...form.elements].forEach((el) => {
+    if (el.id !== "date" && el.type !== "button") {
+      el.disabled = true;
+      const label = form.querySelector(`label[for="${el.id}"]`);
+      if (label) {
+        label.classList.add("disabled");
+      }
+      const h2s = form.querySelectorAll("h2");
+      if (h2s[1]) {
+        h2s[1].classList.add("disabled");
+      }
+    }
+  });
+  // Enable inputs when a valid date is picked
+  dateInput.addEventListener("change", () => {
+    saveDraft(); // Call saveDraft function to save the draft;
+    if (dateInput.value) {
+      [...form.elements].forEach((el) => {
+        if (el.id !== "date") {
+          el.disabled = false;
+          const label = form.querySelector(`label[for="${el.id}"]`);
+          if (label) {
+            label.classList.remove("disabled");
+          }   
+          const h2s = form.querySelectorAll("h2");
+          if (h2s[1]) {
+            h2s[1].classList.remove("disabled");
+          }
+        }
+      });
+      window.location.href = "#question-header"; // Scroll to the form
+    } else {
+      [...form.elements].forEach((el) => {
+        if (el.id !== "date" && el.type !== "button") {
+          el.disabled = true;
+          const label = form.querySelector(`label[for="${el.id}"]`);
+          if (label) {
+            label.classList.add("disabled");
+          }
+          const h2s = form.querySelectorAll("h2");
+          if (h2s[1]) {
+            h2s[1].classList.add("disabled");
+          }
+        }
+      });
+    }
+  });
+});
+
+
+// Save when an input loses focus
+document.querySelectorAll('input, textarea, select').forEach((element) => {
+  element.addEventListener('blur', () => {
+    if (element.id === 'date') return; // Skip date input
+    setTimeout(updateDraft, 500); 
+    console.log("Draft saved on blur", element.id, element.value);
+  });
 });

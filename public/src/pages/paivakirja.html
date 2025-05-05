@@ -35,11 +35,16 @@
 
     <form id="merkinta-form">
       <div class="container" id="boksi">
-        <div>
+
+        <h2 class="form-header">1. Valitse päivämäärä</h2>
+
+         <div class="date-container">
           <label for="date">Päivämäärä (*)</label>
           <input type="date" id="date" name="date" required />
         </div>
 
+        <h2 class="form-header" id="question-header">2. Täytä tiedot</h2>
+        
         <div>
           <label for="time">Menin vuoteeseen klo (*)</label>
           <input type="datetime-local" id="time" name="time" required />
