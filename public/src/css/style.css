@@ -466,6 +466,12 @@ button[type="submit"]:hover, button[type="button"]:hover {
   padding: 2rem;
 }
 
+.form-header {
+  width: 100%;
+  min-width: 100%;
+  display: grid;
+  grid-column: 1 / -1;
+}
 .form-group {
   margin-bottom: 1.5rem;
 }
