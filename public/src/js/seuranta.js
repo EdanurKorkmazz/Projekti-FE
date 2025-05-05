@@ -2,7 +2,7 @@ import { fetchData } from './fetch';
 import Chart from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
 
-const formatter = new Intl.DateTimeFormat('fi-FI', { day: '2-digit', month: '2-digit' });
+const formatter = new Intl.DateTimeFormat('fi-FI', { day: '2-digit', month: '2-digit', year: '2-digit' });
 
 // Function to get data from the Kubios API
 const getKubiosData = async () => {
@@ -125,7 +125,6 @@ const initializeInfoFromCheckedCheckboxes = () => {
         if (checkbox.checked) {
             // Get the label and color for the dataset
             const dataLabel = checkbox.getAttribute('data-id');
-            const label = checkbox.nextElementSibling.textContent.trim();
             const color = window.getComputedStyle(checkbox.nextElementSibling).color;
             const yAxisID = dataLabel === 'HRV' ? 'y' : 'y1'; // Determine the Y-axis ID
 
