@@ -67,7 +67,7 @@ const addDatasetWithLabel = (data, label, dataArray, color) => {
     return data;
 }
 
-const testi = 80; // For testing purposes, rolls back the date by 80 days
+const testi = 107; // For testing purposes, rolls back the dates by x days
 
 // Generate an array of dates for the given number of days
 const emptyDates = (days) => {
