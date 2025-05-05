@@ -116,7 +116,9 @@ function gatherFormData() {
 const fillFormFromDraft = (draft) => {
   if (!draft) return; 
 
-  const data = draft;
+  const data = draft.data;
+
+  console.log("fillFormFromDraft() called", data);
 
   const fieldMap = {
     "date": "date",
@@ -139,9 +141,13 @@ const fillFormFromDraft = (draft) => {
 
   Object.entries(fieldMap).forEach(([fieldId, dataKey]) => {
     const element = document.querySelector(`#${fieldId}`);
-    if (!element || !(dataKey in data)) return; // skip if no element or data missing
+    if (!element || !(dataKey in data)) {
+      console.log("no element or data missing", fieldId, dataKey);
+      return;
+    }; // skip if no element or data missing
 
     const value = data[dataKey];
+    console.log("fillFormFromDraft() fieldId:", fieldId, "dataKey:", dataKey, "value:", value);
 
     // Handle time fields stored as total minutes
     if (fieldId.includes("hours")) {
@@ -271,11 +277,14 @@ const submitData = async () => {
     sleep_factors: haitat,
   };
 
+  console.log("submitData() bodyData:", bodyData);
+
   // Endpoint
   const url = "http://localhost:3000/api/entries";
 
   // Token
   const token = sessionStorage.getItem("token");
+
 
   // Request options
   const options = {
