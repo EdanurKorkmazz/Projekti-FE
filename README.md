@@ -27,25 +27,32 @@ näitä tietoja tehokkaasti.
 
 
 
-### linkki julkaistuun sovellukseen (front-end)
-### linkki käytössä olevaan back-end-sovellukseen/APIin
+### Linkki julkaistuun sovellukseen (front-end)
+#### https://github.com/EdanurKorkmazz/Projekti-FE
+
+### Linkki käytössä olevaan back-end-sovellukseen/APIin
+#### https://github.com/tinjapup/Projekti-BE
+
 
 
 ### linkki API-dokumentaatioon (apidoc)
-### rautalankamallit tai linkki niihin
+####
+
+### Rautalankamallit tai linkki niihin
 #### https://www.figma.com/design/EaP6Pq4hVyd6L5lFUSIoyW/Web-Projekti?node-id=1-2561&t=y8IUyh728SSmRPJg-1
 
 ### Tietokannan kuvaus:
 ![Tietokanta](</public/img/>)
 
-### listaus ja kuvaus kaikista toiminnallisuuksista, mitä on toteutettu
+### Listaus ja kuvaus kaikista toiminnallisuuksista, mitä on toteutettu
 #### - Kirjautuminen sisään kubios tunnuksilla.
 #### - Kirjautuminen ulos.
 #### - Päiväkijalomakkeen lähettäminen.
 #### - Päiväkirjamerkintöjen tarkastaminen.
 #### - 
 
-### mahdolliset tiedossa olevat bugit/ongelmat
-### referenssit, käytetyt tutoriaalit, grafiikkakirjastot, tms.
-### linkki ohjelmistotestauskansioon, mistä löytyvät testitapaukset ja -raportit
+### Mahdolliset tiedossa olevat bugit/ongelmat
+
+### Linkki ohjelmistotestauskansioon, mistä löytyvät testitapaukset ja -raportit
+#### https://github.com/EdanurKorkmazz/Projekti-FE
 
