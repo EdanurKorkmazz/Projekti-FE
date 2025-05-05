@@ -16,20 +16,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const messageContents = {
       1: {
         title: "Tervetuloa OmaUni-sovellukseen",
-        sender: "Unilääkäri Joonas Unikko",
+        sender: "Lääkäri",
         messages: [
           {
-            sender: "Unilääkäri Joonas Unikko",
+            sender: "Lääkäri",
             content: "Hei ja tervetuloa käyttämään OmaUni-sovellusta! Olen unilääkäri Joonas Unikko ja toimin pääasiallisena yhteyshenkilönäsi sovelluksen käytössä. Tehtäväni on auttaa sinua parantamaan untasi ja seuraamaan palautumistasi säännöllisesti.",
             time: "26.4.2025 8:15"
           },
           {
-            sender: "Unilääkäri Joonas Unikko",
+            sender: "Lääkäri",
             content: "Sovelluksen kautta voit täyttää unipäiväkirjaa, seurata unesi laatua ja saada henkilökohtaista palautetta. Jos sinulla on kysyttävää unitottumuksistasi tai sovelluksen käytöstä, voit aina lähettää minulle viestin tätä kautta.",
             time: "26.4.2025 8:16"
           },
           {
-            sender: "Unilääkäri Joonas Unikko",
+            sender: "Lääkäri",
             content: "Pyrin vastaamaan viesteihin 1-2 arkipäivän kuluessa. Aloitetaan yhdessä matka parempaan uneen!",
             time: "26.4.2025 8:17"
           }
@@ -48,10 +48,10 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       3: {
         title: "Tarkistus kokonaistilanteesta",
-        sender: "Unilääkäri Joonas Unikko",
+        sender: "Lääkäri",
         messages: [
           {
-            sender: "Unilääkäri Joonas Unikko",
+            sender: "Lääkäri",
             content: "Hei! Huomasin, että unesi laatu on parantunut viimeisen viikon aikana. Oletko huomannut itse mitään muutosta virkeydessä tai jaksamisessa?",
             time: "20.4.2025 14:45"
           },
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
             time: "20.4.2025 18:20"
           },
           {
-            sender: "Unilääkäri Joonas Unikko",
+            sender: "Lääkäri",
             content: "Hieno kuulla! Säännöllinen iltarutiini on yksi tehokkaimmista tavoista parantaa unen laatua. Jatka samaan malliin ja seurataan tilannetta.",
             time: "21.4.2025 9:10"
           }
@@ -238,5 +238,6 @@ document.addEventListener('DOMContentLoaded', function() {
       if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault(); 
         sendChatMessageBtn.click(); 
+      }
     });
   });

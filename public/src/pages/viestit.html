@@ -42,14 +42,13 @@
         </div>
       </div>
 
-      <!-- Viestilista (näkyy oletuksena) -->
       <div class="message-list" id="message-list">
         <div class="message-item unread" data-id="1" data-sender="Unilääkäri Joonas Unikko">
           <div class="message-info">
             <h3 class="message-title">Tervetuloa OmaUni-sovellukseen</h3>
             <div class="message-meta">
               <span class="message-date">saapunut 26.4.2025</span>
-              <span class="message-sender">Unilääkäri Joonas Unikko</span>
+              <span class="message-sender">Lääkäri</span>
             </div>
           </div>
         </div>
@@ -69,7 +68,7 @@
             <h3 class="message-title">Tarkistus kokonaistilanteesta</h3>
             <div class="message-meta">
               <span class="message-date">saapunut 20.4.2025</span>
-              <span class="message-sender">Unilääkäri Joonas Unikko</span>
+              <span class="message-sender">Lääkäri</span>
             </div>
           </div>
         </div>
@@ -85,14 +84,13 @@
         </div>
       </div>
 
-      <!-- Uusi viesti -lomake (piilotettu oletuksena) -->
       <div class="new-message-form" id="new-message-form" style="display: none;">
         <div class="form-container">
           <div class="form-group">
             <label for="recipient">Vastaanottaja:</label>
             <select id="recipient" name="recipient" required>
               <option value="">Valitse vastaanottaja</option>
-              <option value="unilaakari">Unilääkäri Joonas Unikko</option>
+              <option value="unilaakari">Lääkäri</option>
               <option value="admin">Järjestelmänvalvoja</option>
             </select>
           </div>
@@ -114,7 +112,6 @@
         </div>
       </div>
 
-      <!-- Viestiketju (piilotettu oletuksena) -->
       <div class="chat-container" id="chat-container" style="display: none;">
         <div class="chat-header">
           <button class="back-button" id="back-to-messages">
@@ -128,7 +125,6 @@
         </div>
         
         <div class="chat-messages" id="chat-messages">
-          <!-- Viestit tulevat tähän dynaamisesti -->
         </div>
         
         <div class="chat-input">
@@ -164,7 +160,6 @@
     </div>
   </div>
 
-  <!-- Ilmoitus viestien lähettämisestä -->
   <div id="notification" class="notification">Viesti lähetetty onnistuneesti!</div>
 
   <script type="module" src="/public/src/js/viestit.js"></script>

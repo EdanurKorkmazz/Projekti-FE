@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
   
   const isDarkMode = localStorage.getItem('darkMode') === 'true';
   
+  // dark mode on/off
+
   if (isDarkMode) {
     enableDarkMode();
   } else {

@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
       modeText.textContent = 'Pois päältä';
     }
     
+    // dark mode variation
     darkModeToggle.addEventListener('change', function() {
       if (this.checked) {
         document.body.classList.add('dark-mode');
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
+    // form submission
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       
