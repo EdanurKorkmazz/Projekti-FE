@@ -2,7 +2,7 @@ import { fetchData } from './fetch';
 import Chart from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
 
-const formatter = new Intl.DateTimeFormat('fi-FI', { day: '2-digit', month: '2-digit' });
+const formatter = new Intl.DateTimeFormat('fi-FI', { day: '2-digit', month: '2-digit', year: '2-digit' });
 
 // Function to get data from the Kubios API
 const getKubiosData = async () => {
@@ -67,7 +67,7 @@ const addDatasetWithLabel = (data, label, dataArray, color) => {
     return data;
 }
 
-const testi = 80; // For testing purposes, rolls back the date by 80 days
+const testi = 107; // For testing purposes, rolls back the dates by x days
 
 // Generate an array of dates for the given number of days
 const emptyDates = (days) => {
@@ -125,7 +125,6 @@ const initializeInfoFromCheckedCheckboxes = () => {
         if (checkbox.checked) {
             // Get the label and color for the dataset
             const dataLabel = checkbox.getAttribute('data-id');
-            const label = checkbox.nextElementSibling.textContent.trim();
             const color = window.getComputedStyle(checkbox.nextElementSibling).color;
             const yAxisID = dataLabel === 'HRV' ? 'y' : 'y1'; // Determine the Y-axis ID
 
