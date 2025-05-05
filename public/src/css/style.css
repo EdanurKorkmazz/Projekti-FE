@@ -190,6 +190,16 @@ input[type="range"] {
   font-weight: 600;
 }
 
+.multiple-inputs input {
+width: 100px;
+}
+
+input#sleeptime-hours, input#sleeptime-minutes,
+input#inbed-hours, input#inbed-minutes {
+  border: none;
+  border-bottom: 2px solid #ddd;
+}
+
 .double-inputs {
   display: grid;
   grid-column: 1 / -1;
@@ -525,10 +535,9 @@ button[type="submit"]:hover, button[type="button"]:hover {
 
 .input-break {
   grid-column: 1 / -1;
-  border-bottom: 1px solid #eee;
+  border-bottom: 5px dotted #eee;
   margin: 0 auto;
-  width: 80%;
-  display: none;
+  width: 100%;
 }
 .form-group {
   margin-bottom: 1.5rem;
