@@ -80,19 +80,18 @@
               name="delay-hours"
               min="0"
               max="23"
-              placeholder="h"
               required
             />
-            <span>:</span>
+            <span>h</span>
             <input
               type="number"
               id="delay-minutes"
               name="delay-minutes"
               min="0"
               max="59"
-              placeholder="min"
               required
             />
+            <span>min</span>
           </div>
           </div>
 
@@ -110,19 +109,18 @@
               name="timeup-hours"
               min="0"
               max="23"
-              placeholder="h"
               required
             />
-            <span>:</span>
+            <span>h</span>
             <input
               type="number"
               id="timeup-minutes"
               name="timeup-minutes"
               min="0"
               max="59"
-              placeholder="min"
               required
             />
+            <span>min</span>
           </div>
         </div>
 
@@ -132,7 +130,7 @@
       <div class="double-inputs">
 
         <div>
-          <label for="sleeptime-hours">Nukuttu aika (*)</label>
+          <label for="sleeptime-hours">Nukuttu aika</label>
           <div class="multiple-inputs">
             <input
               type="number"
@@ -140,24 +138,25 @@
               name="sleeptime-hours"
               min="0"
               max="23"
-              placeholder="h"
               required
+              readonly
             />
-            <span>:</span>
+            <span>h</span>
             <input
               type="number"
               id="sleeptime-minutes"
               name="sleeptime-minutes"
               min="0"
               max="59"
-              placeholder="min"
               required
+              readonly
             />
+            <span>min</span>
           </div>
         </div>
 
         <div>
-          <label for="inbed-hours">Vuoteessaoloaika (*)</label>
+          <label for="inbed-hours">Vuoteessaoloaika</label>
           <div class="multiple-inputs">
             <input
               type="number"
@@ -165,19 +164,20 @@
               name="inbed-hours"
               min="0"
               max="23"
-              placeholder="h"
               required
+              readonly
             />
-            <span>:</span>
+            <span>h</span>
             <input
               type="number"
               id="inbed-minutes"
               name="inbed-minutes"
               min="0"
               max="59"
-              placeholder="min"
               required
+              readonly
             />
+            <span>min</span>
           </div>
         </div>
 
@@ -198,7 +198,6 @@
               name="quality"
               min="1"
               max="10"
-              value="0"
               required
             />
             <span id="quality-value" class="range-value">5</span>
@@ -214,7 +213,6 @@
               name="alertness"
               min="1"
               max="10"
-              value="5"
               required
             />
             <span id="alertness-value" class="range-value">5</span>

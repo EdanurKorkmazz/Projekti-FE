@@ -40,11 +40,13 @@ function toggleInputsReadOnly(readOnly) {
 
   inputs.forEach((input) => {
     if (input.type === "range") {
-      input.disabled = readOnly; // range can't be readonly, so disable instead
+      input.disabled = readOnly; 
     } else {
       input.readOnly = readOnly;
     }
   });
+
+
 
 }
 
@@ -56,11 +58,12 @@ function gatherFormData() {
   let fieldMap = {
     "date": "date",
     "time": "bed_time",
+    "lkm": "wakeup_time",
     "delay-hours": "asleep_delay",
     "delay-minutes": "asleep_delay",
     "timeup-hours": "time_awake",
     "timeup-minutes": "time_awake",
-    "lkm": "wakeups",
+    "wakeups": "wakeups",
     "sleeptime-hours": "total_sleep",
     "sleeptime-minutes": "total_sleep",
     "inbed-hours": "total_bed_time",
@@ -114,16 +117,17 @@ function gatherFormData() {
 const fillFormFromDraft = (draft) => {
   if (!draft) return; 
 
-  const data = draft.data;
+  const data = draft;
 
   const fieldMap = {
     "date": "date",
     "time": "bed_time",
+    "lkm": "wakeup_time",
     "delay-hours": "asleep_delay",
     "delay-minutes": "asleep_delay",
     "timeup-hours": "time_awake",
     "timeup-minutes": "time_awake",
-    "lkm": "wakeups",
+    "wakeups": "wakeups",
     "sleeptime-hours": "total_sleep",
     "sleeptime-minutes": "total_sleep",
     "inbed-hours": "total_bed_time",
@@ -182,7 +186,7 @@ async function saveDraft() {
     // If draft was found, fill the form with it
     if (response.rows) {
       const draft = response.rows;
-      console.log("Draft", draft);
+      console.log("Draft was found", draft);
       fillFormFromDraft(draft);
     }
   } catch (error) {
@@ -228,6 +232,7 @@ const submitData = async () => {
   // Get the values from the form inputs
   const date = document.querySelector("#date").value;
   const time = document.querySelector("#time").value;
+  const bedtime = document.querySelector("#lkm").value;
   const delay = timeToMinutes(
     document.querySelector("#delay-hours").value,
     document.querySelector("#delay-minutes").value
@@ -237,7 +242,6 @@ const submitData = async () => {
     document.querySelector("#timeup-hours").value,
     document.querySelector("#timeup-minutes").value
   );
-  const lkm = document.querySelector("#lkm").value;
   const sleeptime = timeToMinutes(
     document.querySelector("#sleeptime-hours").value,
     document.querySelector("#sleeptime-minutes").value
@@ -379,6 +383,7 @@ editBtn.addEventListener("click", () => {
  * Enables or disables the form inputs based on the date selection
  */
 document.addEventListener("DOMContentLoaded", () => {
+
   const dateInput = document.getElementById("date");
   const form = document.getElementById("merkinta-form");
 
@@ -406,6 +411,13 @@ document.addEventListener("DOMContentLoaded", () => {
   dateInput.addEventListener("change", () => {
     saveDraft(); // Call saveDraft function to save the draft;
     if (dateInput.value) {
+
+        const time = document.getElementById("time");
+        const lkm = document.getElementById("lkm");
+      
+        time.value = dateInput.value + "T21:00";
+        lkm.value = dateInput.value + "T09:00";
+
       [...form.elements].forEach((el) => {
         if (el.id !== "date") {
           el.disabled = false;
@@ -468,3 +480,75 @@ document.querySelectorAll('input, textarea, select').forEach((element) => {
     saveStatus(timeString);
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Get references to the necessary DOM elements
+  const timeInput = document.getElementById("time"); // "Menin vuoteeseen klo"
+  const lkmInput = document.getElementById("lkm");   // "Nousin vuoteesta klo"
+  const delayHoursInput = document.getElementById("delay-hours"); // "Nukahtamisviive"
+  const delayMinutesInput = document.getElementById("delay-minutes");
+  const timeupHoursInput = document.getElementById("timeup-hours"); // "Valveillaoloaika unijakson aikana"
+  const timeupMinutesInput = document.getElementById("timeup-minutes");
+  const sleeptimeHoursInput = document.getElementById("sleeptime-hours"); // "Nukuttu aika"
+  const sleeptimeMinutesInput = document.getElementById("sleeptime-minutes");
+  const inbedHoursInput = document.getElementById("inbed-hours"); // "Vuoteessaoloaika"
+  const inbedMinutesInput = document.getElementById("inbed-minutes");
+
+  // Function to calculate the difference between two times
+  function calculateTimes() {
+    const timeIn = new Date(timeInput.value); // Time when user went to bed
+    const timeOut = new Date(lkmInput.value); // Time when user woke up
+
+    // Get the sleep delay in minutes
+    const delayHours = parseInt(delayHoursInput.value) || 0;
+    const delayMinutes = parseInt(delayMinutesInput.value) || 0;
+    const sleepDelayInMinutes = (delayHours * 60) + delayMinutes;
+
+    // Get the total time awake during the night (in minutes)
+    const awakeTimeHours = parseInt(timeupHoursInput.value) || 0;
+    const awakeTimeMinutes = parseInt(timeupMinutesInput.value) || 0;
+    const awakeTimeInMinutes = (awakeTimeHours * 60) + awakeTimeMinutes;
+
+    // If both times are valid (i.e., not empty)
+    if (!isNaN(timeIn.getTime()) && !isNaN(timeOut.getTime())) {
+      // Calculate the total time spent in bed
+      const totalBedTimeMilliseconds = timeOut - timeIn;
+      const totalBedTimeInMinutes = totalBedTimeMilliseconds / 1000 / 60;
+
+      if (totalBedTimeInMinutes > 0) {
+        // Calculate the actual sleep time (subtracting sleep delay and time awake)
+        const actualSleepTimeInMinutes = totalBedTimeInMinutes - sleepDelayInMinutes - awakeTimeInMinutes;
+
+        // Calculate the final sleep time in hours and minutes
+        const sleepHours = Math.floor(actualSleepTimeInMinutes / 60);
+        const sleepMinutes = Math.floor(actualSleepTimeInMinutes % 60);
+
+        // Set the calculated values for "Nukuttu aika" (sleeping time)
+        sleeptimeHoursInput.value = sleepHours;
+        sleeptimeMinutesInput.value = sleepMinutes;
+
+        // Calculate the final bed time (adding awake time adjustment to the total bed time)
+        const totalBedTimeAdjustedInMinutes = totalBedTimeInMinutes;
+        const bedTimeHours = Math.floor(totalBedTimeAdjustedInMinutes / 60);
+        const bedTimeMinutes = Math.floor(totalBedTimeAdjustedInMinutes % 60);
+
+        // Set the calculated values for "Vuoteessaoloaika" (total bed time)
+        inbedHoursInput.value = bedTimeHours;
+        inbedMinutesInput.value = bedTimeMinutes;
+
+        // Optionally, you can display the awake time during the night as well:
+        console.log("Total time awake during the night (in minutes):", awakeTimeInMinutes);
+      }
+    }
+  }
+
+  // Add event listeners to trigger calculation when time inputs change
+  timeInput.addEventListener("change", calculateTimes);
+  lkmInput.addEventListener("change", calculateTimes);
+  delayHoursInput.addEventListener("change", calculateTimes);
+  delayMinutesInput.addEventListener("change", calculateTimes);
+  timeupHoursInput.addEventListener("change", calculateTimes); // Listen for awake time input (hours)
+  timeupMinutesInput.addEventListener("change", calculateTimes); // Listen for awake time input (minutes)
+});
+
+
