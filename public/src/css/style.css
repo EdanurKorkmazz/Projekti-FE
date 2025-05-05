@@ -162,8 +162,12 @@ input:disabled, .disabled-div {
   cursor: not-allowed;
 }
 
-label.disabled, h2.disabled, h3.disabled {
+label.disabled, h2.disabled, h3.disabled, #merkinta-form h3.disabled {
   color: #a9a9a9;
+}
+
+#merkinta-form h3.disabled {
+  border-left: 0.6em solid #a9a9a9;
 }
 
 input[type="range"]:disabled {

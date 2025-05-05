@@ -417,7 +417,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (h2s[1]) {
             h2s[1].classList.remove("disabled");
           }
-          const h3s = form.querySelectorAll("h3");
+          const h3s = form.querySelectorAll("h3, #merkinta-form h3"); 
           h3s.forEach(h3 => {
             h3.classList.remove("disabled");
           });
