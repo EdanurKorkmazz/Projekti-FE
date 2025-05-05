@@ -45,6 +45,7 @@ function toggleInputsReadOnly(readOnly) {
       input.readOnly = readOnly;
     }
   });
+
 }
 
 /**
@@ -357,7 +358,11 @@ previewBtn.addEventListener("click", () => {
   previewBtn.style.display = "none";
   editBtn.style.display = "inline-block";
   submitBtn.style.display = "inline-block";
+
 });
+
+
+
 
 editBtn.addEventListener("click", () => {
   toggleInputsReadOnly(false);
@@ -389,6 +394,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (h2s[1]) {
         h2s[1].classList.add("disabled");
       }
+      const h3s = form.querySelectorAll("h3");
+      if (h3s) {
+        h3s.forEach(h3 => {
+          h3.classList.add("disabled");
+        });
+      }
     }
   });
   // Enable inputs when a valid date is picked
@@ -406,6 +417,10 @@ document.addEventListener("DOMContentLoaded", () => {
           if (h2s[1]) {
             h2s[1].classList.remove("disabled");
           }
+          const h3s = form.querySelectorAll("h3");
+          h3s.forEach(h3 => {
+            h3.classList.remove("disabled");
+          });
         }
       });
       window.location.href = "#question-header"; // Scroll to the form
@@ -421,12 +436,24 @@ document.addEventListener("DOMContentLoaded", () => {
           if (h2s[1]) {
             h2s[1].classList.add("disabled");
           }
+          
         }
       });
     }
   });
 });
 
+function saveStatus(timeString) {
+  const status = document.getElementById("save-status");
+  if (status.style.display === "none") {
+    status.style.display = "block";
+  }
+  setTimeout(() => {
+    status.innerText = `Tallennettu viimeksi ${timeString}`;
+  }, 4000);
+  status.innerText = `Tallennettu viimeksi ${timeString}`;
+  status.innerText = `Tallennetaan...`;
+}
 
 // Save when an input loses focus
 document.querySelectorAll('input, textarea, select').forEach((element) => {
@@ -434,5 +461,10 @@ document.querySelectorAll('input, textarea, select').forEach((element) => {
     if (element.id === 'date') return; // Skip date input
     setTimeout(updateDraft, 500); 
     console.log("Draft saved on blur", element.id, element.value);
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const timeString = `${hours}:${minutes}`;
+    saveStatus(timeString);
   });
 });

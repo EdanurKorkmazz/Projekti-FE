@@ -34,8 +34,9 @@
     <h1>Uusi merkintä</h1>
 
     <form id="merkinta-form">
-      <div class="container" id="boksi">
 
+      <div class="container" id="boksi">
+        
         <h2 class="form-header">1. Valitse päivämäärä</h2>
 
          <div class="date-container">
@@ -43,11 +44,30 @@
           <input type="date" id="date" name="date" required />
         </div>
 
-        <h2 class="form-header" id="question-header">2. Täytä tiedot</h2>
+        <div class="input-break"></div>
+
         
+        <div class="save-container">
+        <div>
+          <h2 class="form-header" id="question-header">2. Täytä tiedot</h2>
+        </div>
+        <div id="save-status" style="display: none;">
+          </div>
+        </div>
+        
+        <h3>Unen kesto</h3>
+
+        <div class="double-inputs">
         <div>
           <label for="time">Menin vuoteeseen klo (*)</label>
           <input type="datetime-local" id="time" name="time" required />
+        </div>
+
+        <div>
+          <label for="lkm">Nousin vuoteesta klo (*)</label>
+          <input type="datetime-local" id="lkm" name="lkm" required />
+        </div>
+
         </div>
 
         <div>
@@ -74,7 +94,7 @@
               required
             />
           </div>
-        </div>
+          </div>
 
         <div>
           <label for="wakeups">Heräilyjen lukumäärä (*)</label>
@@ -106,10 +126,10 @@
           </div>
         </div>
 
-        <div>
-          <label for="lkm">Nousin vuoteesta klo (*)</label>
-          <input type="datetime-local" id="lkm" name="lkm" required />
-        </div>
+
+
+
+      <div class="double-inputs">
 
         <div>
           <label for="sleeptime-hours">Nukuttu aika (*)</label>
@@ -160,7 +180,15 @@
             />
           </div>
         </div>
+
+        </div>
         
+        <div class="input-break"></div>
+
+        <h3>Laatutekijät</h3>
+
+        <div class="double-inputs">
+
         <div>
           <label for="quality">Unen laatu (1-10) (*)</label>
           <div class="slider-container">
@@ -192,6 +220,14 @@
             <span id="alertness-value" class="range-value">5</span>
           </div>
         </div>
+        </div>
+
+        <div class="input-break"></div>
+
+        <h3>Lisätiedot</h3>
+
+        <div class="double-inputs">
+
 
         <div>
           <label for="treatment">Hoitokeinot</label>
@@ -202,6 +238,7 @@
           <label for="haitat">Haittatekijät</label>
           <input type="text" id="haitat" name="haitat" />
         </div>
+        </div>
 
         <div class="button-container">
           <button type="button" id="preview-btn">Esikatsele</button>
@@ -210,7 +247,9 @@
         </div>
 
         <p>(*) = pakollinen kenttä</p>
+
       </div>
+     
     </form>
 
     <script type="module" src="/public/src/js/paivakirja.js"></script>

@@ -133,7 +133,7 @@ h1 {
   padding: 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+  gap: 4.5rem 2.5rem;
 }
 
 label {
@@ -159,13 +159,19 @@ input:focus {
 
   
 input:disabled, .disabled-div {
-  opacity: 0.7;
   cursor: not-allowed;
 }
 
-label.disabled, h2.disabled {
-  color: #999;
-  opacity: 0.7;
+label.disabled, h2.disabled, h3.disabled {
+  color: #a9a9a9;
+}
+
+input[type="range"]:disabled {
+  color: #aaa;
+}
+
+input[type="range"]:disabled::-webkit-slider-thumb {
+  background-color: #aaa;
 }
 
 input[type="range"] {
@@ -175,9 +181,17 @@ input[type="range"] {
 .multiple-inputs {
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  gap: 0.5rem;
   align-items: center;
   font-weight: 600;
+}
+
+.double-inputs {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  gap: 2.5rem;
 }
 
 .button-container {
@@ -466,11 +480,51 @@ button[type="submit"]:hover, button[type="button"]:hover {
   padding: 2rem;
 }
 
+#merkinta-form h3 {
+  color: #003a63;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding: 0.5em 0 0.5em 0.8em;
+  font-size: 1.2rem;
+  border-left: 0.6em solid #003a63;
+  display: grid;
+  grid-column: 1 / -1;
+  align-content: center;
+  border-bottom: 1px solid #eee;
+}
+
 .form-header {
   width: 100%;
   min-width: 100%;
   display: grid;
   grid-column: 1 / -1;
+}
+
+.save-container {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: 3fr 1fr;
+}
+
+#save-status {
+  text-align: center;
+  font-size: 1.2em;
+  display: flex;
+  align-content: center;
+  color: #00558e;
+  background-color: #f0f7ff;
+  border-radius: 30px;
+  padding: 0.5rem 1rem;
+}
+
+
+
+.input-break {
+  grid-column: 1 / -1;
+  border-bottom: 1px solid #eee;
+  margin: 0 auto;
+  width: 80%;
+  display: none;
 }
 .form-group {
   margin-bottom: 1.5rem;
