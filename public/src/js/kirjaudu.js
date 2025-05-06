@@ -19,7 +19,7 @@ const submitData = async () => {
   };
 
   // Endpoint
-  const url = "http://localhost:3000/api/auth/login";
+  const url = "https://oma-uni.norwayeast.cloudapp.azure.com/api/auth/login";
 
   // Request options
   const options = {
