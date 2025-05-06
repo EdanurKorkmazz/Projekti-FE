@@ -14,30 +14,43 @@ näitä tietoja tehokkaasti.
 ![Kirjautuminen](</public/img/kirjautuminen (1).png>)
 #### Etusivu:
 ![Etusivu](</public/img/etusivu.png>)
-![Etusivu](</public/img/etusivu-dark.png>)
 
 #### Päiväkirjasivu:
 ![Päiväkirjasivu1](</public/img/paivakirja1.png>)
-![Päiväkirjasivu1](</public/img/paivakirja1-dark.png>)
 
 ![Päiväkirjasivu2](</public/img/paivakirja2.png>)
-![Päiväkirjasivu2](</public/img/paivakirja2-dark.png>)
 
 ![Päiväkirjasivu3](</public/img/paivakirja3.png>)
-![Päiväkirjasivu3](</public/img/paivakirja3-dark.png>)
 
 #### Seuranta:
 ![Seuranta](</public/img/seuranta.png>)
-![Seuranta](</public/img/seuranta-dark.png>)
 
 #### Merkinnät:
 ![Merkinnät](</public/img/>)
 #### Tietoa unesta:
 ![Tietoa](</public/img/tietoa.png>)
-![Tietoa](</public/img/tietoa-dark.png>)
 
 #### Asetukset:
 ![Asetukset](</public/img/asetukset.png>)
+
+### Kuvakaappaukset sovelluksen käyttöliittymästä tummenetussa tilassa
+
+#### Päiväkirjasivu:
+![Päiväkirjasivu1](</public/img/paivakirja1-dark.png>)
+
+![Päiväkirjasivu2](</public/img/paivakirja2-dark.png>)
+
+![Päiväkirjasivu3](</public/img/paivakirja3-dark.png>)
+
+#### Seuranta:
+![Seuranta](</public/img/seuranta-dark.png>)
+
+#### Merkinnät:
+![Merkinnät](</public/img/>)
+#### Tietoa unesta:
+![Tietoa](</public/img/tietoa-dark.png>)
+
+#### Asetukset:
 ![Asetukset](</public/img/asetukset-dark.png>)
 
 
