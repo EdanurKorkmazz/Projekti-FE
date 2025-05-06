@@ -118,8 +118,6 @@ const fillFormFromDraft = (draft) => {
 
   const data = draft.data;
 
-  console.log("fillFormFromDraft() called", data);
-
   const fieldMap = {
     "date": "date",
     "time": "bed_time",
@@ -186,16 +184,34 @@ async function saveDraft() {
     // Fetch data from the server
     const response = await fetchData(url, options);
 
-    console.log("Draft saved", response);
+    console.log("Response from server:", response);
+
+    // If entry was found
+    if (response.entry) {
+      const entry = response.entry;
+      console.log("Entry was found", entry);
+
+      const dateDiv = document.getElementById("date");
+
+      const alertDiv = document.createElement("div");
+      alertDiv.textContent = response.error;
+      alertDiv.classList.add("error-message");
+
+      dateDiv.insertAdjacentElement("afterend", alertDiv); 
+      return false;
+    }
 
     // If draft was found, fill the form with it
     if (response.rows) {
       const draft = response.rows;
       console.log("Draft was found", draft);
       fillFormFromDraft(draft);
+      return true;
     }
+    return true;
   } catch (error) {
     console.error('Error saving draft', error);
+    return false;
   }
 }
 
@@ -237,7 +253,7 @@ const submitData = async () => {
   // Get the values from the form inputs
   const date = document.querySelector("#date").value;
   const time = document.querySelector("#time").value;
-  const bedtime = document.querySelector("#lkm").value;
+  const wakeup_time = document.querySelector("#lkm").value;
   const delay = timeToMinutes(
     document.querySelector("#delay-hours").value,
     document.querySelector("#delay-minutes").value
@@ -268,7 +284,7 @@ const submitData = async () => {
     asleep_delay: delay,
     wakeups: wakeups,
     time_awake: timeup,
-    wakeup_time: lkm,
+    wakeup_time: wakeup_time ,
     total_sleep: sleeptime,
     total_bed_time: inbed,
     sleep_quality: quality,
@@ -416,8 +432,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   // Enable inputs when a valid date is picked
-  dateInput.addEventListener("change", () => {
-    saveDraft(); // Call saveDraft function to save the draft;
+  dateInput.addEventListener("change", async () => {
+
+    const saveDraftResponse = saveDraft();
+
+    //if (dateInput.value && saveDraftResponse === true) {
     if (dateInput.value) {
 
         const time = document.getElementById("time");
@@ -605,7 +624,9 @@ function createMessage(message) {
 
 function removeMessage() {
   const div = document.getElementById("error-message");
-  div.style.display = "none"; 
+  if (div) {
+    div.style.display = "none"; 
+  }
 };
 
 
