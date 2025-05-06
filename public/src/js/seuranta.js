@@ -1,4 +1,4 @@
-import { fetchData } from './fetch';
+import { fetchData } from './fetch.js';
 
 /* not needed, as Chart.js is imported in the HTML file
 import Chart from 'chart.js/auto'; 
@@ -6,12 +6,11 @@ import 'chartjs-adapter-date-fns';
 */
 
 
-
 const formatter = new Intl.DateTimeFormat('fi-FI', { day: '2-digit', month: '2-digit', year: '2-digit' });
 
 // Function to get data from the Kubios API
 const getKubiosData = async () => {
-    const kubiosApiUrl = 'http://localhost:3000/api/kubios-data/user-data';
+    const kubiosApiUrl = 'https://oma-uni.norwayeast.cloudapp.azure.com/api/kubios-data/user-data';
     console.log('Käyttäjän DATA Kubioksesta');
     const url = kubiosApiUrl;
     const token = sessionStorage.getItem('token');
@@ -32,7 +31,7 @@ const getKubiosData = async () => {
 
 // Function to get entry data from the database
 const getEntryData = async () => {
-    const entriesApiUrl = 'http://localhost:3000/api/entries';
+    const entriesApiUrl = 'https://oma-uni.norwayeast.cloudapp.azure.com/api/entries';
     console.log('Käyttäjän DATA Entries-tietokannasta');
     const url = entriesApiUrl;
     const token = sessionStorage.getItem('token');
