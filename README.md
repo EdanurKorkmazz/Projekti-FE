@@ -34,6 +34,8 @@ näitä tietoja tehokkaasti.
 ![Asetukset](</public/img/asetukset.png>)
 
 ### Kuvakaappaukset sovelluksen käyttöliittymästä tummenetussa tilassa
+#### Etusivu:
+![Etusivu](</public/img/etusivu-dark.png>)
 
 #### Päiväkirjasivu:
 ![Päiväkirjasivu1](</public/img/paivakirja1-dark.png>)
