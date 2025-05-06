@@ -15,9 +15,11 @@ näitä tietoja tehokkaasti.
 #### Etusivu:
 ![Etusivu](</public/img/etusivu.png>)
 #### Päiväkirjasivu:
-![Päiväkirjasivu](</public/img/>)
+![Päiväkirjasivu1](</public/img/paivakirja1.png>)
+![Päiväkirjasivu2](</public/img/paivakirja2.png>)
+![Päiväkirjasivu3](</public/img/paivakirja3.png>)
 #### Seuranta:
-![Seuranta](</public/img/>)
+![Seuranta](</public/img/seuranta.png>)
 #### Merkinnät:
 ![Merkinnät](</public/img/>)
 #### Tietoa unesta:
@@ -29,9 +31,12 @@ näitä tietoja tehokkaasti.
 
 ### Linkki julkaistuun sovellukseen (front-end)
 #### https://github.com/EdanurKorkmazz/Projekti-FE
+#### Julkaistu sivu: https://oma-uni.norwayeast.cloudapp.azure.com/src/pages/seuranta.html
 
 ### Linkki käytössä olevaan back-end-sovellukseen/APIin
 #### https://github.com/tinjapup/Projekti-BE
+#### Julkaistu sivu: https://oma-uni.norwayeast.cloudapp.azure.com/src/pages/seuranta.html
+
 
 
 
@@ -48,8 +53,7 @@ näitä tietoja tehokkaasti.
 #### - Kirjautuminen sisään kubios tunnuksilla.
 #### - Kirjautuminen ulos.
 #### - Päiväkijalomakkeen lähettäminen.
-#### - Päiväkirjamerkintöjen tarkastaminen.
-#### - 
+#### - Tulosten seuranta.
 
 ### Mahdolliset tiedossa olevat bugit/ongelmat
 

@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
       newMessageTab.classList.remove('active');
     });
     
-    // Keskustelun avaaminen
+    // Opening a conversation
     const messageItems = document.querySelectorAll('.message-item');
     messageItems.forEach(item => {
       item.addEventListener('click', function() {
