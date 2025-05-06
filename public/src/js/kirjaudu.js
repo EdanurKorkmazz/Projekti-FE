@@ -1,4 +1,6 @@
-import "../css/style.css";
+
+/* import "../css/style.css"; */
+
 import { fetchData } from "./fetch.js";
 
 /**
