@@ -170,7 +170,7 @@ async function saveDraft() {
     console.log("Saving draft...", formData);
 
     // Endpoint
-    const url = "http://localhost:3000/api/entries/draft";
+    const url = "https://oma-uni.norwayeast.cloudapp.azure.com/api/entries/draft";
   
     // Request options
     const options = {
@@ -228,7 +228,7 @@ const updateDraft = async () => {
   };
 
   // Endpoint
-  const url = "http://localhost:3000/api/entries/draft";
+  const url = "https://oma-uni.norwayeast.cloudapp.azure.com/api/entries/draft";
 
   // Request options
   const options = {
@@ -296,7 +296,7 @@ const submitData = async () => {
   console.log("submitData() bodyData:", bodyData);
 
   // Endpoint
-  const url = "http://localhost:3000/api/entries";
+  const url = "https://oma-uni.norwayeast.cloudapp.azure.com/api/entries";
 
   // Token
   const token = sessionStorage.getItem("token");
