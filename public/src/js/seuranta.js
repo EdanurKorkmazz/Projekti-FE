@@ -1,5 +1,6 @@
 import { fetchData } from './fetch';
-import Chart from 'chart.js/auto';
+/* not needed, as Chart.js is imported in the HTML file
+import Chart from 'chart.js/auto'; */
 import 'chartjs-adapter-date-fns';
 
 const formatter = new Intl.DateTimeFormat('fi-FI', { day: '2-digit', month: '2-digit', year: '2-digit' });
