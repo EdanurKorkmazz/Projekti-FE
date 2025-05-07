@@ -69,7 +69,7 @@ näitä tietoja tehokkaasti.
 
 
 
-### linkki API-dokumentaatioon (apidoc)
+### Linkki API-dokumentaatioon (apidoc)
 ####
 
 ### Rautalankamallit tai linkki niihin
