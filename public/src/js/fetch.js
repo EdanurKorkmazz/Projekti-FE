@@ -7,9 +7,7 @@
  * @returns {Object} response json data
  */
 const fetchData = async (url, options = {}) => {
-    console.log("fetchData() called");
     try {
-        console.log("fetchData(), try block started");
       const response = await fetch(url, options);
   
       if (!response.ok) {

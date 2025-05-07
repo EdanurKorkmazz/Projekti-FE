@@ -101,7 +101,6 @@ function gatherFormData() {
   });
 
   data.user_id = sessionStorage.getItem("user_id");
-  console.log("gatherFormData() Draft data:", data);
 
   return data;
 }
@@ -114,7 +113,7 @@ function gatherFormData() {
  */
 
 const fillFormFromDraft = (draft) => {
-  if (!draft) return; 
+  if (!draft || !draft.data) return; 
 
   const data = draft.data;
 
@@ -140,12 +139,10 @@ const fillFormFromDraft = (draft) => {
   Object.entries(fieldMap).forEach(([fieldId, dataKey]) => {
     const element = document.querySelector(`#${fieldId}`);
     if (!element || !(dataKey in data)) {
-      console.log("no element or data missing", fieldId, dataKey);
       return;
     }; // skip if no element or data missing
 
     const value = data[dataKey];
-    console.log("fillFormFromDraft() fieldId:", fieldId, "dataKey:", dataKey, "value:", value);
 
     // Handle time fields stored as total minutes
     if (fieldId.includes("hours")) {
@@ -534,7 +531,6 @@ function totalMinutes(hours, minutes) {
 
   // Calculate total minutes
   const totalMinutes = hours * 60 + minutes;
-  console.log("Total minutes:", totalMinutes);
   return totalMinutes;
 };
 
@@ -596,9 +592,6 @@ document.addEventListener("DOMContentLoaded", function () {
         // Set the calculated values for "Vuoteessaoloaika" (total bed time)
         inbedHoursInput.value = bedTimeHours;
         inbedMinutesInput.value = bedTimeMinutes;
-
-        // Optionally, you can display the awake time during the night as well:
-        console.log("Total time awake during the night (in minutes):", awakeTimeInMinutes);
       }
     }
   }
@@ -616,7 +609,6 @@ document.addEventListener("DOMContentLoaded", function () {
 // Add event listeners to the form inputs
 
 function createMessage(message) {
-  console.log("createMessage() called", message);
   const div = document.getElementById("error-message");
   div.innerText = message;
   div.style.display = "block"; // Show the error message
@@ -656,7 +648,6 @@ wakeTimeInput.addEventListener("change", () => {
     const pad = (num) => String(num).padStart(2, '0');
     const nextDayString = `${nextDay.getFullYear()}-${pad(nextDay.getMonth() + 1)}-${pad(nextDay.getDate())}`;
     wakeTimeInput.value = nextDayString + "T09:00";
-    console.log("wakeTimeInput.value", wakeTimeInput.value);
   }
 });
 
