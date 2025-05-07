@@ -62,30 +62,44 @@
               </div>
             </div>
           </div>
-          <a href="/public/src/pages/paivakirja.html" class="action-button">Tee uusi merkintä</a>
+          <a href="/src/pages/paivakirja.html" class="action-button">Tee uusi merkintä</a>
         </div>
 
         <div class="dashboard-box">
           <h2>Viikkonäkymä</h2>
-          <div id="weekly-chart" class="chart-container">
-            <div style="text-align: center; padding-top: 100px; color: #888;">
-              Tiedot ladataan...
-            </div>
+          <div id="weekly-chart" class="chart-container front-chart">
+                <canvas id="seuranta-chart"></canvas>
           </div>
-          <a href="/public/src/pages/seuranta.html" class="action-button">Katso tarkempi seuranta</a>
+
+          <div class="data-selectors front-chart">
+            <h3 class="data-selector-title">Näytettävät tiedot</h3>
+            
+            <div class="data-checkbox" >
+              <input type="checkbox" id="hrv-data" data-id='HRV' checked>
+              <label for="hrv-data">HRV, vuorokauden keskiarvo</label>
+            </div>
+            
+            <div class="data-checkbox">
+              <input type="checkbox" id="daily-alertness" data-id='daytime_alertness' checked>
+              <label for="daytime-alertness">Päivänaikainen vireys</label>
+            </div>
+            
+          </div>
+
+          <a href="/src/pages/seuranta.html" class="action-button">Katso tarkempi seuranta</a>
         </div>
 
         <div class="dashboard-box">
-          <h2>Muistutukset</h2>
+          <h2>Uusimmat viestit</h2>
           <div class="notifications">
             <div class="notification-item unread">
               <div class="notification-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
               </div>
               <div class="notification-content">
-                <p class="notification-title">Päiväkirjamerkintä</p>
-                <p class="notification-text">Muista täyttää tämän päivän merkintä</p>
-                <p class="notification-time">Tänään</p>
+                <p class="notification-title">Tervetuloa OmaUni-sovellukseen</p>
+                <p class="notification-text">Hei ja tervetuloa käyttämään OmaUni-sovellusta! </p>
+                <p class="notification-time">Saapunut 26.4.2025</p>
               </div>
             </div>
             <div class="notification-item">
@@ -93,13 +107,14 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
               </div>
               <div class="notification-content">
-                <p class="notification-title">Lääkäriajan muistutus</p>
-                <p class="notification-text">Sinulla on lääkäriaika huomenna klo 14:30</p>
-                <p class="notification-time">Eilen</p>
+                <p class="notification-title">Tietoja sovelluksen käytöstä</p>
+                <p class="notification-text">Hei! Tässä joitakin hyödyllisiä vinkkejä </p>
+                <p class="notification-time">Saapunut 25.4.2025</p>
               </div>
             </div>
+            
           </div>
-          <a href="/public/src/pages/viestit.html" class="action-button">Katso kaikki ilmoitukset</a>
+          <a href="/src/pages/viestit.html" class="action-button">Katso kaikki viestit</a>
         </div>
       </div>
     </div>
@@ -133,6 +148,9 @@
   <!-- file does not exist yet
   <script type="module" src="/src/js/etusivu.js"></script>
   -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+  <script type="module" src="/src/js/viikkoseuranta.js"></script>
   <script type="module" src="/src/js/navi.js"></script>
   <script type="module" src="/src/js/uloskirjautuminen.js"></script>
   <script type="module" src="/src/js/darkmode.js"></script>
