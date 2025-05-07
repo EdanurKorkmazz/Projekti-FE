@@ -241,6 +241,9 @@ div.read-only input {
     grid-template-columns: 1fr;
   }
 
+  .multiple-inputs.read-only input {
+    text-align: right;
+  }
 }
 
 /* responsiivisuus */
@@ -262,8 +265,15 @@ div.read-only input {
     width: 100%;
   }
 
+  .multiple-inputs.read-only {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    width: 100%;
+  }
+
   .multiple-inputs input {
     width: 100%;
+    text-align: right;
   }
 }
 
@@ -912,6 +922,19 @@ div.read-only input {
   background-color: rgba(0, 0, 0, 0.5);
   overflow: auto;
 }
+
+
+.entry-modal-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.entry-modal-content.wide-modal {
+  width: 80%;
+  max-width: 800px;
+}
+
 
 .modal-content {
   background-color: white;
