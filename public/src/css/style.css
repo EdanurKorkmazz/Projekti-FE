@@ -229,6 +229,20 @@ button[type="submit"]:hover, button[type="button"]:hover {
   background-color: #00558e;
 }
 
+div.read-only input {
+  border: none !important;
+}
+
+
+@media (min-width: 769px) {
+
+  div.read-only {
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr;
+  }
+
+}
+
 /* responsiivisuus */
 
 @media (max-width: 768px) {
@@ -548,6 +562,16 @@ button[type="submit"]:hover, button[type="button"]:hover {
   grid-template-columns: 3fr 1fr;
 }
 
+/* responsiivisuus */
+
+@media (max-width: 400px) {
+  .save-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+}
+
 #save-status {
   text-align: center;
   font-size: 1.2em;
@@ -560,7 +584,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
 }
 
 .error-message {
-  color: #e74c3c;
   font-size: 0.9rem;
   margin-top: 0.5rem;
   grid-column: 1 / -1;
@@ -571,6 +594,17 @@ button[type="submit"]:hover, button[type="button"]:hover {
   padding: 1.5rem 1rem;
   font-size: 1.1em;
 }
+
+.red {
+  color: #8e0009 !important;
+  background-color: #fff0f1 !important;
+}
+
+.green {
+  color: #4CAF50 !important;
+  background-color: rgba(76, 175, 80, 0.1) !important;
+}
+
 
 .input-break {
   grid-column: 1 / -1;

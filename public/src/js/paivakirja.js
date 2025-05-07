@@ -45,8 +45,20 @@ function toggleInputsReadOnly(readOnly) {
     }
   });
 
+  const divs = document.querySelectorAll(
+    "#merkinta-form div, #merkinta-form .double-inputs, #merkinta-form .multiple-inputs"
+  );
+  
+  divs.forEach((div) => {
+    div.classList.toggle("read-only", readOnly);
+  });
 
+  const status = document.getElementById("save-status");
 
+  if (status.style.display === "block") {
+    status.style.display = "none";
+  }
+  
 }
 
 /**
@@ -164,7 +176,7 @@ async function saveDraft() {
 
   try {
 
-    console.log("Saving draft...", formData);
+
 
     // Endpoint
     const url = "https://oma-uni.norwayeast.cloudapp.azure.com/api/entries/draft";
@@ -178,6 +190,7 @@ async function saveDraft() {
       },
     };
   
+
     // Fetch data from the server
     const response = await fetchData(url, options);
 
@@ -203,6 +216,8 @@ async function saveDraft() {
       const draft = response.rows;
       console.log("Draft was found", draft);
       fillFormFromDraft(draft);
+      const string = "Luonnos löydetty";
+      saveStatus(string, 0, "green");
       return true;
     }
     return true;
@@ -218,6 +233,14 @@ async function saveDraft() {
  *
  */
 const updateDraft = async () => {
+
+
+  const div = document.getElementById("error-message");
+  if (div && div.style.display === "block") {
+    saveStatus("Tallennus epäonnistui, tarkista syöttämäsi arvot", 0, "red")
+    return;
+  }
+
   const bodyData = {
     date: document.querySelector("#date").value,
     user_id: sessionStorage.getItem("user_id"),
@@ -239,6 +262,15 @@ const updateDraft = async () => {
   // Fetch data from the server
   const response = await fetchData(url, options);
 
+  if (response) {
+    console.log("Draft updated successfully", response);
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const timeString = `${hours}:${minutes}`;
+    const string = `Tallennettu viimeksi ${timeString}`;
+    saveStatus(string, 4000, null);
+  }
 };
 
 
@@ -348,8 +380,6 @@ const submitData = async () => {
  */
 const submitBtn = document.getElementById("submit-btn");
 submitBtn.addEventListener("click", (e) => {
-  // Prevent form submission
-  e.preventDefault();
 
   // Check for form validity
   const form = document.getElementById("merkinta-form");
@@ -357,6 +387,10 @@ submitBtn.addEventListener("click", (e) => {
     form.reportValidity(); // This will show the browser's native validation error messages
     return;
   }
+
+  // Prevent form submission
+  e.preventDefault();
+
 
   // If form is valid, proceed to submit
   submitData();
@@ -369,9 +403,8 @@ const previewBtn = document.getElementById("preview-btn");
 const editBtn = document.getElementById("edit-btn");
 const form = document.getElementById("merkinta-form");
 
-previewBtn.addEventListener("click", () => {
+previewBtn.addEventListener("click", (e) => {
 
-  // Prevent form submission if all required fields are not filled
   if (!form.checkValidity()) {
     form.reportValidity();
     return;
@@ -379,10 +412,15 @@ previewBtn.addEventListener("click", () => {
 
   // Toggles the read-only state of the inputs in the form
   toggleInputsReadOnly(true);
+  
 
   previewBtn.style.display = "none";
   editBtn.style.display = "inline-block";
   submitBtn.style.display = "inline-block";
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  document.querySelector("h1").innerText = "Esikatselu"; 
 
 });
 
@@ -395,6 +433,10 @@ editBtn.addEventListener("click", () => {
   previewBtn.style.display = "inline-block";
   editBtn.style.display = "none";
   submitBtn.style.display = "none";
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  document.querySelector("h1").innerText = "Uusi merkintä"; 
 });
 
 
@@ -491,29 +533,34 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function saveStatus(timeString) {
+function saveStatus(string, timeout, color) {
+
   const status = document.getElementById("save-status");
+
   if (status.style.display === "none") {
     status.style.display = "block";
   }
+
   setTimeout(() => {
-    status.innerText = `Tallennettu viimeksi ${timeString}`;
-  }, 4000);
-  status.innerText = `Tallennettu viimeksi ${timeString}`;
+    status.innerText = string;
+    status.classList.add(color); // Add the class to change color
+  }, timeout);
+
   status.innerText = `Tallennetaan...`;
+  status.classList.remove("green", "red");
+
 }
 
 // Save when an input loses focus
 document.querySelectorAll('input, textarea, select').forEach((element) => {
   element.addEventListener('blur', () => {
     if (element.id === 'date') return; // Skip date input
+    if (element.value === "") return; // Skip empty inputs
+    //if (element.id === 'bed_time' || element.id === 'wakeup_time') return; 
+
+
     setTimeout(updateDraft, 500); 
-    console.log("Draft saved on blur", element.id, element.value);
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const timeString = `${hours}:${minutes}`;
-    saveStatus(timeString);
+
   });
 });
 
@@ -601,8 +648,8 @@ document.addEventListener("DOMContentLoaded", function () {
   lkmInput.addEventListener("change", calculateTimes);
   delayHoursInput.addEventListener("change", calculateTimes);
   delayMinutesInput.addEventListener("change", calculateTimes);
-  timeupHoursInput.addEventListener("change", calculateTimes); // Listen for awake time input (hours)
-  timeupMinutesInput.addEventListener("change", calculateTimes); // Listen for awake time input (minutes)
+  timeupHoursInput.addEventListener("change", calculateTimes); 
+  timeupMinutesInput.addEventListener("change", calculateTimes); 
 });
 
 
@@ -636,7 +683,11 @@ bedTimeInput.addEventListener("change", () => {
   }
   if (bedTimeInput.value && wakeTimeInput.value < bedTimeInput.value) {
     createMessage("Nousuaika ei voi olla ennen nukkumaanmenoaikaa."); // Create error message;
-    wakeTimeInput.value = date.value + "T09:00";
+    const nextDay = new Date(date.value);
+    nextDay.setDate(nextDay.getDate() + 1);
+    const pad = (num) => String(num).padStart(2, '0');
+    const nextDayString = `${nextDay.getFullYear()}-${pad(nextDay.getMonth() + 1)}-${pad(nextDay.getDate())}`;
+    wakeTimeInput.value = nextDayString + "T09:00";
   }
 });
 
