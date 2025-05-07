@@ -81,6 +81,8 @@
               name="delay-hours"
               min="0"
               max="23"
+              pattern="\d*" 
+              inputmode="numeric"
               required
             />
             <span>h</span>
@@ -90,6 +92,8 @@
               name="delay-minutes"
               min="0"
               max="59"
+              pattern="\d*" 
+              inputmode="numeric"
               required
             />
             <span>min</span>
@@ -98,7 +102,13 @@
 
         <div>
           <label for="wakeups">Heräilyjen lukumäärä (*)</label>
-          <input type="text" id="wakeups" name="wakeups" required />
+          <input 
+          type="number" 
+          id="wakeups" 
+          name="wakeups" 
+          pattern="\d*" 
+          inputmode="numeric"
+          required />
         </div>
 
         <div>
@@ -110,6 +120,8 @@
               name="timeup-hours"
               min="0"
               max="23"
+              pattern="\d*" 
+              inputmode="numeric"
               required
             />
             <span>h</span>
@@ -119,6 +131,8 @@
               name="timeup-minutes"
               min="0"
               max="59"
+              pattern="\d*" 
+              inputmode="numeric"
               required
             />
             <span>min</span>
@@ -145,6 +159,8 @@
               type="number"
               id="sleeptime-minutes"
               name="sleeptime-minutes"
+              pattern="\d*" 
+              inputmode="numeric"
               min="0"
               max="59"
               required
