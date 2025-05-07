@@ -23,6 +23,19 @@ document.addEventListener('DOMContentLoaded', function() {
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: background-color 0.3s;
+    }
+    
+    #oma-nuoli:hover {
+      background-color: #00558e;
+    }
+    
+    body.dark-mode #oma-nuoli {
+      background-color: #0078d4;
+    }
+    
+    body.dark-mode #oma-nuoli:hover {
+      background-color: #0086f0;
     }
     
     /* Oma sivupalkki */
@@ -78,24 +91,27 @@ document.addEventListener('DOMContentLoaded', function() {
   omaSivupalkki.id = 'oma-sivupalkki';
   omaSivupalkki.innerHTML = sisalto;
   
+  // Aluksi nuoli osoittaa vasemmalle (sivupalkki kiinni)
   const omaNuoli = document.createElement('button');
   omaNuoli.id = 'oma-nuoli';
-  omaNuoli.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+  omaNuoli.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>';
   omaNuoli.setAttribute('aria-label', 'Näytä tietopalkki');
   
   document.body.appendChild(omaSivupalkki);
   document.body.appendChild(omaNuoli);
   
-  // functionality for arrow
+  // Käsitellään nuolen klikkaus ja vaihdetaan nuolen suuntaa
   omaNuoli.addEventListener('click', function() {
     if (omaSivupalkki.classList.contains('auki')) {
-      // Close the sidebar
+      // Suljetaan sivupalkki - nuoli osoittaa vasemmalle
       omaSivupalkki.classList.remove('auki');
-      omaNuoli.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
-    } else {
-      // open the sidebar
-      omaSivupalkki.classList.add('auki');
       omaNuoli.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>';
+      omaNuoli.setAttribute('aria-label', 'Näytä tietopalkki');
+    } else {
+      // Avataan sivupalkki - nuoli osoittaa oikealle
+      omaSivupalkki.classList.add('auki');
+      omaNuoli.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+      omaNuoli.setAttribute('aria-label', 'Piilota tietopalkki');
     }
   });
   
@@ -103,7 +119,9 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && omaSivupalkki.classList.contains('auki')) {
       omaSivupalkki.classList.remove('auki');
-      omaNuoli.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+      // Asetetaan nuoli osoittamaan vasemmalle kun suljetaan Esc-näppäimellä
+      omaNuoli.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>';
+      omaNuoli.setAttribute('aria-label', 'Näytä tietopalkki');
     }
   });
 });
