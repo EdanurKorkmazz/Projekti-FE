@@ -1,4 +1,10 @@
+
 import { fetchData } from './fetch.js';
+
+function formatDate (dateString) {
+  const [year, month, day] = dateString.split('T')[0].split('-')
+  return `${day}.${month}.${year}`;
+}
 
 // Function to get entry data from the database
 const getEntryData = async () => {
@@ -44,8 +50,8 @@ function createModal(entryData) {
           </div>
           
           <div class="entry-modal-body">
-          <form id="merkinta-view-form">
-            <div class="form-grid">
+          <!--<form id="merkinta-view-form">-->
+            <div class="form-grid entry-modal-grid">
     `;
   
     const labelMap = {
@@ -71,11 +77,31 @@ function createModal(entryData) {
         
       const label = labelMap[key] || key;
 
+      if (key === "date") {
+        value = formatDate(value);
+      }
+
+      if (key === "bed_time" || key === "wakeup_time") {
+        value = value.split("T")[1].slice(0, 5); 
+      }
+
+      if (key === "asleep_delay" || key === "time_awake" || key === "total_sleep" || key === "total_bed_time") {
+        value = parseInt(value, 10); 
+        const sleepHours = Math.floor(value / 60);
+        const sleepMinutes = Math.floor(value % 60);
+        value = `${sleepHours} h ${sleepMinutes} min`;
+      }
+
+      if (value === null || value === undefined || value === "") {
+        return;
+      }
+
       modalHTML += `
         <div class="entry-modal-field">
-          <label>${label}</label>
-          <input type="text" value="${value}" readonly>
+        <p>
+          <b>${label}:</b> ${value}
         </div>
+        </p>
       `;
     });
   
@@ -97,11 +123,11 @@ function createModal(entryData) {
         </div>
       </div>
   
-      <div class="button-container">
+      <div class="button-container" style="border-bottom: 0px;">
         <button type="button" id="close-entry-modal-below">Sulje ikkuna</button>
       </div>
 
-    </form>
+    <!--</form>-->
     </div>
   </div>
   </div>`;
@@ -131,9 +157,9 @@ function loadEntries() {
         const div = document.createElement("div");
         div.classList.add("message-item");
         
-        const date = entry.date.split("T")[0]; // Extract date from entry
+        const date = formatDate(entry.date); // Extract date from entry
         div.innerHTML = `
-          <h3>Merkintä ${date}</h3>
+          <h3>Merkintä ${date}</h3><br>
         `;
         
         const button = document.createElement("button");

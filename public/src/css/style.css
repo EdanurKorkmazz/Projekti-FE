@@ -975,6 +975,29 @@ div.read-only input {
   margin-bottom: 2rem;
 }
 
+.entry-modal-grid {
+  grid-template-columns: 1fr;
+  gap: 0.2rem;
+  margin-bottom: 0;
+}
+
+.entry-modal-grid div {
+  border-bottom: 1px dotted #ddd;
+}
+
+@media screen and (max-width: 768px) {
+  .entry-modal-grid {
+    gap: 0;
+  }
+  .entry-modal-content.wide-modal {
+    width: 90%;
+    max-width: 100%;
+    max-height: 90vh; 
+    overflow-y: auto;
+  }
+}
+
+
 .modal input[readonly] {
   background-color: #f5f5f7;
   border: 1px solid #ddd;
