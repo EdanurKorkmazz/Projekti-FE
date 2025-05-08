@@ -171,6 +171,7 @@ const drawChart = async () => {
         updateChartData(data);
 
         const ctx = document.getElementById('seuranta-chart');
+        ctx.height = "100%";
 
         chart = new Chart(ctx, {
             type: 'line',
