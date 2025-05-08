@@ -54,7 +54,7 @@ const getEntryData = async () => {
 const addDatasetWithLabel = (data, label, dataArray, color) => {
     const labelsToDescriptions = {
         'HRV': 'HRV (ms)',
-        'daytime_alertness': 'Päivänaikainen vireys (1-10)',
+        'total_sleep': 'Nukuttu aika (h)',
     }
         
     const dataset = {
@@ -103,9 +103,10 @@ const dataForXDays = (days, data, label) => {
                 : null;
         
         if (label == 'total_sleep' && averageValue) {
-            averageValue = averageValue / 60;
+            averageValue = parseInt(averageValue / 60);
         }
 
+        console.log("averageValue", averageValue);
         return {
             x: date,
             y: averageValue,
@@ -141,6 +142,19 @@ const initializeInfoFromCheckedCheckboxes = () => {
     });
 };
 
+dataToDraw = [
+    {
+        label: 'HRV',
+        color: 'rgb(75, 192, 192)',
+        yAxisID: 'y'
+    },
+    {
+        label: 'total_sleep',
+        color: 'rgb(255, 99, 132)',
+        yAxisID: 'y1'
+    }
+];
+
 // Update chart data based on current datasets
 const updateChartData = (data) => {
     dataToDraw.map((dataset) => {
@@ -157,6 +171,8 @@ const drawChart = async () => {
         datasets: [],
     };
 
+    console.log("chart", data, data.y);
+
     if (chart) {
         // Update existing chart
         updateChartData(data);
@@ -165,17 +181,27 @@ const drawChart = async () => {
         chart.update();
     } else {
         // Initialize and draw a new chart
-        initializeInfoFromCheckedCheckboxes();
+        //initializeInfoFromCheckedCheckboxes();
+
         updateChartData(data);
 
         const ctx = document.getElementById('seuranta-chart');
-        ctx.height = '100%';
-        ctx.width = '100%';
+        ctx.height = "300px";
 
         chart = new Chart(ctx, {
             type: 'line',
             data: data,
             options: {
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom', // 👈 This moves the legend below the chart
+                        labels: {
+                            boxWidth: 20,
+                            padding: 15,
+                        },
+                    },
+                  },
                 responsive: true,
                 locale: 'fi-FI',
                 scales: {
@@ -200,13 +226,12 @@ const drawChart = async () => {
                         position: 'right',
                         title: {
                             display: true,
-                            text: 'Päivänaikainen vireys (1-10)',
+                            text: 'Nukuttu aika (h)',
                         },
                         grid: {
                             drawOnChartArea: false, // Prevent grid lines from overlapping
                         },
-                        min: 1,
-                        max: 10,
+                        min: 0, 
                     },
                 },
             },
@@ -225,10 +250,8 @@ const changeYAxis = () => {
         const sleepTimeDataset = chart.data.datasets.find((dataset) => dataset.label === 'Nukuttu aika (h)');
         if (sleepTimeDataset) {
             yAxis.title.text = 'Arvo';
-            yAxis.max = undefined;
         } else {
             yAxis.title.text = 'Nukuttu aika (h)';
-            yAxis.max = 10;
         }
     } else {
         yAxis.display = false;
@@ -269,32 +292,34 @@ document.querySelectorAll('.time-btn').forEach((button) => {
     });
 });
 
-// Handle checkbox changes
-const handleCheckboxChange = (event) => {
-    const checkbox = event.target;
-    const dataLabel = checkbox.getAttribute('data-id'); // Get the label from the checkbox
-    const label = event.target.nextElementSibling;
-    const color = window.getComputedStyle(label).color;
-    const yAxisID = dataLabel === 'HRV' ? 'y' : 'y1'; // Determine the Y-axis ID
+// // Handle checkbox changes
+// const handleCheckboxChange = (event) => {
+//     const checkbox = event.target;
+//     const dataLabel = checkbox.getAttribute('data-id'); // Get the label from the checkbox
+//     const label = event.target.nextElementSibling;
+//     const color = window.getComputedStyle(label).color;
+//     const yAxisID = dataLabel === 'HRV' ? 'y' : 'y1'; // Determine the Y-axis ID
 
-    if (checkbox.checked) {
-        // Add the dataset if the checkbox is checked
-        dataToDraw.push(
-            {
-                label: dataLabel,
-                color: color,
-                yAxisID: yAxisID,
-            }
-        );
-    } else {
-        // Remove the dataset if the checkbox is unchecked
-        dataToDraw = dataToDraw.filter((dataset) => dataset.label !== dataLabel);
-    }
+//     if (checkbox.checked) {
+//         // Add the dataset if the checkbox is checked
+//         dataToDraw.push(
+//             {
+//                 label: dataLabel,
+//                 color: color,
+//                 yAxisID: yAxisID,
+//             }
+//         );
+//     } else {
+//         // Remove the dataset if the checkbox is unchecked
+//         dataToDraw = dataToDraw.filter((dataset) => dataset.label !== dataLabel);
+//     }
 
-    drawChart(); // Redraw the chart with the updated datasets
-};
+//     drawChart(); // Redraw the chart with the updated datasets
+// };
+
+
 
 // Attach event listeners to all checkboxes
-document.querySelectorAll('.data-checkbox input[type="checkbox"]').forEach((checkbox) => {
-    checkbox.addEventListener('change', handleCheckboxChange);
-});
+// document.querySelectorAll('.data-checkbox input[type="checkbox"]').forEach((checkbox) => {
+//     checkbox.addEventListener('change', handleCheckboxChange);
+// });
