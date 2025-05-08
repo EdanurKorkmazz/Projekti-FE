@@ -40,25 +40,25 @@
 
       <div class="dashboard">
         <div class="dashboard-box">
-          <h2>Tämän päivän yhteenveto</h2>
+          <h2>Viimeisin merkintä</h2>
           <div class="dashboard-content" id="today-summary">
             <div class="summary-item">
               <h3>Unen pituus</h3>
               <p class="big-number" id="sleep-duration">--:--</p>
-              <p class="trend up">+15 min eilisestä</p>
+              <p class="trend" id="sleep-trend">+15 min eilisestä</p>
             </div>
             <div class="summary-item">
               <h3>Unen laatu</h3>
               <div class="progress-container">
-                <div id="quality-bar" class="progress-bar" style="width: 65%"></div>
-                <span id="quality-value">6.5/10</span>
+                <div id="quality-bar" class="progress-bar" style="width: 10%;"></div>
+                <span id="quality-value" class="front-page">6.5/10</span>
               </div>
             </div>
             <div class="summary-item">
-              <h3>Palautuminen</h3>
+              <h3>Päivänaikainen virkeys</h3>
               <div class="progress-container">
-                <div id="recovery-bar" class="progress-bar" style="width: 72%; background-color: #4CAF50;"></div>
-                <span id="recovery-value">72%</span>
+                <div id="recovery-bar" class="progress-bar" style="width: 10%; background-color: #4CAF50;"></div>
+                <span id="recovery-value" class="front-page">72%</span>
               </div>
             </div>
           </div>
@@ -70,6 +70,7 @@
           <div id="weekly-chart" class="chart-container front-chart">
                 <canvas id="seuranta-chart"></canvas>
           </div>
+<<<<<<< HEAD
 
           <div class="data-selectors front-chart">
             <h3 class="data-selector-title">Näytettävät tiedot</h3>
@@ -86,6 +87,8 @@
             
           </div>
 
+=======
+>>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
           <a href="/src/pages/seuranta.html" class="action-button">Katso tarkempi seuranta</a>
         </div>
 

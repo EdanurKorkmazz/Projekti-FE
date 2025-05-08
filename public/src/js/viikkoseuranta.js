@@ -54,7 +54,11 @@ const getEntryData = async () => {
 const addDatasetWithLabel = (data, label, dataArray, color) => {
     const labelsToDescriptions = {
         'HRV': 'HRV (ms)',
+<<<<<<< HEAD
         'daytime_alertness': 'Päivänaikainen vireys (1-10)',
+=======
+        'total_sleep': 'Nukuttu aika (h)',
+>>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
     }
         
     const dataset = {
@@ -103,7 +107,11 @@ const dataForXDays = (days, data, label) => {
                 : null;
         
         if (label == 'total_sleep' && averageValue) {
+<<<<<<< HEAD
             averageValue = averageValue / 60;
+=======
+            averageValue = parseInt(averageValue / 60);
+>>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
         }
 
         return {
@@ -141,6 +149,22 @@ const initializeInfoFromCheckedCheckboxes = () => {
     });
 };
 
+<<<<<<< HEAD
+=======
+dataToDraw = [
+    {
+        label: 'HRV',
+        color: 'rgb(0, 58, 99)',
+        yAxisID: 'y'
+    },
+    {
+        label: 'total_sleep',
+        color: 'rgb(231, 76, 60)',
+        yAxisID: 'y1'
+    }
+];
+
+>>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
 // Update chart data based on current datasets
 const updateChartData = (data) => {
     dataToDraw.map((dataset) => {
@@ -165,17 +189,39 @@ const drawChart = async () => {
         chart.update();
     } else {
         // Initialize and draw a new chart
+<<<<<<< HEAD
         initializeInfoFromCheckedCheckboxes();
         updateChartData(data);
 
         const ctx = document.getElementById('seuranta-chart');
         ctx.height = '100%';
         ctx.width = '100%';
+=======
+        //initializeInfoFromCheckedCheckboxes();
+
+        updateChartData(data);
+
+        const ctx = document.getElementById('seuranta-chart');
+        ctx.height = "300px";
+>>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
 
         chart = new Chart(ctx, {
             type: 'line',
             data: data,
             options: {
+<<<<<<< HEAD
+=======
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom', // 👈 This moves the legend below the chart
+                        labels: {
+                            boxWidth: 20,
+                            padding: 15,
+                        },
+                    },
+                  },
+>>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
                 responsive: true,
                 locale: 'fi-FI',
                 scales: {
@@ -192,6 +238,12 @@ const drawChart = async () => {
                         title: {
                             display: true,
                             text: 'HRV',
+<<<<<<< HEAD
+=======
+                            font: {
+                                size: 14
+                            }
+>>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
                         },
                     },
                     y1: {
@@ -200,13 +252,24 @@ const drawChart = async () => {
                         position: 'right',
                         title: {
                             display: true,
+<<<<<<< HEAD
                             text: 'Päivänaikainen vireys (1-10)',
+=======
+                            text: 'Nukuttu aika (h)',
+                            font: {
+                                size: 14
+                            }
+>>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
                         },
                         grid: {
                             drawOnChartArea: false, // Prevent grid lines from overlapping
                         },
+<<<<<<< HEAD
                         min: 1,
                         max: 10,
+=======
+                        min: 0, 
+>>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
                     },
                 },
             },
@@ -225,10 +288,15 @@ const changeYAxis = () => {
         const sleepTimeDataset = chart.data.datasets.find((dataset) => dataset.label === 'Nukuttu aika (h)');
         if (sleepTimeDataset) {
             yAxis.title.text = 'Arvo';
+<<<<<<< HEAD
             yAxis.max = undefined;
         } else {
             yAxis.title.text = 'Nukuttu aika (h)';
             yAxis.max = 10;
+=======
+        } else {
+            yAxis.title.text = 'Nukuttu aika (h)';
+>>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
         }
     } else {
         yAxis.display = false;
@@ -269,6 +337,7 @@ document.querySelectorAll('.time-btn').forEach((button) => {
     });
 });
 
+<<<<<<< HEAD
 // Handle checkbox changes
 const handleCheckboxChange = (event) => {
     const checkbox = event.target;
@@ -298,3 +367,44 @@ const handleCheckboxChange = (event) => {
 document.querySelectorAll('.data-checkbox input[type="checkbox"]').forEach((checkbox) => {
     checkbox.addEventListener('change', handleCheckboxChange);
 });
+=======
+
+function dashboardInfo () {
+
+    const entry = entryData.at(-1);
+    const compare = entryData.at(-2);
+
+    const diff = entry.total_sleep - compare.total_sleep
+
+    const sleepTrend = document.getElementById("sleep-trend");
+
+    if (diff > 0) {
+        sleepTrend.classList.add("up");
+        sleepTrend.innerText = `+ ${diff} min eilisestä`;
+    } else if (diff < 0) {
+        sleepTrend.classList.add("down");
+        sleepTrend.innerText = `- ${diff} min eilisestä`;
+    } else {
+        sleepTrend.innerText = `Ei muutosta eilisestä`;
+    }
+
+    const value = parseInt(entry.total_sleep, 10); 
+    const sleepHours = String(Math.floor(value / 60)).padStart(2, '0')
+    const sleepMinutes = String(Math.floor(value % 60)).padStart(2, '0')
+
+    const sleep = document.getElementById("sleep-duration");
+    sleep.innerText = `${sleepHours}:${sleepMinutes}`;
+
+    const quality = document.getElementById("quality-bar");
+    const qualityValue = entry.sleep_quality;
+    quality.style.width = `${qualityValue * 10}%`;
+    document.getElementById("quality-value").innerText = `${qualityValue} / 10`;
+
+    const recovery = document.getElementById("recovery-bar");
+    const recoveryValue = entry.daytime_alertness;
+    recovery.style.width = `${recoveryValue * 10}%`;
+    document.getElementById("recovery-value").innerText = `${recoveryValue} / 10`;
+};
+
+dashboardInfo();
+>>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470

@@ -304,12 +304,26 @@ div.read-only input {
   flex-direction: column;
   flex-wrap: wrap;
   width: 100%;
+<<<<<<< HEAD
+=======
+  padding: 0.5rem 1.5rem;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+.data-selectors.front-chart h3 {
+  font-size: 0.8em;
+}
+.data-selectors.front-chart .data-selector-title {
+  margin-bottom: 0;
+>>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
 }
 
 @media (max-width: 768px) {
   .data-selectors.front-chart {
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     flex-wrap: wrap;
     max-width: 100%;
   }
@@ -318,12 +332,29 @@ div.read-only input {
   }
   .data-selectors.front-chart h3 {
     display: flex;
+=======
+    max-width: 100%;
+  }
+  .data-checkbox {
+    margin: 0;
+  }
+  
+  .data-selectors.front-chart h3 {
+    display: block;
+    width: 100%;
+>>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
   }
 }
 
 .chart-container.front-chart {
   box-shadow: none;
   padding: 0;
+<<<<<<< HEAD
+=======
+  margin-bottom: 0.8rem;
+  min-height: 320px;
+  max-height: 320px;
+>>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
 }
 
 #seuranta-chart {
@@ -1093,6 +1124,10 @@ div.read-only input {
   color: white;
   font-weight: bold;
   font-size: 0.8rem;
+}
+
+.progress-container span.front-page {
+  left: 10px;
 }
 
 .message-list .message-item {
@@ -2564,7 +2599,7 @@ button[aria-label*="sivupalkki"] {
   }
   
   .data-checkbox {
-    flex: 1 0 calc(50% - 10px);
+    /*flex: 1 0 calc(50% - 10px);*/
     min-width: 120px;
   }
   
@@ -2587,9 +2622,12 @@ button[aria-label*="sivupalkki"] {
     padding: 10px;
   }
   
+  
   .data-checkbox {
-    flex: 1 0 100%;
+    /* flex: 1 0 100%; */
+    text-align: center;
   }
+  
   
   .data-selectors h3 {
     font-size: 1rem;
@@ -2636,6 +2674,15 @@ label[for^="sleep-"] {
   display: inline-block !important;
   max-width: 85% !important;
   vertical-align: middle !important;
+}
+
+
+.data-selectors.front-chart .data-checkbox label {
+  font-size: 0.7em !important;
+}
+
+.data-selectors.front-chart .data-checkbox input[type="checkbox"] {
+  width: auto !important;
 }
 
 /* Mobiilinäkymän parannukset */
@@ -2692,6 +2739,7 @@ label[for^="sleep-"] {
   padding: 1.3em 2em 0 2em;
   font-size: 0.8em;
   color: #525252;
+<<<<<<< HEAD
 }
 
 /* Yksinkertainen CSS päiväkirjamerkintöjen listaamiseen */
@@ -3135,4 +3183,6 @@ body.dark-mode .close-btn {
 
 body.dark-mode .close-btn:hover {
   color: #ccc;
+=======
+>>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
 }
