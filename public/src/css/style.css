@@ -1109,6 +1109,10 @@ div.read-only input {
   font-size: 0.8rem;
 }
 
+.progress-container span.front-page {
+  left: 10px;
+}
+
 .message-list .message-item {
   position: relative;
 }

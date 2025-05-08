@@ -295,34 +295,42 @@ document.querySelectorAll('.time-btn').forEach((button) => {
     });
 });
 
-// // Handle checkbox changes
-// const handleCheckboxChange = (event) => {
-//     const checkbox = event.target;
-//     const dataLabel = checkbox.getAttribute('data-id'); // Get the label from the checkbox
-//     const label = event.target.nextElementSibling;
-//     const color = window.getComputedStyle(label).color;
-//     const yAxisID = dataLabel === 'HRV' ? 'y' : 'y1'; // Determine the Y-axis ID
 
-//     if (checkbox.checked) {
-//         // Add the dataset if the checkbox is checked
-//         dataToDraw.push(
-//             {
-//                 label: dataLabel,
-//                 color: color,
-//                 yAxisID: yAxisID,
-//             }
-//         );
-//     } else {
-//         // Remove the dataset if the checkbox is unchecked
-//         dataToDraw = dataToDraw.filter((dataset) => dataset.label !== dataLabel);
-//     }
+function dashboardInfo () {
 
-//     drawChart(); // Redraw the chart with the updated datasets
-// };
+    const entry = entryData.at(-1);
+    const compare = entryData.at(-2);
 
+    const diff = entry.total_sleep - compare.total_sleep
 
+    const sleepTrend = document.getElementById("sleep-trend");
 
-// Attach event listeners to all checkboxes
-// document.querySelectorAll('.data-checkbox input[type="checkbox"]').forEach((checkbox) => {
-//     checkbox.addEventListener('change', handleCheckboxChange);
-// });
+    if (diff > 0) {
+        sleepTrend.classList.add("up");
+        sleepTrend.innerText = `+ ${diff} min eilisestä`;
+    } else if (diff < 0) {
+        sleepTrend.classList.add("down");
+        sleepTrend.innerText = `- ${diff} min eilisestä`;
+    } else {
+        sleepTrend.innerText = `Ei muutosta eilisestä`;
+    }
+
+    const value = parseInt(entry.total_sleep, 10); 
+    const sleepHours = String(Math.floor(value / 60)).padStart(2, '0')
+    const sleepMinutes = String(Math.floor(value % 60)).padStart(2, '0')
+
+    const sleep = document.getElementById("sleep-duration");
+    sleep.innerText = `${sleepHours}:${sleepMinutes}`;
+
+    const quality = document.getElementById("quality-bar");
+    const qualityValue = entry.sleep_quality;
+    quality.style.width = `${qualityValue * 10}%`;
+    document.getElementById("quality-value").innerText = `${qualityValue} / 10`;
+
+    const recovery = document.getElementById("recovery-bar");
+    const recoveryValue = entry.daytime_alertness;
+    recovery.style.width = `${recoveryValue * 10}%`;
+    document.getElementById("recovery-value").innerText = `${recoveryValue} / 10`;
+};
+
+dashboardInfo();

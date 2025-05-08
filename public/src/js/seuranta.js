@@ -304,3 +304,4 @@ const handleCheckboxChange = (event) => {
 document.querySelectorAll('.data-checkbox input[type="checkbox"]').forEach((checkbox) => {
     checkbox.addEventListener('change', handleCheckboxChange);
 });
+
