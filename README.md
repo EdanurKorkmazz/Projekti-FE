@@ -13,7 +13,11 @@ näitä tietoja tehokkaasti.
 #### Kirjautuminen:
 ![Kirjautuminen](</public/img/kirjautuminen (1).png>)
 #### Etusivu:
+<<<<<<< HEAD
 ![Etusivu](</public/img/e.png>)
+=======
+![Etusivu](</public/img/etusivu.png>)
+>>>>>>> origin/main
 
 #### Päiväkirjasivu:
 ![Päiväkirjasivu1](</public/img/paivakirja1.png>)
@@ -23,7 +27,11 @@ näitä tietoja tehokkaasti.
 ![Päiväkirjasivu3](</public/img/paivakirja3.png>)
 
 #### Seuranta:
+<<<<<<< HEAD
 ![Seuranta](</public/img/s.png>)
+=======
+![Seuranta](</public/img/seuranta.png>)
+>>>>>>> origin/main
 
 #### Merkinnät:
 ![Merkinnät](</public/img/m.png>)
@@ -56,6 +64,29 @@ näitä tietoja tehokkaasti.
 ![Asetukset](</public/img/>)
 
 
+### Kuvakaappaukset sovelluksen käyttöliittymästä tummenetussa tilassa
+#### Etusivu:
+![Etusivu](</public/img/etusivu-dark.png>)
+
+#### Päiväkirjasivu:
+![Päiväkirjasivu1](</public/img/paivakirja1-dark.png>)
+
+![Päiväkirjasivu2](</public/img/paivakirja2-dark.png>)
+
+![Päiväkirjasivu3](</public/img/paivakirja3-dark.png>)
+
+#### Seuranta:
+![Seuranta](</public/img/seuranta-dark.png>)
+
+#### Merkinnät:
+![Merkinnät](</public/img/>)
+#### Tietoa unesta:
+![Tietoa](</public/img/tietoa-dark.png>)
+
+#### Asetukset:
+![Asetukset](</public/img/asetukset-dark.png>)
+
+
 
 
 ### Linkki julkaistuun sovellukseen (front-end)
@@ -70,7 +101,11 @@ näitä tietoja tehokkaasti.
 
 
 ### Linkki API-dokumentaatioon (apidoc)
+<<<<<<< HEAD
 ####
+=======
+#### https://oma-uni.norwayeast.cloudapp.azure.com/api
+>>>>>>> origin/main
 
 ### Rautalankamallit tai linkki niihin
 #### https://www.figma.com/design/EaP6Pq4hVyd6L5lFUSIoyW/Web-Projekti?node-id=1-2561&t=y8IUyh728SSmRPJg-1
@@ -84,7 +119,11 @@ näitä tietoja tehokkaasti.
 #### - Päiväkijalomakkeen lähettäminen.
 #### - Tulosten seuranta.
 #### - Darkmode
+<<<<<<< HEAD
 #### - Keskeneräinen päiväkirjamerkintä tallennetaan ja käyttäjä voi jatkaa myöhemmin täyttämistä.
+=======
+#### - Keskeneräinen päiväkirjamerkintä tallennetaan ja voi jatkaa myöhemmin täyttämistä.
+>>>>>>> origin/main
 
 
 

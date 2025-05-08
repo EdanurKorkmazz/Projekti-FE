@@ -176,10 +176,11 @@ async function saveDraft() {
 
   try {
 
-
-
     // Endpoint
     const url = "https://oma-uni.norwayeast.cloudapp.azure.com/api/entries/draft";
+
+    // Token
+    const token = sessionStorage.getItem("token");
   
     // Request options
     const options = {
@@ -187,9 +188,9 @@ async function saveDraft() {
       method: "POST",
       headers: {
         "Content-type": "application/json",
+        Authorization: `Bearer ${token}`, // Add the token to the headers
       },
     };
-  
 
     // Fetch data from the server
     const response = await fetchData(url, options);
@@ -261,6 +262,9 @@ const updateDraft = async () => {
     data: gatherFormData(),
   };
 
+  // Token
+  const token = sessionStorage.getItem("token");
+  
   // Endpoint
   const url = "https://oma-uni.norwayeast.cloudapp.azure.com/api/entries/draft";
 
@@ -270,6 +274,7 @@ const updateDraft = async () => {
     method: "PUT",
     headers: {
       "Content-type": "application/json",
+      Authorization: `Bearer ${token}`, // Add the token to the headers
     },
   };
 
