@@ -54,8 +54,6 @@ const getEntryData = async () => {
 const addDatasetWithLabel = (data, label, dataArray, color) => {
     const labelsToDescriptions = {
         'HRV': 'HRV (ms)',
-        'sleep_quality': 'Unen laatu (1-10)',
-        'total_sleep': 'Nukuttu aika (h)',
         'daytime_alertness': 'Päivänaikainen vireys (1-10)',
     }
         
@@ -171,7 +169,8 @@ const drawChart = async () => {
         updateChartData(data);
 
         const ctx = document.getElementById('seuranta-chart');
-        ctx.height = "100%";
+        ctx.height = '100%';
+        ctx.width = '100%';
 
         chart = new Chart(ctx, {
             type: 'line',
@@ -182,8 +181,8 @@ const drawChart = async () => {
                 scales: {
                     x: {
                         title: {
-                            display: true,
-                            text: 'Päivämäärä',
+                            display: false,
+                            //text: 'Päivämäärä',
                         },
                     },
                     y: {
@@ -201,7 +200,7 @@ const drawChart = async () => {
                         position: 'right',
                         title: {
                             display: true,
-                            text: 'Arvo (1-10)',
+                            text: 'Päivänaikainen vireys (1-10)',
                         },
                         grid: {
                             drawOnChartArea: false, // Prevent grid lines from overlapping
@@ -209,11 +208,6 @@ const drawChart = async () => {
                         min: 1,
                         max: 10,
                     },
-                },
-            },
-            plugins: {
-                legend: {
-                    display: true,
                 },
             },
             spanGaps: true, // Connect the dots across null values
@@ -233,7 +227,7 @@ const changeYAxis = () => {
             yAxis.title.text = 'Arvo';
             yAxis.max = undefined;
         } else {
-            yAxis.title.text = 'Arvo (1-10)';
+            yAxis.title.text = 'Nukuttu aika (h)';
             yAxis.max = 10;
         }
     } else {

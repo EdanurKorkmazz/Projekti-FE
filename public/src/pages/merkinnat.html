@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OmaUni - Merkinnät</title>
-  <link rel="stylesheet" href="/public/src/css/style.css">
-  <link rel="stylesheet" href="/public/src/css/darkmode.css">
-
+  <link rel="stylesheet" href="/src/css/style.css">
+  <link rel="stylesheet" href="/src/css/darkmode.css">
 </head>
 <body>
   <header>
@@ -14,15 +13,14 @@
       <h2>OmaUni</h2>
       <div class="nav-container">
         <div class="nav-center">
-          <div class="nav-center">
-            <ul>
-              <li><a href="/public/src/pages/etusivu.html">Etusivu</a></li>
-              <li><a href="/public/src/pages/paivakirja.html">Päiväkirja</a></li>
-              <li><a href="/public/src/pages/seuranta.html">Seuranta</a></li>
-              <li><a href="/public/src/pages/viestit.html">Viestit</a></li>
-              <li><a href="/public/src/pages/asetukset.html">Asetukset</a></li>
-              <li><a href="/public/src/pages/tietoa.html">Tietoa unesta</a></li>
-            </ul>
+          <ul>
+            <li><a href="/src/pages/etusivu.html">Etusivu</a></li>
+            <li><a href="/src/pages/paivakirja.html">Päiväkirja</a></li>
+            <li><a href="/src/pages/seuranta.html">Seuranta</a></li>
+            <li><a href="/src/pages/viestit.html">Viestit</a></li>
+            <li><a href="/src/pages/asetukset.html">Asetukset</a></li>
+            <li><a href="/src/pages/tietoa.html">Tietoa unesta</a></li>
+          </ul>
           </div>
         </div>
         <div class="nav-right">
@@ -45,8 +43,11 @@
       </div>
 
       <div class="message-list" id="merkinta-list">
-        <!-- Merkinnät listattuna tässä -->
+
+
+
       </div>
+
     </div>
 
     <div class="sidebar">
@@ -57,7 +58,7 @@
         <p>Klikkaa merkintää nähdäksesi sen tarkemmat tiedot. Voit myös muokata aiempia merkintöjäsi.</p>
         
         <h4>Uuden merkinnän lisääminen:</h4>
-        <p>Voit lisätä uuden merkinnän <a href="/public/src/pages/paivakirja.html">Päiväkirja-sivulla</a>.</p>
+        <p>Voit lisätä uuden merkinnän <a href="/src/pages/paivakirja.html">Päiväkirja-sivulla</a>.</p>
         
         <h4>Merkintöjen suodattaminen:</h4>
         <p>Käytä "Suodata"-välilehteä rajataksesi merkintöjä tietyn ajanjakson tai muun kriteerin perusteella.</p>
@@ -157,10 +158,10 @@
     </div>
   </div>
 
-  <script type="module" src="/public/src/js/merkinnat.js"></script>
-  <script type="module" src="/public/src/js/navi.js"></script>
-  <script type="module" src="/public/src/js/uloskirjautuminen.js"></script>
-  <script type="module" src="/public/src/js/darkmode.js"></script>
-  <script type="module" src="/public/src/js/sivupalkki.js"></script>
+  <script type="module" src="/src/js/merkinnat.js"></script>
+  <script type="module" src="/src/js/navi.js"></script>
+  <script type="module" src="/src/js/uloskirjautuminen.js"></script>
+  <script type="module" src="/src/js/darkmode.js"></script>
+  <script type="module" src="/src/js/sivupalkki.js"></script>
 </body>
 </html>

@@ -241,6 +241,9 @@ div.read-only input {
     grid-template-columns: 1fr;
   }
 
+  .multiple-inputs.read-only input {
+    text-align: right;
+  }
 }
 
 /* responsiivisuus */
@@ -262,8 +265,15 @@ div.read-only input {
     width: 100%;
   }
 
+  .multiple-inputs.read-only {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    width: 100%;
+  }
+
   .multiple-inputs input {
     width: 100%;
+    text-align: right;
   }
 }
 
@@ -281,11 +291,39 @@ div.read-only input {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   margin-bottom: 2rem;
-  height: 400px;
+  min-height: 400px;
+  max-height: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+}
+
+.data-selectors.front-chart {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .data-selectors.front-chart {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+  .data-selectors.front-chart div.data-checkbox {
+    max-width: 50%;
+  }
+  .data-selectors.front-chart h3 {
+    display: flex;
+  }
+}
+
+.chart-container.front-chart {
+  box-shadow: none;
+  padding: 0;
 }
 
 #seuranta-chart {
@@ -913,6 +951,19 @@ div.read-only input {
   overflow: auto;
 }
 
+
+.entry-modal-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.entry-modal-content.wide-modal {
+  width: 80%;
+  max-width: 800px;
+}
+
+
 .modal-content {
   background-color: white;
   margin: 5% auto;
@@ -951,6 +1002,29 @@ div.read-only input {
   gap: 1.2rem;
   margin-bottom: 2rem;
 }
+
+.entry-modal-grid {
+  grid-template-columns: 1fr;
+  gap: 0.2rem;
+  margin-bottom: 0;
+}
+
+.entry-modal-grid div {
+  border-bottom: 1px dotted #ddd;
+}
+
+@media screen and (max-width: 768px) {
+  .entry-modal-grid {
+    gap: 0;
+  }
+  .entry-modal-content.wide-modal {
+    width: 90%;
+    max-width: 100%;
+    max-height: 90vh; 
+    overflow-y: auto;
+  }
+}
+
 
 .modal input[readonly] {
   background-color: #f5f5f7;
@@ -2614,3 +2688,451 @@ label[for^="sleep-"] {
   }
 }
 
+.sign-in-text {
+  padding: 1.3em 2em 0 2em;
+  font-size: 0.8em;
+  color: #525252;
+}
+
+/* Yksinkertainen CSS päiväkirjamerkintöjen listaamiseen */
+
+/* Yleinen Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+}
+
+/* Päiväkirjamerkinnät otsikko */
+.messages-header h1 {
+  margin: 0 0 1.5rem 0;
+  font-size: 2rem;
+  color: #003a63;
+}
+
+/* Välilehdet */
+.message-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  color: #666;
+}
+
+.tab-btn:hover {
+  color: #003a63;
+}
+
+.tab-btn.active {
+  border-bottom: 2px solid #003a63;
+  color: #003a63;
+  font-weight: 500;
+}
+
+/* Merkintälista */
+.message-list {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Merkintä-item */
+.message-item {
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #eee;
+}
+
+.message-item:last-child {
+  border-bottom: none;
+}
+
+.message-item:hover {
+  background-color: #f5f5f7;
+}
+
+.message-item h3 {
+  margin: 0 0 0.8rem 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.message-item p {
+  margin: 0 0 1rem 0;
+  color: #666;
+}
+
+/* Tarkastele merkintää -nappi */
+.message-item button {
+  background-color: #003a63;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.8rem 1.2rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.message-item button:hover {
+  background-color: #00558e;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 300px;
+  margin-left: 2rem;
+}
+
+.sidebar-content {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.sidebar-content h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.sidebar-content h4 {
+  margin: 1rem 0 0.3rem 0;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.sidebar-content p {
+  margin: 0 0 0.7rem 0;
+  color: #555;
+}
+
+/* Export-button */
+#export-btn {
+  background-color: #003a63;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 1rem;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+#export-btn:hover {
+  background-color: #00558e;
+}
+
+/* Modal-tyylit */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: white;
+  margin: 5% auto;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 800px;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  color: #aaa;
+  font-size: 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #555;
+}
+
+/* Unen laatu ja vireys -palkit */
+.progress-container {
+  width: 100%;
+  height: 20px;
+  background-color: #f5f5f7;
+  border-radius: 4px;
+  margin: 10px 0;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+#modal-quality-bar {
+  background-color: #4CAF50;
+}
+
+#modal-alertness-bar {
+  background-color: #e74c3c;
+}
+
+.progress-container span {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  line-height: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+/* Modaalin lomake */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* Entry modal */
+.entry-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 1000;
+}
+
+.entry-modal.open {
+  display: block;
+}
+
+.entry-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.entry-modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  background-color: white;
+  border-radius: 12px;
+  margin: 5vh auto;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.entry-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #003a63;
+  color: white;
+}
+
+.entry-modal-header h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: white;
+}
+
+.entry-modal-close {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+  line-height: 0;
+}
+
+.entry-modal-body {
+  padding: 20px;
+}
+
+.entry-modal-field {
+  margin-bottom: 1rem;
+}
+
+.entry-modal-field p {
+  margin: 0;
+}
+
+/* Ei merkintöjä -viesti */
+.no-merkinta {
+  text-align: center;
+  padding: 2rem;
+  color: #777;
+  font-style: italic;
+}
+
+.no-merkinta a {
+  color: #003a63;
+  text-decoration: none;
+}
+
+.no-merkinta a:hover {
+  text-decoration: underline;
+}
+
+/* Responsiivisuusasetukset */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  .sidebar {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 2rem;
+  }
+  
+  .messages-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .message-tabs {
+    margin-top: 1rem;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal-content {
+    width: 95%;
+    padding: 1.5rem;
+  }
+}
+
+/* Tumman tilan tyylit */
+body.dark-mode {
+  background-color: #121212;
+}
+
+body.dark-mode .messages-header h1 {
+  color: #4a9eff;
+}
+
+body.dark-mode .message-list,
+body.dark-mode .sidebar-content,
+body.dark-mode .modal-content,
+body.dark-mode .entry-modal-content {
+  background-color: #1e1e1e;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .message-item {
+  border-bottom-color: #333;
+}
+
+body.dark-mode .message-item:hover {
+  background-color: #252525;
+}
+
+body.dark-mode .message-item h3 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .message-item p {
+  color: #bbb;
+}
+
+body.dark-mode .tab-btn {
+  color: #aaa;
+}
+
+body.dark-mode .tab-btn:hover,
+body.dark-mode .tab-btn.active {
+  color: #4a9eff;
+}
+
+body.dark-mode .tab-btn.active {
+  border-bottom-color: #4a9eff;
+}
+
+body.dark-mode .sidebar-content h3,
+body.dark-mode .sidebar-content h4 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .sidebar-content p {
+  color: #bbb;
+}
+
+body.dark-mode .message-item button,
+body.dark-mode #export-btn {
+  background-color: #4a9eff;
+}
+
+body.dark-mode .message-item button:hover,
+body.dark-mode #export-btn:hover {
+  background-color: #0086f0;
+}
+
+body.dark-mode .progress-container {
+  background-color: #2d3748;
+}
+
+body.dark-mode .entry-modal-header {
+  background-color: #0078d4;
+}
+
+body.dark-mode .no-merkinta {
+  color: #aaa;
+}
+
+body.dark-mode .no-merkinta a {
+  color: #4a9eff;
+}
+
+body.dark-mode .close-btn {
+  color: #999;
+}
+
+body.dark-mode .close-btn:hover {
+  color: #ccc;
+}

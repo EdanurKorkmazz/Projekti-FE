@@ -13,46 +13,82 @@ näitä tietoja tehokkaasti.
 #### Kirjautuminen:
 ![Kirjautuminen](</public/img/kirjautuminen (1).png>)
 #### Etusivu:
-![Etusivu](</public/img/etusivu.png>)
+![Etusivu](</public/img/e.png>)
+
 #### Päiväkirjasivu:
-![Päiväkirjasivu](</public/img/>)
+![Päiväkirjasivu1](</public/img/paivakirja1.png>)
+
+![Päiväkirjasivu2](</public/img/paivakirja2.png>)
+
+![Päiväkirjasivu3](</public/img/paivakirja3.png>)
+
 #### Seuranta:
-![Seuranta](</public/img/>)
+![Seuranta](</public/img/s.png>)
+
 #### Merkinnät:
-![Merkinnät](</public/img/>)
+![Merkinnät](</public/img/m.png>)
 #### Tietoa unesta:
 ![Tietoa](</public/img/tietoa.png>)
+
 #### Asetukset:
-![Asetukset](</public/img/asetukset.png>)
+![Asetukset](</public/img/>)
+
+### Kuvakaappaukset sovelluksen käyttöliittymästä tummenetussa tilassa
+#### Etusivu:
+![Etusivu](</public/img/ed.png>)
+
+#### Päiväkirjasivu:
+![Päiväkirjasivu1](</public/img/paivakirja1-dark.png>)
+
+![Päiväkirjasivu2](</public/img/paivakirja2-dark.png>)
+
+![Päiväkirjasivu3](</public/img/paivakirja3-dark.png>)
+
+#### Seuranta:
+![Seuranta](</public/img/sd.png>)
+
+#### Merkinnät:
+![Merkinnät](</public/img/md.png>)
+#### Tietoa unesta:
+![Tietoa](</public/img/tietoa-dark.png>)
+
+#### Asetukset:
+![Asetukset](</public/img/>)
+
 
 
 
 ### Linkki julkaistuun sovellukseen (front-end)
 #### https://github.com/EdanurKorkmazz/Projekti-FE
+#### Julkaistu sivu: https://oma-uni.norwayeast.cloudapp.azure.com/src/pages/seuranta.html
 
 ### Linkki käytössä olevaan back-end-sovellukseen/APIin
 #### https://github.com/tinjapup/Projekti-BE
+#### Julkaistu sivu: https://oma-uni.norwayeast.cloudapp.azure.com/src/pages/seuranta.html
 
 
 
-### linkki API-dokumentaatioon (apidoc)
+
+### Linkki API-dokumentaatioon (apidoc)
 ####
 
 ### Rautalankamallit tai linkki niihin
 #### https://www.figma.com/design/EaP6Pq4hVyd6L5lFUSIoyW/Web-Projekti?node-id=1-2561&t=y8IUyh728SSmRPJg-1
 
 ### Tietokannan kuvaus:
-![Tietokanta](</public/img/>)
+![Tietokanta](</public/img/db.png>)
 
 ### Listaus ja kuvaus kaikista toiminnallisuuksista, mitä on toteutettu
 #### - Kirjautuminen sisään kubios tunnuksilla.
 #### - Kirjautuminen ulos.
 #### - Päiväkijalomakkeen lähettäminen.
-#### - Päiväkirjamerkintöjen tarkastaminen.
-#### - 
+#### - Tulosten seuranta.
+#### - Darkmode
+#### - Keskeneräinen päiväkirjamerkintä tallennetaan ja käyttäjä voi jatkaa myöhemmin täyttämistä.
+
+
 
 ### Mahdolliset tiedossa olevat bugit/ongelmat
 
 ### Linkki ohjelmistotestauskansioon, mistä löytyvät testitapaukset ja -raportit
 #### https://github.com/EdanurKorkmazz/Projekti-FE
-
