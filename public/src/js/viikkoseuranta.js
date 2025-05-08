@@ -310,7 +310,7 @@ function dashboardInfo () {
         sleepTrend.innerText = `+ ${diff} min eilisestä`;
     } else if (diff < 0) {
         sleepTrend.classList.add("down");
-        sleepTrend.innerText = `- ${diff} min eilisestä`;
+        sleepTrend.innerText = `${diff} min eilisestä`;
     } else {
         sleepTrend.innerText = `Ei muutosta eilisestä`;
     }

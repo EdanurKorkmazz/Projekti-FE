@@ -961,6 +961,8 @@ div.read-only input {
 .entry-modal-content.wide-modal {
   width: 80%;
   max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 
