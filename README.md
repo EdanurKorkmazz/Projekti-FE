@@ -13,11 +13,7 @@ näitä tietoja tehokkaasti.
 #### Kirjautuminen:
 ![Kirjautuminen](</public/img/kirjautuminen (1).png>)
 #### Etusivu:
-<<<<<<< HEAD
 ![Etusivu](</public/img/e.png>)
-=======
-![Etusivu](</public/img/etusivu.png>)
->>>>>>> origin/main
 
 #### Päiväkirjasivu:
 ![Päiväkirjasivu1](</public/img/paivakirja1.png>)
@@ -27,11 +23,7 @@ näitä tietoja tehokkaasti.
 ![Päiväkirjasivu3](</public/img/paivakirja3.png>)
 
 #### Seuranta:
-<<<<<<< HEAD
-![Seuranta](</public/img/s.png>)
-=======
 ![Seuranta](</public/img/seuranta.png>)
->>>>>>> origin/main
 
 #### Merkinnät:
 ![Merkinnät](</public/img/m.png>)
@@ -79,7 +71,7 @@ näitä tietoja tehokkaasti.
 ![Seuranta](</public/img/seuranta-dark.png>)
 
 #### Merkinnät:
-![Merkinnät](</public/img/>)
+![Merkinnät](</public/img/md.png>)
 #### Tietoa unesta:
 ![Tietoa](</public/img/tietoa-dark.png>)
 
@@ -90,22 +82,12 @@ näitä tietoja tehokkaasti.
 
 
 ### Linkki julkaistuun sovellukseen (front-end)
-#### https://github.com/EdanurKorkmazz/Projekti-FE
-#### Julkaistu sivu: https://oma-uni.norwayeast.cloudapp.azure.com/src/pages/seuranta.html
+#### GitHub: https://github.com/EdanurKorkmazz/Projekti-FE/tree/deployment
+#### Julkaistu sivu: https://oma-uni.norwayeast.cloudapp.azure.com
 
 ### Linkki käytössä olevaan back-end-sovellukseen/APIin
-#### https://github.com/tinjapup/Projekti-BE
-#### Julkaistu sivu: https://oma-uni.norwayeast.cloudapp.azure.com/src/pages/seuranta.html
-
-
-
-
-### Linkki API-dokumentaatioon (apidoc)
-<<<<<<< HEAD
-####
-=======
-#### https://oma-uni.norwayeast.cloudapp.azure.com/api
->>>>>>> origin/main
+#### GitHub: https://github.com/tinjapup/Projekti-BE/tree/deployment
+#### Linkki API-dokumentaatioon (apidoc): https://oma-uni.norwayeast.cloudapp.azure.com/api
 
 ### Rautalankamallit tai linkki niihin
 #### https://www.figma.com/design/EaP6Pq4hVyd6L5lFUSIoyW/Web-Projekti?node-id=1-2561&t=y8IUyh728SSmRPJg-1
@@ -114,20 +96,18 @@ näitä tietoja tehokkaasti.
 ![Tietokanta](</public/img/db.png>)
 
 ### Listaus ja kuvaus kaikista toiminnallisuuksista, mitä on toteutettu
-#### - Kirjautuminen sisään kubios tunnuksilla.
+#### - Kirjautuminen sisään Kubios-tunnuksilla.
 #### - Kirjautuminen ulos.
-#### - Päiväkijalomakkeen lähettäminen.
-#### - Tulosten seuranta.
-#### - Darkmode
-<<<<<<< HEAD
-#### - Keskeneräinen päiväkirjamerkintä tallennetaan ja käyttäjä voi jatkaa myöhemmin täyttämistä.
-=======
+#### - Päiväkirjamerkinnän lähettäminen tietokantaan.
+#### - Tulosten seuranta kuvaajien avulla.
+#### - Merkintöjen tarkastelu.
+#### - Käyttöliittymässä Light ja Dark mode.
+#### - Käyttäjän sähköpostin muuttaminen.
 #### - Keskeneräinen päiväkirjamerkintä tallennetaan ja voi jatkaa myöhemmin täyttämistä.
->>>>>>> origin/main
 
 
 
 ### Mahdolliset tiedossa olevat bugit/ongelmat
 
 ### Linkki ohjelmistotestauskansioon, mistä löytyvät testitapaukset ja -raportit
-#### https://github.com/EdanurKorkmazz/Projekti-FE
+#### https://github.com/EdanurKorkmazz/Projekti-FE/tree/deployment/testit
