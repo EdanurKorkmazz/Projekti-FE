@@ -106,7 +106,6 @@ const dataForXDays = (days, data, label) => {
             averageValue = parseInt(averageValue / 60);
         }
 
-        console.log("averageValue", averageValue);
         return {
             x: date,
             y: averageValue,
@@ -145,12 +144,12 @@ const initializeInfoFromCheckedCheckboxes = () => {
 dataToDraw = [
     {
         label: 'HRV',
-        color: 'rgb(75, 192, 192)',
+        color: 'rgb(0, 58, 99)',
         yAxisID: 'y'
     },
     {
         label: 'total_sleep',
-        color: 'rgb(255, 99, 132)',
+        color: 'rgb(231, 76, 60)',
         yAxisID: 'y1'
     }
 ];
@@ -170,8 +169,6 @@ const drawChart = async () => {
         labels: labels,
         datasets: [],
     };
-
-    console.log("chart", data, data.y);
 
     if (chart) {
         // Update existing chart
@@ -218,6 +215,9 @@ const drawChart = async () => {
                         title: {
                             display: true,
                             text: 'HRV',
+                            font: {
+                                size: 14
+                            }
                         },
                     },
                     y1: {
@@ -227,6 +227,9 @@ const drawChart = async () => {
                         title: {
                             display: true,
                             text: 'Nukuttu aika (h)',
+                            font: {
+                                size: 14
+                            }
                         },
                         grid: {
                             drawOnChartArea: false, // Prevent grid lines from overlapping

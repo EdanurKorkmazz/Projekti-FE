@@ -335,6 +335,9 @@ div.read-only input {
 .chart-container.front-chart {
   box-shadow: none;
   padding: 0;
+  margin-bottom: 0.8rem;
+  min-height: 320px;
+  max-height: 320px;
 }
 
 #seuranta-chart {
