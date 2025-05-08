@@ -76,7 +76,7 @@ näitä tietoja tehokkaasti.
 #### https://www.figma.com/design/EaP6Pq4hVyd6L5lFUSIoyW/Web-Projekti?node-id=1-2561&t=y8IUyh728SSmRPJg-1
 
 ### Tietokannan kuvaus:
-![Tietokanta](</public/img/>)
+![Tietokanta](</public/img/db.png>)
 
 ### Listaus ja kuvaus kaikista toiminnallisuuksista, mitä on toteutettu
 #### - Kirjautuminen sisään kubios tunnuksilla.
@@ -84,6 +84,9 @@ näitä tietoja tehokkaasti.
 #### - Päiväkijalomakkeen lähettäminen.
 #### - Tulosten seuranta.
 #### - Darkmode
+#### - Keskeneräinen päiväkirjamerkintä tallennetaan ja voi jatkaa myöhemmin täyttämistä.
+
+
 
 ### Mahdolliset tiedossa olevat bugit/ongelmat
 
