@@ -198,16 +198,29 @@ async function saveDraft() {
 
     // If entry was found
     if (response.entry) {
+
       const entry = response.entry;
       console.log("Entry was found", entry);
 
-      const dateDiv = document.getElementById("date");
+      const form = document.getElementById("merkinta-form");
+      form.reset();
+      const dateInput = document.getElementById("date");
+      dateInput.value = entry.date.split('T')[0];
+
+
+      const dateDiv = document.getElementById("date-container");
 
       const alertDiv = document.createElement("div");
       alertDiv.textContent = response.error;
       alertDiv.classList.add("error-message");
 
-      dateDiv.insertAdjacentElement("afterend", alertDiv); 
+      dateDiv.insertAdjacentElement("beforeend", alertDiv); 
+
+      const note = document.getElementById("save-status");
+      if (note) {
+        note.style.display = "none";
+      }
+
       return false;
     }
 
@@ -218,6 +231,7 @@ async function saveDraft() {
       fillFormFromDraft(draft);
       const string = "Luonnos löydetty";
       saveStatus(string, 0, "green");
+      removeMessage();
       return true;
     }
     return true;
@@ -473,10 +487,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // Enable inputs when a valid date is picked
   dateInput.addEventListener("change", async () => {
 
-    const saveDraftResponse = saveDraft();
+    const saveDraftResponse = await saveDraft();
 
-    //if (dateInput.value && saveDraftResponse === true) {
-    if (dateInput.value) {
+    //console.log("saveDraftResponse", saveDraftResponse);
+
+    if (dateInput.value && saveDraftResponse === true) {
+      console.log("if clause");
+    //if (dateInput.value) {
 
         const time = document.getElementById("time");
         const lkm = document.getElementById("lkm");
@@ -526,7 +543,10 @@ document.addEventListener("DOMContentLoaded", () => {
           if (h2s[1]) {
             h2s[1].classList.add("disabled");
           }
-          
+          const h3s = form.querySelectorAll("h3, #merkinta-form h3"); 
+          h3s.forEach(h3 => {
+            h3.classList.add("disabled");
+          });
         }
       });
     }
@@ -662,9 +682,11 @@ function createMessage(message) {
 }
 
 function removeMessage() {
-  const div = document.getElementById("error-message");
-  if (div) {
-    div.style.display = "none"; 
+  const divs = document.getElementById("error-message");
+  if (divs) {
+    document.querySelectorAll("div.error-message").forEach(div => {
+      div.style.display = "none";
+    });
   }
 };
 
@@ -707,7 +729,7 @@ document.querySelectorAll("input").forEach((input) => {
   input.addEventListener("focus", () => {
     setTimeout(() => {
       removeMessage();
-    }, 10000);
+    }, 15000);
   });
 });
 
