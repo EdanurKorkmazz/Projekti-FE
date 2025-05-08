@@ -1,14 +1,6 @@
 /* import "../css/style.css"; */
 import { fetchData } from "./fetch.js";
 
-/**
- * Calculates the total sleep time in minutes
- *
- * @param {string} hours - user input for hours
- * @param {string} hours - user input for minutes
- *
- * @returns {string} total sleep time in minutes
- */
 
 // Function to calculate the total sleep time in minutes
 function timeToMinutes(hours, minutes) {
@@ -27,11 +19,7 @@ function timeToMinutes(hours, minutes) {
   return totalMinutes;
 }
 
-/**
- * Toggles the read-only state of the inputs in the form
- *
- * @param {string} readonly
- */
+// Toggles the read-only state of the inputs in the form
 function toggleInputsReadOnly(readOnly) {
   const inputs = document.querySelectorAll(
     "#merkinta-form input, #merkinta-form select, #merkinta-form textarea"
@@ -61,9 +49,7 @@ function toggleInputsReadOnly(readOnly) {
   
 }
 
-/**
- * Gathers form data from the inputs
- */
+// Gathers form data from the inputs
 
 function gatherFormData() {
   let fieldMap = {
@@ -87,6 +73,7 @@ function gatherFormData() {
 
   let data = {};
 
+  // Gathers draft data from corresponding input fields
   Object.entries(fieldMap).forEach(([fieldId, dataKey]) => {
     const element = document.querySelector(`#${fieldId}`);
     if (element && element.value) {
@@ -118,11 +105,7 @@ function gatherFormData() {
 }
 
 
-/**
- * Fills the form with data from the draft
- *
- * @param {object} draft - The draft data to fill the form with
- */
+// Fills the form with data from the draft
 
 const fillFormFromDraft = (draft) => {
   if (!draft || !draft.data) return; 
@@ -148,6 +131,7 @@ const fillFormFromDraft = (draft) => {
     "haitat": "sleep_factors",
   };
 
+  // Places fetched draft data on corresponding input fields
   Object.entries(fieldMap).forEach(([fieldId, dataKey]) => {
     const element = document.querySelector(`#${fieldId}`);
     if (!element || !(dataKey in data)) {
@@ -168,9 +152,7 @@ const fillFormFromDraft = (draft) => {
 
 };
 
-/**
-  * Fetches data from the server
-  */
+// Fetches data from the server
 async function saveDraft() {
   let formData = gatherFormData();
 
@@ -195,26 +177,21 @@ async function saveDraft() {
     // Fetch data from the server
     const response = await fetchData(url, options);
 
-    console.log("Response from server:", response);
-
-    // If entry was found
+    // If entry was found with requested date
     if (response.entry) {
 
       const entry = response.entry;
-      console.log("Entry was found", entry);
 
       const form = document.getElementById("merkinta-form");
       form.reset();
       const dateInput = document.getElementById("date");
       dateInput.value = entry.date.split('T')[0];
 
-
       const dateDiv = document.getElementById("date-container");
 
       const alertDiv = document.createElement("div");
       alertDiv.textContent = response.error;
       alertDiv.classList.add("error-message");
-
       dateDiv.insertAdjacentElement("beforeend", alertDiv); 
 
       const note = document.getElementById("save-status");
@@ -225,16 +202,16 @@ async function saveDraft() {
       return false;
     }
 
-    // If draft was found, fill the form with it
+    // If draft was found, fill the form with the data
     if (response.rows) {
       const draft = response.rows;
-      console.log("Draft was found", draft);
       fillFormFromDraft(draft);
       const string = "Luonnos löydetty";
       saveStatus(string, 0, "green");
       removeMessage();
       return true;
     }
+
     return true;
   } catch (error) {
     console.error('Error saving draft', error);
@@ -243,12 +220,8 @@ async function saveDraft() {
 }
 
 
-/**
- * Submits data to the server
- *
- */
+// Submits draft data to the server
 const updateDraft = async () => {
-
 
   const div = document.getElementById("error-message");
   if (div && div.style.display === "block") {
@@ -282,7 +255,6 @@ const updateDraft = async () => {
   const response = await fetchData(url, options);
 
   if (response) {
-    console.log("Draft updated successfully", response);
     const now = new Date();
     const hours = now.getHours().toString().padStart(2, '0');
     const minutes = now.getMinutes().toString().padStart(2, '0');
@@ -293,11 +265,9 @@ const updateDraft = async () => {
 };
 
 
-/**
- * Submits data to the server
- *
- */
+// Submits a new entry to the server
 const submitData = async () => {
+
   // Get the values from the form inputs
   const date = document.querySelector("#date").value;
   const time = document.querySelector("#time").value;
@@ -325,7 +295,6 @@ const submitData = async () => {
   const haitat = document.querySelector("#haitat").value;
 
   // Request body from the form inputs
-
   const bodyData = {
     date: date,
     bed_time: time,
@@ -341,14 +310,11 @@ const submitData = async () => {
     sleep_factors: haitat,
   };
 
-  console.log("submitData() bodyData:", bodyData);
-
   // Endpoint
   const url = "https://oma-uni.norwayeast.cloudapp.azure.com/api/entries";
 
   // Token
   const token = sessionStorage.getItem("token");
-
 
   // Request options
   const options = {
@@ -371,7 +337,6 @@ const submitData = async () => {
 
   // Check for success in the response
   if (response.message) {
-    console.log(response.message, "success");
 
     // Replace the form with a confirmation message
     const container = document.getElementById("boksi");
@@ -381,43 +346,40 @@ const submitData = async () => {
       <p>Merkintäsi on tallennettu onnistuneesti.</p>
       <br>
       <button id="new-entry-btn" type="button">Tee uusi merkintä</button>
+      <button id="view-entries-btn" type="button">Tarkastele merkintöjä</button>
     </div>
   `;
 
-    // Optional: add a listener to restart the form
     document.getElementById("new-entry-btn").addEventListener("click", () => {
-      window.location.reload(); // or re-render the form dynamically
+      window.location.reload(); 
     });
-  }
 
-  // Log the response data
-  console.log(response);
+    document.getElementById("view-entries-btn").addEventListener("click", () => {
+      window.location.href = "/src/pages/seuranta.html";
+    });
+
+  }
 };
 
-/**
- * Handles the submit button click event
- */
+// Handles the submit button click event
 const submitBtn = document.getElementById("submit-btn");
 submitBtn.addEventListener("click", (e) => {
 
   // Check for form validity
   const form = document.getElementById("merkinta-form");
   if (!form.checkValidity()) {
-    form.reportValidity(); // This will show the browser's native validation error messages
+    form.reportValidity(); 
     return;
   }
 
   // Prevent form submission
   e.preventDefault();
 
-
   // If form is valid, proceed to submit
   submitData();
 });
 
-/**
- * Handles the button display logic
- */
+// Handles the button display logic
 const previewBtn = document.getElementById("preview-btn");
 const editBtn = document.getElementById("edit-btn");
 const form = document.getElementById("merkinta-form");
@@ -431,7 +393,6 @@ previewBtn.addEventListener("click", (e) => {
 
   // Toggles the read-only state of the inputs in the form
   toggleInputsReadOnly(true);
-  
 
   previewBtn.style.display = "none";
   editBtn.style.display = "inline-block";
@@ -443,9 +404,7 @@ previewBtn.addEventListener("click", (e) => {
 
 });
 
-
-
-
+// Toggles back to new entry mode
 editBtn.addEventListener("click", () => {
   toggleInputsReadOnly(false);
 
@@ -458,12 +417,8 @@ editBtn.addEventListener("click", () => {
   document.querySelector("h1").innerText = "Uusi merkintä"; 
 });
 
+// Handles the date input change event
 
-
-/**
- * Handles the date input change event
- * Enables or disables the form inputs based on the date selection
- */
 document.addEventListener("DOMContentLoaded", () => {
 
   const dateInput = document.getElementById("date");
@@ -494,12 +449,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const saveDraftResponse = await saveDraft();
 
-    //console.log("saveDraftResponse", saveDraftResponse);
-
     if (dateInput.value && saveDraftResponse === true) {
-      console.log("if clause");
-    //if (dateInput.value) {
-
         const time = document.getElementById("time");
         const lkm = document.getElementById("lkm");
         const date = dateInput.value;
@@ -512,7 +462,6 @@ document.addEventListener("DOMContentLoaded", () => {
         time.value = date + "T21:00";
         time.min = date + "T00:00";
         time.max = nextDayString + "T23:59";
-
 
         lkm.value = nextDayString + "T09:00";
         lkm.min = date + "T00:00";
@@ -558,6 +507,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// Last saved information
 function saveStatus(string, timeout, color) {
 
   const status = document.getElementById("save-status");
@@ -568,7 +518,7 @@ function saveStatus(string, timeout, color) {
 
   setTimeout(() => {
     status.innerText = string;
-    status.classList.add(color); // Add the class to change color
+    status.classList.add(color); 
   }, timeout);
 
   status.innerText = `Tallennetaan...`;
@@ -576,20 +526,16 @@ function saveStatus(string, timeout, color) {
 
 }
 
-// Save when an input loses focus
+// Save draft when an input loses focus
 document.querySelectorAll('input, textarea, select').forEach((element) => {
   element.addEventListener('blur', () => {
     if (element.id === 'date') return; // Skip date input
     if (element.value === "") return; // Skip empty inputs
-    //if (element.id === 'bed_time' || element.id === 'wakeup_time') return; 
-
-
     setTimeout(updateDraft, 500); 
-
   });
 });
 
-
+// Function to count sleep minutes
 function totalMinutes(hours, minutes) {
   // Convert to integers
   hours = parseInt(hours.value) || 0;
@@ -607,7 +553,7 @@ function totalMinutes(hours, minutes) {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Get references to the necessary DOM elements
+
   const timeInput = document.getElementById("time"); // "Menin vuoteeseen klo"
   const lkmInput = document.getElementById("lkm");   // "Nousin vuoteesta klo"
   const delayHoursInput = document.getElementById("delay-hours"); // "Nukahtamisviive"
@@ -618,7 +564,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const sleeptimeMinutesInput = document.getElementById("sleeptime-minutes");
   const inbedHoursInput = document.getElementById("inbed-hours"); // "Vuoteessaoloaika"
   const inbedMinutesInput = document.getElementById("inbed-minutes");
-
 
 
   // Function to calculate the difference between two times
@@ -678,14 +623,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// Add event listeners to the form inputs
-
+// Function to create error message
 function createMessage(message) {
   const div = document.getElementById("error-message");
   div.innerText = message;
   div.style.display = "block"; // Show the error message
 }
 
+// Function to hide error message
 function removeMessage() {
   const divs = document.getElementById("error-message");
   if (divs) {
@@ -695,13 +640,24 @@ function removeMessage() {
   }
 };
 
-
+// Functions to handle invalid time inputs
 const date = document.getElementById("date");
 const bedTimeInput = document.getElementById("time");
 const wakeTimeInput = document.getElementById("lkm");
-const delayHoursInput = document.getElementById("delay-hours"); // "Nukahtamisviive"
+const delayHoursInput = document.getElementById("delay-hours"); 
 const delayMinutesInput = document.getElementById("delay-minutes");
 
+// Checks wakeup time validity
+function wakeupValidity() {
+  createMessage("Nousuaika ei voi olla ennen nukkumaanmenoaikaa.");
+  const nextDay = new Date(date.value);
+  nextDay.setDate(nextDay.getDate() + 1);
+  const pad = (num) => String(num).padStart(2, '0');
+  const nextDayString = `${nextDay.getFullYear()}-${pad(nextDay.getMonth() + 1)}-${pad(nextDay.getDate())}`;
+  wakeTimeInput.value = nextDayString + "T09:00";
+};
+
+// Checks bed time input validity
 bedTimeInput.addEventListener("change", () => {
   const dateValue = date.value + "T00:00";
   if (bedTimeInput.value && bedTimeInput.value < dateValue) {
@@ -709,27 +665,18 @@ bedTimeInput.addEventListener("change", () => {
     bedTimeInput.value = date.value + "T21:00";
   }
   if (bedTimeInput.value && wakeTimeInput.value < bedTimeInput.value) {
-    createMessage("Nousuaika ei voi olla ennen nukkumaanmenoaikaa."); // Create error message;
-    const nextDay = new Date(date.value);
-    nextDay.setDate(nextDay.getDate() + 1);
-    const pad = (num) => String(num).padStart(2, '0');
-    const nextDayString = `${nextDay.getFullYear()}-${pad(nextDay.getMonth() + 1)}-${pad(nextDay.getDate())}`;
-    wakeTimeInput.value = nextDayString + "T09:00";
+    wakeupValidity();
   }
 });
 
+// Checks wakeup time input validity
 wakeTimeInput.addEventListener("change", () => {
   if (bedTimeInput.value && wakeTimeInput.value < bedTimeInput.value) {
-    createMessage("Nousuaika ei voi olla ennen nukkumaanmenoaikaa."); // Create error message;
-    const nextDay = new Date(date.value);
-    nextDay.setDate(nextDay.getDate() + 1);
-    const pad = (num) => String(num).padStart(2, '0');
-    const nextDayString = `${nextDay.getFullYear()}-${pad(nextDay.getMonth() + 1)}-${pad(nextDay.getDate())}`;
-    wakeTimeInput.value = nextDayString + "T09:00";
+    wakeupValidity();
   }
 });
 
-
+// Remove error message after set time interval
 document.querySelectorAll("input").forEach((input) => {
   input.addEventListener("focus", () => {
     setTimeout(() => {
@@ -738,39 +685,26 @@ document.querySelectorAll("input").forEach((input) => {
   });
 });
 
-
-wakeTimeInput.addEventListener("change", () => {
-  if (bedTimeInput.value && wakeTimeInput.value < bedTimeInput.value) {
-    createMessage("Nousuaika ei voi olla ennen nukkumaanmenoaikaa."); // Create error message;
-    wakeTimeInput.value = ""; // Clear invalid input
-  }
-});
-
+// Calculates if sleep delay is valid
 function delayCalculateTimes() {
-  const inbedHoursInput = document.getElementById("inbed-hours"); // "Vuoteessaoloaika"
+  const inbedHoursInput = document.getElementById("inbed-hours"); 
   const inbedMinutesInput = document.getElementById("inbed-minutes");
   const delayHoursInput = document.getElementById("delay-hours");
   const delayMinutesInput = document.getElementById("delay-minutes");
-  console.log("delayCalculateTimes() called", inbedHoursInput.value, inbedMinutesInput.value);
-
-
 
   if (inbedHoursInput.value || inbedMinutesInput.value) {
     const delay = totalMinutes(delayHoursInput, delayMinutesInput); 
     const timeIn = totalMinutes(inbedHoursInput, inbedMinutesInput); 
 
-    console.log("delayCalculateTimes() if-clause called", delay, timeIn);
-
     if (delay > timeIn) {
-      createMessage("Nukahtamisviive ei voi olla enemmän kuin vuoteessa oltu aika."); // Create error message;
-      delayHoursInput.value = ""; // Clear invalid input
-      delayMinutesInput.value = ""; // Clear invalid input
+      createMessage("Nukahtamisviive ei voi olla enemmän kuin vuoteessa oltu aika."); 
+      delayHoursInput.value = ""; 
+      delayMinutesInput.value = ""; 
     }
   } 
 };
 
-
-
+// Calculates sleep delay validity when delay hours or delay minutes input is deactivated
 delayHoursInput.addEventListener("blur", () => {
   delayCalculateTimes();
 });

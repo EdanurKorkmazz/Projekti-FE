@@ -1,5 +1,6 @@
 import { fetchData } from './fetch.js';
 
+// Function to format date
 function formatDate(dateString) {
   const [year, month, day] = dateString.split('T')[0].split('-');
   return `${day}.${month}.${year}`;
@@ -27,8 +28,9 @@ const getEntryData = async () => {
 
 const entryData = await getEntryData();
 
+
+// Function to create modal with entry data
 function createModal(entryData) {
-    console.log('Creating modal with entry data:', entryData);
   
     let modalHTML = `
       <div class="entry-modal" id="merkinta-modal-${entryData.user_id}" style="display: block;">
@@ -138,6 +140,7 @@ function createModal(entryData) {
     };
   }
   
+  // Function to format time
 function formatMinutes(minutes) {
   if (!minutes) return '-';
   
@@ -146,6 +149,7 @@ function formatMinutes(minutes) {
   return `${hours} h ${mins} min`;
 }
 
+// Function to load entries on to the page
 function loadEntries() {
     const container = document.getElementById("merkinta-list");
 
