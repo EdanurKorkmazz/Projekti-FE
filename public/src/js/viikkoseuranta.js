@@ -54,11 +54,7 @@ const getEntryData = async () => {
 const addDatasetWithLabel = (data, label, dataArray, color) => {
     const labelsToDescriptions = {
         'HRV': 'HRV (ms)',
-<<<<<<< HEAD
-        'daytime_alertness': 'Päivänaikainen vireys (1-10)',
-=======
         'total_sleep': 'Nukuttu aika (h)',
->>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
     }
         
     const dataset = {
@@ -107,11 +103,7 @@ const dataForXDays = (days, data, label) => {
                 : null;
         
         if (label == 'total_sleep' && averageValue) {
-<<<<<<< HEAD
-            averageValue = averageValue / 60;
-=======
             averageValue = parseInt(averageValue / 60);
->>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
         }
 
         return {
@@ -149,8 +141,6 @@ const initializeInfoFromCheckedCheckboxes = () => {
     });
 };
 
-<<<<<<< HEAD
-=======
 dataToDraw = [
     {
         label: 'HRV',
@@ -164,7 +154,6 @@ dataToDraw = [
     }
 ];
 
->>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
 // Update chart data based on current datasets
 const updateChartData = (data) => {
     dataToDraw.map((dataset) => {
@@ -189,28 +178,17 @@ const drawChart = async () => {
         chart.update();
     } else {
         // Initialize and draw a new chart
-<<<<<<< HEAD
-        initializeInfoFromCheckedCheckboxes();
-        updateChartData(data);
-
-        const ctx = document.getElementById('seuranta-chart');
-        ctx.height = '100%';
-        ctx.width = '100%';
-=======
         //initializeInfoFromCheckedCheckboxes();
 
         updateChartData(data);
 
         const ctx = document.getElementById('seuranta-chart');
         ctx.height = "300px";
->>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
 
         chart = new Chart(ctx, {
             type: 'line',
             data: data,
             options: {
-<<<<<<< HEAD
-=======
                 plugins: {
                     legend: {
                         display: true,
@@ -221,7 +199,6 @@ const drawChart = async () => {
                         },
                     },
                   },
->>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
                 responsive: true,
                 locale: 'fi-FI',
                 scales: {
@@ -238,12 +215,9 @@ const drawChart = async () => {
                         title: {
                             display: true,
                             text: 'HRV',
-<<<<<<< HEAD
-=======
                             font: {
                                 size: 14
                             }
->>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
                         },
                     },
                     y1: {
@@ -252,24 +226,15 @@ const drawChart = async () => {
                         position: 'right',
                         title: {
                             display: true,
-<<<<<<< HEAD
-                            text: 'Päivänaikainen vireys (1-10)',
-=======
                             text: 'Nukuttu aika (h)',
                             font: {
                                 size: 14
                             }
->>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
                         },
                         grid: {
                             drawOnChartArea: false, // Prevent grid lines from overlapping
                         },
-<<<<<<< HEAD
-                        min: 1,
-                        max: 10,
-=======
                         min: 0, 
->>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
                     },
                 },
             },
@@ -288,15 +253,8 @@ const changeYAxis = () => {
         const sleepTimeDataset = chart.data.datasets.find((dataset) => dataset.label === 'Nukuttu aika (h)');
         if (sleepTimeDataset) {
             yAxis.title.text = 'Arvo';
-<<<<<<< HEAD
-            yAxis.max = undefined;
         } else {
             yAxis.title.text = 'Nukuttu aika (h)';
-            yAxis.max = 10;
-=======
-        } else {
-            yAxis.title.text = 'Nukuttu aika (h)';
->>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
         }
     } else {
         yAxis.display = false;
@@ -337,37 +295,6 @@ document.querySelectorAll('.time-btn').forEach((button) => {
     });
 });
 
-<<<<<<< HEAD
-// Handle checkbox changes
-const handleCheckboxChange = (event) => {
-    const checkbox = event.target;
-    const dataLabel = checkbox.getAttribute('data-id'); // Get the label from the checkbox
-    const label = event.target.nextElementSibling;
-    const color = window.getComputedStyle(label).color;
-    const yAxisID = dataLabel === 'HRV' ? 'y' : 'y1'; // Determine the Y-axis ID
-
-    if (checkbox.checked) {
-        // Add the dataset if the checkbox is checked
-        dataToDraw.push(
-            {
-                label: dataLabel,
-                color: color,
-                yAxisID: yAxisID,
-            }
-        );
-    } else {
-        // Remove the dataset if the checkbox is unchecked
-        dataToDraw = dataToDraw.filter((dataset) => dataset.label !== dataLabel);
-    }
-
-    drawChart(); // Redraw the chart with the updated datasets
-};
-
-// Attach event listeners to all checkboxes
-document.querySelectorAll('.data-checkbox input[type="checkbox"]').forEach((checkbox) => {
-    checkbox.addEventListener('change', handleCheckboxChange);
-});
-=======
 
 function dashboardInfo () {
 
@@ -407,4 +334,3 @@ function dashboardInfo () {
 };
 
 dashboardInfo();
->>>>>>> 0a5b5d131cffbc14d1a898b3194e99c1721d4470
