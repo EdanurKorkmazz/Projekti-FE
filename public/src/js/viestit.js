@@ -1,39 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-<<<<<<< HEAD
-  const inboxTab = document.getElementById('inbox-tab');
-  const newMessageTab = document.getElementById('new-message-tab');
-  const messageList = document.getElementById('message-list');
-  const newMessageForm = document.getElementById('new-message-form');
-  const chatContainer = document.getElementById('chat-container');
-  const backToMessages = document.getElementById('back-to-messages');
-  const cancelMessageBtn = document.getElementById('cancel-message');
-  const sendMessageBtn = document.getElementById('send-message');
-  const sendChatMessageBtn = document.getElementById('send-chat-message');
-  const chatMessages = document.getElementById('chat-messages');
-  const chatMessageInput = document.getElementById('chat-message');
-  const notification = document.getElementById('notification');
-  
-  // Viestien tiedot 
-  const messageContents = {
-    1: {
-      title: "Tervetuloa OmaUni-sovellukseen",
-      sender: "Lääkäri",
-      messages: [
-        {
-          sender: "Lääkäri",
-          content: "Hei ja tervetuloa käyttämään OmaUni-sovellusta! Olen unilääkäri Joonas Unikko ja toimin pääasiallisena yhteyshenkilönäsi sovelluksen käytössä. Tehtäväni on auttaa sinua parantamaan untasi ja seuraamaan palautumistasi säännöllisesti.",
-          time: "26.4.2025 8:15"
-        },
-        {
-          sender: "Lääkäri",
-          content: "Sovelluksen kautta voit täyttää unipäiväkirjaa, seurata unesi laatua ja saada henkilökohtaista palautetta. Jos sinulla on kysyttävää unitottumuksistasi tai sovelluksen käytöstä, voit aina lähettää minulle viestin tätä kautta.",
-          time: "26.4.2025 8:16"
-        },
-        {
-          sender: "Lääkäri",
-          content: "Pyrin vastaamaan viesteihin 1-2 arkipäivän kuluessa. Aloitetaan yhdessä matka parempaan uneen!",
-          time: "26.4.2025 8:17"
-=======
     const inboxTab = document.getElementById('inbox-tab');
     const newMessageTab = document.getElementById('new-message-tab');
     const messageList = document.getElementById('message-list');
@@ -223,7 +188,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             inboxTab.textContent = 'Saapuneet';
           }
->>>>>>> origin/main
         }
       ]
     },
