@@ -70,7 +70,7 @@ näitä tietoja tehokkaasti.
 
 
 ### Linkki API-dokumentaatioon (apidoc)
-####
+#### https://oma-uni.norwayeast.cloudapp.azure.com/api
 
 ### Rautalankamallit tai linkki niihin
 #### https://www.figma.com/design/EaP6Pq4hVyd6L5lFUSIoyW/Web-Projekti?node-id=1-2561&t=y8IUyh728SSmRPJg-1
