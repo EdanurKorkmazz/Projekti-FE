@@ -22,12 +22,12 @@ document.addEventListener('DOMContentLoaded', function() {
       if (this.checked) {
         enableDarkMode();
         if (modeText) {
-          modeText.textContent = 'Päällä';
+          modeText.textContent = 'Tumma tila on päällä';
         }
       } else {
         disableDarkMode();
         if (modeText) {
-          modeText.textContent = 'Pois päältä';
+          modeText.textContent = 'Tumma tila on pois päältä';
         }
       }
       
